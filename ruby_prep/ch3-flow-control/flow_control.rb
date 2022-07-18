@@ -33,3 +33,52 @@ elsif num <= 100
 else
   puts "Your number is greater than 100"
 end
+
+# E4 What will each block of code below print to the screen?
+
+# Snippet 1
+'4' == 4 ? puts("TRUE") : puts("FALSE") #FALSE
+
+# Snippet 2
+x = 2
+if ((x * 3) / 2) == (4 + 4 - x - 3)
+  puts "Did you get it right?"
+else
+  puts "Did you?"
+end ## Did you get it right?
+
+# Snippet 3
+y = 9
+x = 10
+if (x + 1) <= (y)
+  puts "Alright."
+elsif (x + 1) >= (y)
+  puts "Alright now!" # alright now!
+elsif (y + 1) == x
+  puts "ALRIGHT NOW!"
+else
+  puts "Alrighty!"
+end
+
+# E5 When you run this code, you get the error message below, how can you fix it?
+def equal_to_four(x)
+  if x == 4
+    puts "yup"
+  else
+    puts "nope"
+end
+
+equal_to_four(5)
+
+exercise.rb:8: syntax error, unexpected end-of-input, expecting keyword_end
+
+# if statement is missing the end keyword
+
+
+# E6 Write down whether the followinfg expressions return true or false or raise an error.
+puts (32 * 4) >= "129" #error, can't compare integer to string
+puts 847 == '874' # false
+puts '847' < '846' #  false
+puts '847' > '846' # true
+puts '847' > '8478' # false
+puts '847' < '8478' # true 
