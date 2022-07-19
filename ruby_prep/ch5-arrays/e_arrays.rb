@@ -15,5 +15,47 @@ p arr.include?(number)
    arr = arr.product([Array(1..3)]) # [[1,2,3]] so the full thing is: 
    ["b",[1,2,3],"a",[[1,2,3]]]
    arr.first.delete(arr.first.last) # [["b"],["a",[1,2,3]]]
-# E3
-# E4
+
+# E3 How do you return the word "example" from the folling array?
+arr = [["test", "hello", "world"],["example", "mem"]]
+
+p arr[1][0] # or 
+p arr.last.first
+
+# E4 what does each method return in the following example?
+arr = [15, 7, 18, 5, 12, 8, 5, 1]
+
+p arr.index(5) # 3 returns the index of the first element that matches the argument
+
+p arr.index[5] # error
+
+p arr[5] # 8
+
+# E5 What is the value of a, b, and c in the following program?
+string = "Welcome to America!"
+a = string[6] # e
+b = string[11] # A
+c = string[19] # nil because the idex is out of bound
+p a 
+p b 
+p c
+
+# E6 This code gives the error mesage below. What's wrong and how can it be fixed? 
+names = ['bob', 'joe', 'susan', 'margaret']
+names['margaret'] = 'jody'
+
+# TypeError: no implicit conversion of String into Integer
+#   from (irb):2:in `[]='
+#   from (irb):2
+#   from /Users/username/.rvm/rubies/ruby-2.5.3/bin/irb:12:in `<main>'
+
+# # it's using array index notation so you have to use an integer if you want to access the eleemnt in the 
+# array, in this case, the index where margaret is would be 3 so names[3]
+
+# E7 Use the `each_with_index` method to iterate through an arraay of your creation that pritns each index and value fo the array
+
+cats = ["Burbus","Clarice","Motita","Nieve","Vainilla"]
+
+cats.each_with_index do |cat, idx|
+  puts "#{cat} is at index #{idx}"
+end
