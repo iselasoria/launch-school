@@ -1,3 +1,9 @@
 # ignore temp files
 temp*.rb
 settings.json
+app.json
+appearance.json
+core-plugins.json
+graph.json
+hotkeys.json
+workspace
