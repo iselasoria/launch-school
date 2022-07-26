@@ -57,10 +57,36 @@ OUTPUT the resulting array
 =end
 
 # a method that determines the index of the 3rd occurrence of a given character in a string.
-# For instance, if the given character is 'x' and the string is 'axbxcdxex', the method should r
-# eturn 6 (the index of the 3rd 'x'). If the given character does not occur at least 3 times, return nil.
+# For instance, if the given character is 'x' and the string is 'axbxcdxex', the method should
+# return 6 (the index of the 3rd 'x'). If the given character does not occur at least 3 times, return nil.
+
+=begin
+read the character passed as an argument
+iterate through the characters in the string
+set an empty variable to work as a counter for the occurances of a character
+with each iteration of the character add 1 to its corresponding counter
+if the counter of the char is equal to 3, stop and return the inex at the collection
+if the char doesnt happen 3 times, return nil
+=end
+
+=begin
+READ char passed in as argument to the method
+ITERATE through the collection of characters in the string
+SET counter = 0
+with each iteration if the |current_variable| == char passed in as argument,counter += 1
+IF counter == 3 return index at collection
+ELSIF counter < 3 return nil
+=end
 
 
 # a method that takes two arrays of numbers and returns the result of merging the arrays. 
 # The elements of the first array should become the elements at the even indexes of the returned array, 
 # while the elements of the second array should become the elements at the odd indexes. For instance:
+# merge([1, 2, 3], [4, 5, 6]) # => [1, 4, 2, 5, 3, 6]
+
+=begin
+READ first array
+READ second array
+SET variable for new collection, the merged array
+iterate array1, with each iteration track the index and set odd indexes to the current iteration of the second array
+=end
