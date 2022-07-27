@@ -6,3 +6,8 @@ if operator == '1'
 end
 ```
 
+This loop construct creates a block. This means local variables initialized in the block will not be available outside it.
+```
+loop do 
+end
+``` 
