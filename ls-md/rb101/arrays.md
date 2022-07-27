@@ -1,0 +1,1 @@
+`multiple assignment` is when you assig more than one value on the same line. When an array is assigned to two variables on the same line, each element of that array gets assigned to one of the variables. #TODO get better example
