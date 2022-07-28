@@ -7,12 +7,8 @@
         "id": "75b73cde303cfe87",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "rb101/lingo.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
@@ -69,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rb101/lingo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,9 +84,10 @@
   },
   "active": "75b73cde303cfe87",
   "lastOpenFiles": [
+    "rb101/operations.md",
+    "rb101/quirky-blocks.md.md",
     "rb101/lingo.md",
     "rb101/arrays.md",
-    "offlimits/study-guide.md.md",
-    "rb101/quirky-blocks.md.md"
+    "offlimits/study-guide.md.md"
   ]
 }

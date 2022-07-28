@@ -11,3 +11,6 @@ This loop construct creates a block. This means local variables initialized in t
 loop do 
 end
 ``` 
+
+### Precedence
+Blocks have the lowest precedence of all opperators! But the way you pass them matters: `{}` has a slightly higher precedence than `do...end`
