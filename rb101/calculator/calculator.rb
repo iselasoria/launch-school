@@ -1,9 +1,16 @@
+require YAML
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
 def valid_number?(num)
-  num.to_i() != 0
+  %w(0 1 2 3 4 5 6 7 8 9).include?(num)
+  # num.to_i() != 0
+end
+
+def number?(input)
+  integer?(input) || float?(input)
 end
 
 def operation_to_message(op)
@@ -17,6 +24,8 @@ def operation_to_message(op)
   when '4'
     'dividing'
   end
+
+  op
 end
 
 prompt('Welcome to the calculator, enter your name!')
@@ -92,6 +101,7 @@ loop do # main loop
            when '4'
             number1.to_f() / number2.to_f()
            end
+
 
 
   prompt("The result is #{result}")
