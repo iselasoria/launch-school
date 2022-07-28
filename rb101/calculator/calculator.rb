@@ -1,9 +1,13 @@
 require 'yaml'
 
 MESSAGES = YAML.load_file('/Users/rosasoria/Documents/ft_ls/rb101/calculator/calculator-messages.yaml')
-
+LANGUAGE='es'
 # quick check to see how messages are getting imported
 # puts MESSAGES.inspect
+
+def messages(message, lang='en')
+  MESSAGES[lang][message]
+end
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -33,55 +37,51 @@ word =  case op
 word
 end
 
-prompt(MESSAGES['welcome'])
+# prompt(MESSAGES['welcome'])
+prompt(messages('welcome',LANGUAGE))
 
 name = ''
 loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt(MESSAGES['invalid_name'])
+    prompt(messages('invalid_name', LANGUAGE))
   else
     break
   end
 end
 
-prompt("Hi #{name}")
+# prompt("Hi #{name}")
+prompt(messages('hi', LANGUAGE) + ' ' + name)
 
 loop do # main loop
   number1 = ''
   loop do
-    prompt(MESSAGES['ask_num1'])
+    prompt(messages('ask_num1', LANGUAGE))
     number1 = Kernel.gets().chomp()
 
     if valid_number?(number1)
       break
     else
-      prompt(MESSAGES['num_validation'])
+      prompt(messages('num_validation', LANGUAGE))
     end
   end
 
   number2 = ''
   loop do
-    prompt(MESSAGES['ask_num2'])
+    prompt(messages('ask_num2', LANGUAGE))
     number2 = Kernel.gets().chomp()
 
     if valid_number?(number2)
       break
     else
-      prompt(MESSAGES['num_validation'])
+      prompt(messages('num_validation', LANGUAGE))
     end
   end
 
-  operator_prompt = <<-MSG
-    What operation would you like to perform?
-    1) add
-    2) subtract
-    3) multiply
-    4) divide
-  MSG
+  # operator_prompt = MESSAGES['operation']
 
-  prompt(operator_prompt)
+  prompt(messages('operation', LANGUAGE))
 
   operator = ''
   loop do
@@ -90,7 +90,7 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt(MESSAGES['op_validation'])
+      prompt(messages('op_validation', LANGUAGE))
     end
   end
 
@@ -109,10 +109,11 @@ loop do # main loop
 
 
 
-  prompt("The result is #{result}")
-  prompt(MESSAGES['redo'])
+  # prompt("The result is #{result}")
+  prompt(messages('result', LANGUAGE) + ' ' + result.to_s)
+  prompt(messages('redo', LANGUAGE))
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end
 
-prompt(MESSAGES['bye'])
+prompt(messages('bye', LANGUAGE))

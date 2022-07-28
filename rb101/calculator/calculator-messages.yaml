@@ -1,17 +1,42 @@
-welcome: 'Welcome to the calculator, enter your name!'
-invalid_name: 'Make sure you use a valid name'
+en:
+  welcome: 'Welcome to the calculator, enter your name!'
+  hi: 'Hi'
+  invalid_name: 'Make sure you use a valid name'
 
-ask_num1: "What's the first number?"
-num_validation: "Hmm..that doesn't look like a valid number"
-ask_num2: "What's the second number?"
+  ask_num1: "What's the first number?"
+  num_validation: "Hmm..that doesn't look like a valid number"
+  ask_num2: "What's the second number?"
 
-operation: <<-MSG
-    What operation would you like to perform?
-    1) add
-    2) subtract
-    3) multiply
-    4) divide
-  MSG
-op_validatiohn: 'Must choose 1, 2, 3 or 4'
-redo: "Do you want to perform another calculation? 'Y' to calculate again."
-bye: 'Thank you for using the calculator'
+  operation: <<-MSG
+      What operation would you like to perform?
+      1) add
+      2) subtract
+      3) multiply
+      4) divide
+      
+    MSG
+  op_validatiohn: 'Must choose 1, 2, 3 or 4'
+  result: "The result is: "
+  redo: "Do you want to perform another calculation? 'Y' to calculate again."
+  bye: 'Thank you for using the calculator'
+
+es:
+  welcome: 'Bienvenido a la calculadora, escriba su nombre!'
+  hi: 'Hola'
+  invalid_name: 'Asegurese de usar un nombre valido'
+
+  ask_num1: "Cual es el primer numero?"
+  num_validation: "Ehh...ese no parece un numero valido"
+  ask_num2: "Cual es el segundo numero?"
+
+  operation: <<-MSG
+      Que tipo de operacion desea realizar?
+      1) suma
+      2) resta
+      3) multiplicacion
+      4) division
+    MSG
+  op_validation: 'Debe elegir entre 1, 2, 3 o 4'
+  result: "El resultado es:"
+  redo: "Desea hacer otra cuenta? Escriba 'Y' para hacer una cuenta de nuevo."
+  bye: 'Gracias por usar la calculadora'
