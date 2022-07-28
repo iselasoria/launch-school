@@ -1,4 +1,9 @@
-require YAML
+require 'yaml'
+
+MESSAGES = YAML.load_file('/Users/rosasoria/Documents/ft_ls/rb101/calculator/calculator-messages.yaml')
+
+# quick check to see how messages are getting imported
+# puts MESSAGES.inspect
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -14,28 +19,28 @@ def number?(input)
 end
 
 def operation_to_message(op)
-  case op
-  when '1'
-    'Adding'
-  when '2'
-    'subtracting'
-  when '3'
-    'multiplying'
-  when '4'
-    'dividing'
-  end
-
-  op
+word =  case op
+        when '1'
+          'Adding'
+        when '2'
+          'subtracting'
+        when '3'
+          'multiplying'
+        when '4'
+          'dividing'
+        end
+        x = "Random line for testing"
+word
 end
 
-prompt('Welcome to the calculator, enter your name!')
+prompt(MESSAGES['welcome'])
 
 name = ''
 loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt('Make sure you use a valid name')
+    prompt(MESSAGES['invalid_name'])
   else
     break
   end
@@ -46,25 +51,25 @@ prompt("Hi #{name}")
 loop do # main loop
   number1 = ''
   loop do
-    prompt("What's the first number?")
+    prompt(MESSAGES['ask_num1'])
     number1 = Kernel.gets().chomp()
 
     if valid_number?(number1)
       break
     else
-      prompt("Hmm..that doesn't look like a valid number")
+      prompt(MESSAGES['num_validation'])
     end
   end
 
   number2 = ''
   loop do
-    prompt("What's the second number?")
+    prompt(MESSAGES['ask_num2'])
     number2 = Kernel.gets().chomp()
 
     if valid_number?(number2)
       break
     else
-      prompt("Hmm that doesn't look like a valid number")
+      prompt(MESSAGES['num_validation'])
     end
   end
 
@@ -85,7 +90,7 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt('Must choose 1, 2, 3 or 4')
+      prompt(MESSAGES['op_validation'])
     end
   end
 
@@ -105,9 +110,9 @@ loop do # main loop
 
 
   prompt("The result is #{result}")
-  prompt("Do you want to perform another calculation? 'Y' to calculate again.")
+  prompt(MESSAGES['redo'])
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end
 
-prompt('Thank you for using the calculator')
+prompt(MESSAGES['bye'])
