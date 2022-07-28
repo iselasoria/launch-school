@@ -16,6 +16,7 @@ en:
       
     MSG
   op_validatiohn: 'Must choose 1, 2, 3 or 4'
+  status: "the two numbers"
   result: "The result is: "
   redo: "Do you want to perform another calculation? 'Y' to calculate again."
   bye: 'Thank you for using the calculator'
@@ -37,6 +38,7 @@ es:
       4) division
     MSG
   op_validation: 'Debe elegir entre 1, 2, 3 o 4'
+  status: 'los dos numeros'
   result: "El resultado es:"
   redo: "Desea hacer otra cuenta? Escriba 'Y' para hacer una cuenta de nuevo."
   bye: 'Gracias por usar la calculadora'

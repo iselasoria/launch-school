@@ -27,14 +27,29 @@ word =  case op
         when '1'
           'Adding'
         when '2'
-          'subtracting'
+          'Subtracting'
         when '3'
-          'multiplying'
+          'Multiplying'
         when '4'
-          'dividing'
+          'Dividing'
         end
         x = "Random line for testing"
 word
+end
+
+def translation(keyword)
+  translated = case keyword
+               when 'Adding'
+                'Sumando'
+               when 'Subtracting'
+                'Restando'
+               when 'Multiplying'
+                'Multiplicando'
+               when 'Dividing'
+                'Dividiendo'
+               end
+               x = "some line"
+  translated
 end
 
 # prompt(MESSAGES['welcome'])
@@ -94,7 +109,9 @@ loop do # main loop
     end
   end
 
-  prompt("#{operation_to_message(operator)} the two numbers")
+
+  prompt(translation(operation_to_message(operator)) + ' ' + messages('status',LANGUAGE))
+  
 
   result = case operator
            when '1' 
