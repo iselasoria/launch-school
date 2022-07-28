@@ -1,6 +1,6 @@
 require 'yaml'
 
-MESSAGES = YAML.load_file('/Users/rosasoria/Documents/ft_ls/rb101/calculator/calculator-messages.yaml')
+MESSAGES = YAML.load_file('/Users/rosasoria/Documents/ft_ls/rb101/lesson-2/calculator/calculator-messages.yaml')
 LANGUAGE='es'
 # quick check to see how messages are getting imported
 # puts MESSAGES.inspect
