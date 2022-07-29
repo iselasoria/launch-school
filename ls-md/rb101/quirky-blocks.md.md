@@ -14,3 +14,7 @@ end
 
 ### Precedence
 Blocks have the lowest precedence of all opperators! But the way you pass them matters: `{}` has a slightly higher precedence than `do...end`
+
+
+### _Not_ blocks
+`do...end` in a `for` or a `while` loop _does not_ create a block!!!
