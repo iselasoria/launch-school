@@ -14,3 +14,4 @@ Blocks can access variables initialized outside them, but the variables initiali
 
 Nested blocks will create nested scope
 > Variables initialized in an outer scope can be accessed in an inner scope, but not vice versa.
+
