@@ -53,3 +53,39 @@ The main difference is `delete_at` searches the array for the element at that po
 # E5 Programatically determine if 42 lies between 10 and 100.
 (10..100).cover?(42)
 
+# E6 Starting with the string:
+famous_words = "seven years ago..."
+# show two different ways of putting "Four score and" in front of it
+first_words = 'Four score and'
+puts "#{first_words}" + ' ' + famous_words
+puts "Four score and " + famous_words
+=begin
+SOLUTION
+first_words = 'Four score and'
+famous_words #{first_words}
+=end
+
+# E7 If we build an array like this:
+flintstones = ["Fred", "Wilma"]
+flintstones << ["Barney", "Betty"]
+flintstones << ["BamBam", "Pebbles"]
+# we will end up with this nested array
+["Fred", "Wilma", ["Barney", "Betty"], ["BamBam", "Pebbles"]]
+# make it un-nested
+=beging
+SOLUTION `flatten!`
+=end
+arr = ["Fred", "Wilma", ["Barney", "Betty"], ["BamBam", "Pebbles"]]
+p arr
+arr.flatten!
+p arr
+
+# E8 Given the has below, Turn this into an array containing only two elements: Barney's name and Barney's number
+
+flintstones = { "Fred" => 0, "Wilma" => 1, "Barney" => 2, "Betty" => 3, "BamBam" => 4, "Pebbles" => 5 }
+
+barney_array = flintstones.key(2), flintstones["Barney"]
+
+p barney_array
+# OR
+flintstones.assoc("Barney")
