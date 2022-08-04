@@ -153,3 +153,20 @@ puts rps(rps(rps("rock", "paper"), rps("rock", "scissors")), "rock")
 # paper                    rock
 # paper
 # paper
+
+# E9 Consider the two simple methods; what does the subsequent method call return?
+
+def foo(param = "no")
+  "yes"
+end
+
+def bar(param = "no")
+  param == "no" ? "yes" : "no"
+end
+
+bar(foo)
+
+# SOLUTION
+# no. method `foo` will always return "yes" because it is the last line in the method definition
+# when the return of `foo` is passed to method `bar` we get `"yes"=="no"` which will be false 
+# and the ternary operator will go to "no"
