@@ -96,3 +96,60 @@ end
 
 result = fib(0, 1, 15) # pass in the limit here as the third argument
 puts "result is #{result}"
+
+# E6 what is the limit of the code below:
+
+answer = 42
+
+def mess_with_it(some_number)
+  some_number += 8
+end
+
+new_answer = mess_with_it(answer) # 50
+
+p answer - 8 # 34
+
+# SOLUTION here the argument is passed by reference, integers are immutable first of all and that is why in this case
+# Ruby appears to acuse a pass by value strategy. In cases where the argument is immutable Ruby will pass objects this way.
+
+# E7 Spot was wrote a program to mess with the Munster's data. When the function gets called, has he messed it up for good?
+
+munsters = {
+  "Herman" => { "age" => 32, "gender" => "male" },
+  "Lily" => { "age" => 30, "gender" => "female" },
+  "Grandpa" => { "age" => 402, "gender" => "male" },
+  "Eddie" => { "age" => 10, "gender" => "male" },
+  "Marilyn" => { "age" => 23, "gender" => "female"}
+}
+
+def mess_with_demographics(demo_hash)
+  # p demo_hash.object_id
+  demo_hash.values.each do |family_member|
+    family_member["age"] += 42
+    family_member["gender"] = "other"
+  end
+  # p demo_hash.object_id
+  demo_hash
+end
+
+p mess_with_demographics(munsters)
+
+# SOLUTION the `demo_hash` is pointing to the original object, and for this reason the data does get messed up. 
+#  the method uses a setter method (`[]=`) and this is a mutating method so ruby appears to use pass by reference srategy
+
+# E8 given the method definition, what is the result of the method call below it?
+def rps(fist1, fist2)
+  if fist1 == "rock"
+    (fist2 == "paper") ? "paper" : "rock"
+  elsif fist1 == "paper"
+    (fist2 == "scissors") ? "scissors" : "paper"
+  else
+    (fist2 == "rock") ? "rock" : "scissors"
+  end
+end
+
+puts rps(rps(rps("rock", "paper"), rps("rock", "scissors")), "rock")
+# rps("rock", "paper"), rps("rock", "scissors")
+# paper                    rock
+# paper
+# paper
