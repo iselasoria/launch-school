@@ -43,3 +43,56 @@ def factors(number)
 end
 
 p factors(-18)
+
+# E4 In this implementation, two options are shown one that uses `<<` and one uses `+`
+# what is the difference between the two?
+def rolling_buffer1(buffer, max_buffer_size, new_element)
+  buffer << new_element
+  buffer.shift if buffer.size > max_buffer_size
+  buffer
+end
+
+def rolling_buffer2(input_array, max_buffer_size, new_element)
+  buffer = input_array + [new_element]
+  buffer.shift if buffer.size > max_buffer_size
+  buffer
+end
+
+# SOLUTION
+# the `<<` operator mutates the caller, which means in this example, it is acting on the object referenced by
+# the local variable `buffer`. The line `buffer << new_element` gets referenced and updated to add a new element.
+# The `+` is used in the line `buffer = input_array + [new_element]` and it is used along with `=` which is reasignment.
+# this means that the object is not being referenced directly but a new obkect is created instead.
+
+# E5 this code has a bug related to the limit variable, what is wrong and how do you fix it?
+
+limit = 15
+
+def fib(first_num, second_num)
+  while first_num + second_num < limit
+    sum = first_num + second_num
+    first_num = second_num
+    second_num = sum
+  end
+  sum
+end
+
+result = fib(0, 1)
+puts "result is #{result}"
+
+# SOLUTION
+# the local variable `limit` is outside the scope of method `fib` and therefore cannot be accessed. The fix is to pass it
+# explicitly as an argument, amd for that we need to define a parmeter in the methid definition so it can expect it.
+limit = 15
+
+def fib(first_num, second_num, limit)
+  while first_num + second_num < limit
+    sum = first_num + second_num
+    first_num = second_num
+    second_num = sum
+  end
+  sum
+end
+
+result = fib(0, 1, 15) # pass in the limit here as the third argument
+puts "result is #{result}"
