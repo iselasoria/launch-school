@@ -95,3 +95,18 @@ my_string, my_array = not_so_tricky_method(my_string, my_array) # now disconnect
 
 puts "My string looks like this now: #{my_string}"
 puts "My array looks like this now: #{my_array}"
+
+# E6 How could the following method be simplified without changing the return value?
+def color_valid(color)
+  if color == "blue" || color == "green"
+    true
+  else
+    false
+  end
+end
+
+# SOLUTION 
+# since Ruby automatically evaluates statements, this can be:
+def color_valid(color)
+  color == "blue" || color == "green"
+end
