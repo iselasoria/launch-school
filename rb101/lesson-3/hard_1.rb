@@ -27,9 +27,9 @@ puts greetings # {a: 'hi there'}
 # E3 What is outputted by each of the three code snippets below?
 # SNIPPET A
 def mess_with_vars(one, two, three)
-  one = two
-  two = three
-  three = one
+  one = two # "two"
+  two = three # "three"
+  three = one # one
 end
 
 one = "one"
