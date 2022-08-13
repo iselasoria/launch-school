@@ -8,6 +8,15 @@ Blocks can access variables initialized outside them, but the variables initiali
 
 > #### Blocks get created in a `do..end` if and only _IF_ the `do...end` follows a method invocation such as `.times` or `each`. In a `while` or a `for` loop there is no block because these arent method's just ruby language keywords.
 
+#### Local variables initialized inside an `if` statement
+Typically, local variables that are not initialized will raise an exception when they are referenced. However, if a variable is initialized inside an if statement, it is set to `nil` even if the code in the if statement never gets executed. See exmaple below:
+```
+if false
+  greeting = "hello world"
+end
+
+greeting
+```
 
 #### Scope
 `inner scope` is the scope created by a block following a method invocation.
