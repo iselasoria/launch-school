@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "multiple",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -49,8 +49,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -91,9 +90,10 @@
   "active": "75b73cde303cfe87",
   "lastOpenFiles": [
     "rb101/arrays.md",
+    "rb101/strings.md",
+    "rb101/operations.md",
     "rb101/quirky-blocks.md.md",
     "rb101/methods.md",
-    "rb101/operations.md",
     "rb101/lingo.md",
     "offlimits/study-guide.md.md"
   ]
