@@ -14,3 +14,11 @@ char1 = str[2]                     # => "c"
 char2 = str[2]                     # => "c"
 char1.object_id == char2.object_id # => false
 ```
+
+## Element Assignment
+This is a destructive action, so the original object is modified
+```
+str = "joe's favorite color is blue"
+str[0] = 'J'
+str # => "Joe's favorite color is blue"
+```

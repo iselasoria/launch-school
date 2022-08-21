@@ -45,7 +45,8 @@ The last element in an array or a string can be accessed by referencing index `-
 ## Element Assignment
 This is a destructive action, so the original object is modified
 ```
-str = "joe's favorite color is blue"
-str[0] = 'J'
-str # => "Joe's favorite color is blue"
+arr = [1, 2, 3, 4, 5]
+arr[0] += 1 # => 2
+arr         # => [2, 2, 3, 4, 5]
 ```
+**_Note_** this is a destructive method and it will modify the original array permanently
