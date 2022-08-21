@@ -37,3 +37,5 @@ the `counter` gets updated by 1 and so in the second iteration we will be access
 arr[1]. The last condition is whether the length of the array is equal to the counter. When they are the same
 we will have gone through the whole array.
 =end
+
+
