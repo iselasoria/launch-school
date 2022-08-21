@@ -68,3 +68,13 @@ arr[2] += 1
 arr[3] += 1
 arr[4] += 1
 arr # => [2, 3, 4, 5, 6]
+
+# E9 Set the value to either `Fruit` or `Vegetable` to each element in the hash:
+
+hsh = { apple: 'Produce', carrot: 'Produce', pear: 'Produce', broccoli: 'Produce' }
+hsh[:apple] = 'Fruit'
+hsh # => { :apple => "Fruit", :carrot => "Produce", :pear => "Produce", :broccoli => "Produce" }
+
+hsh[:carrot] = 'Vegetable'
+hsh[:pear] = 'Fruit'
+hsh[:broccoli] = 'Vegetable'
