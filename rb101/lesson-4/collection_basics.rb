@@ -34,9 +34,26 @@ arr = ['g', 'h', 'i', 'j', 'k']
 str[-6] # nil
 arr[-6] # nil
 
-# #5 How can the items in the array be joined so they resemble the original string?
+# E5 How can the items in the array be joined so they resemble the original string?
 str = 'How do you get to Carnegie Hall?'
 arr = str.split # => ["How", "do", "you", "get", "to", "Carnegie", "Hall?"]
 arr.join        # => "HowdoyougettoCarnegieHall?"
 # SOLUTION
 p arr.join(' ')
+
+# E6 What do you think will happen when `to_h` is called on this array?
+arr = [[:name, 'Joe'], [:age, 10], [:favorite_color, 'blue']]
+
+arr.to_h # => {name: 'Joe', age: 10, favorite_color: 'blue'}
+
+# E7 Give this example, how would you change the first letter of each word to its capital equivalent?
+
+str = "joe's favorite color is blue"
+str[0] = 'J'
+str # => "Joe's favorite color is blue"
+
+str[6] = 'F'
+str[15] = 'C'
+str[21] = 'I'
+str[24] = 'B'
+str # => "Joe's Favorite Color Is Blue"
