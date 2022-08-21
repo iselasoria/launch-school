@@ -41,3 +41,11 @@ The last element in an array or a string can be accessed by referencing index `-
  0  1  2  3  4
 -5 -4 -3 -2 -1
 ```
+
+## Element Assignment
+This is a destructive action, so the original object is modified
+```
+str = "joe's favorite color is blue"
+str[0] = 'J'
+str # => "Joe's favorite color is blue"
+```
