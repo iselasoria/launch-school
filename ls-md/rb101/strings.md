@@ -22,3 +22,6 @@ str = "joe's favorite color is blue"
 str[0] = 'J'
 str # => "Joe's favorite color is blue"
 ```
+
+## Iterating Over Strins
+`String#size` and `String#length` do the same thing.
