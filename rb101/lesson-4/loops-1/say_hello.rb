@@ -9,7 +9,7 @@ end
 
 # SOLUTION
 say_hello = true
-iterations = 5
+iterations = 0
 
 while say_hello
   puts 'Hello!'
