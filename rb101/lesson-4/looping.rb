@@ -66,3 +66,20 @@ end
 # notice how the counter was placed at the top, before next. Having it after next would make this an infitinite loop as it would encounter
 # an odd and just ignore the counter that comes after it. Also, notice how we changed it to `counter > 5` this is because
 # if we had `counter == 5` the loop would find `next` and just skip that iteration.
+
+# E4 
+# what is the output of this loop?
+colors = ['green', 'blue', 'purple', 'orange']
+counter = 0
+
+loop do
+  break if counter == colors.size
+  puts "I'm the color #{colors[counter]}!"
+  counter += 1
+end
+
+# SOLUTION 
+# I'm the color green!
+# I'm the color blue!
+# I'm the color purple!
+# I'm the color orange!
