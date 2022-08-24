@@ -36,3 +36,6 @@ str # => "Joe's favorite color is blue"
 ```
 
 Notice how passing it some argument results in the string getting squeezed for all multiple occurances that are part of that range.
+
+## `String#count`
+
