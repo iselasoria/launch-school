@@ -25,3 +25,14 @@ str # => "Joe's favorite color is blue"
 
 ## Iterating Over Strins
 `String#size` and `String#length` do the same thing.
+
+
+## Compacting occurance of a character
+`String#squeeze` is used to cmpact the occurance of a character in a string. 
+```
+"yellow moon".squeeze                  #=> "yelow mon"
+"  now   is  the".squeeze(" ")         #=> " now is the"
+"putters shoot balls".squeeze("m-z")   #=> "puters shot balls"
+```
+
+Notice how passing it some argument results in the string getting squeezed for all multiple occurances that are part of that range.
