@@ -50,3 +50,21 @@ arr[0] += 1 # => 2
 arr         # => [2, 2, 3, 4, 5]
 ```
 **_Note_** this is a destructive method and it will modify the original array permanently
+
+## Enumerable Methods
+Methods that make up the `Enumerable` class are available to the `Array` class too.
+
+One example, as shown in the `sp-easy-2/sum_or_product` exercise, `Enumerable#inject` can be used as a more rubyist way of computing sums and products. 
+
+This method can take a block and perform the given operaton for every item in the array. 
+
+For example:
+```
+sum = (1..input_integer).inject {|sum, number| sum + number}
+
+or
+
+um = (1..input_integer).inject {|product, number| product + number}
+```
+
+This takes an array, as given by the range (as specified by `(1..upper_limit)`) and maps out an operation to perfrom in this case either sum or product. Then it sets `number` as the variable belonging to each element in the array and performs the specified operation.
