@@ -24,32 +24,40 @@ puts "Enter 's' to computer sum, or 'p' to compute the product."
 computation = gets.chomp
 
 # get the numbers in the range
-RANGE = (1..input_integer).to_a
+
+# RANGE = (1..input_integer).to_a
 
 
-def compute_sum(number)
-  sum = 0
-  for num in RANGE do
-    sum += num
-  end
-  sum
-end
+# def compute_sum(number)
+#   sum = 0
+#   for num in RANGE do
+#     sum += num
+#   end
+#   sum
+# end
 
-def computer_prod(number)
-  prod = 1
-  for num in RANGE do
-    prod *= num
-  end
-  prod
-end
+# def computer_prod(number)
+#   prod = 1
+#   for num in RANGE do
+#     prod *= num
+#   end
+#   prod
+# end
 
 
+# if computation == 's'
+#   sum = compute_sum(input_integer)
+#   puts "The sum between 1 and #{input_integer} is: #{sum}"
+# elsif computation == 'p'
+#   product = computer_prod(input_integer)
+#   puts "The product of the integers between 1 and #{input_integer} is: #{product}"
+# end
+
+# RUBY-IST SOLUTION USING ENUMERABLE#INJECT
 if computation == 's'
-  sum = compute_sum(input_integer)
-  puts "The sum between 1 and #{input_integer} is: #{sum}"
+  sum = (1..input_integer).inject {|sum, number| sum + number}
+  puts "The sum of all integers between 1 and #{input_integer} is: #{sum}"
 elsif computation == 'p'
-  product = computer_prod(input_integer)
-  puts "The product of the integers between 1 and #{input_integer} is: #{product}"
+  prod = (1..input_integer).inject {|product, number| product * number }
+  puts "The product of all integers between 1 and #{input_integer} is: #{prod}"
 end
-
-
