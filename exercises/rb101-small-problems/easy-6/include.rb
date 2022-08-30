@@ -25,15 +25,18 @@ this method will return false
 # return true if count = 1, false if not
 #----------------------------ALGO----------------------------------------
 
+# this is not checking out for the second test case
 def include?(arre, search_value)
   copy_of_arre = []
-  for element in arre
-    copy_of_arre << element
-    p arre.count(element)
-    if arre.count(element) == 1
-      true
-    else
-      false
+  if arre.empty?
+    false
+  else
+    arre.find do |element| 
+      if arre.count(element) == 1
+        return true
+      else
+        return false
+      end
     end
   end
 end
@@ -41,8 +44,20 @@ end
 
 
 # test cases
-p include?([1,2,3,4,5], 3) #== true
-# p include?([1,2,3,4,5], 6) == false
+# p include?([1,2,3,4,5], 3) == true
+# p include?([1,2,3,4,5], 6) #== false
 # p include?([], 3) == false
 # p include?([nil], nil) == true
 # p include?([], nil) == false
+
+# LS SOLUTION
+def include?(array, value)
+  !!array.find_index(value) # Array#find_index is an alias of Array#index. Since integers are immutable its the single object. the `!!` turns it into a boolean equivalent
+end
+
+# OR 
+def include?(array, value)
+  array.each { |element| return true if value == element }
+  false
+end
+p include?([1,2,3,4,5], 6)
