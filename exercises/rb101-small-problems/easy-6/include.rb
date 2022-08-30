@@ -25,7 +25,7 @@ this method will return false
 # return true if count = 1, false if not
 #----------------------------ALGO----------------------------------------
 
-# this is not checking out for the second test case
+# TODO this is not checking out for the second test case. Come back and make it work
 def include?(arre, search_value)
   copy_of_arre = []
   if arre.empty?
