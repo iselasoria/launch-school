@@ -29,12 +29,12 @@ def show_multiplicative_average(arre)
   multiplication = (arre.inject {|product, number| product * number}).to_f
   number_of_elements = arre.size.to_f
   result = multiplication / number_of_elements
-  p result
+  result = format("%.3f",result)
   # result.round(6)
 end
 
 
 # test cases
-# p show_multiplicative_average([3, 5])                # => The result is 7.500
-show_multiplicative_average([6])                   # => The result is 6.000
-show_multiplicative_average([2, 5, 7, 11, 13, 17]) # => The result is 28361.667
+p show_multiplicative_average([3, 5])                # => The result is 7.500
+p show_multiplicative_average([6])                   # => The result is 6.000
+p show_multiplicative_average([2, 5, 7, 11, 13, 17]) # => The result is 28361.667
