@@ -122,3 +122,45 @@ p double_odd_numbers(my_numbers)  # => [2, 4, 6, 14, 2, 6]
 
 # not mutated
 p my_numbers                      # => [1, 4, 3, 7, 2, 6]
+
+
+# E4 This code below is a modification on an earlier method. Now, we can pass a selection criteria 
+# along with the collection; this allows for a more generic and therefore more reusable code.
+# How would you implement a method that allows you to multiply every element in an array by a specific number?
+
+def general_select(produce_list, selection_criteria)
+  produce_keys = produce_list.keys
+  counter = 0
+  selected_produce = {}
+
+  loop do
+    break if counter == produce_keys.size
+
+    current_key = produce_keys[counter]
+    current_value = produce_list[current_key]
+
+    # used to be current_value == 'Fruit'
+    if current_value == selection_criteria
+      selected_produce[current_key] = current_value
+    end
+
+    counter += 1
+  end
+
+  selected_produce
+end
+
+
+# SOLUTION
+
+def general_multiply(arre, operand)
+  altered_numbers = []
+  counter = 0
+
+  loop do
+    break if counter == arre.size
+    current_number ==  numbers[counter]
+    altered_numbers << current_number * operand
+  end
+  altered_numbers
+end
