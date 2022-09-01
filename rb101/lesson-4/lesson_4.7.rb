@@ -41,3 +41,84 @@ end
 
 p select_fruit(produce) # => {"apple"=>"Fruit", "pear"=>"Fruit"}
 
+# E2 The method below transforms an array by multiplying each element by 2. The result is a new array.
+# How would you implement a double_numbers! array where the original array object is mutated?
+
+def double_numbers(numbers)
+  doubled_numbers = []
+  counter = 0
+
+  loop do
+    break if counter == numbers.size
+
+    current_number = numbers[counter]
+    doubled_numbers << current_number * 2
+
+    counter += 1
+  end
+
+  doubled_numbers
+end
+
+# double_numbers!
+def double_numbers!(numbers)
+  counter = 0
+
+  loop do
+    break if counter == numbers.size
+
+    current_number = numbers[counter]
+    numbers[counter] = current_number * 2
+
+    counter += 1
+  end
+
+  numbers
+end
+
+# test cases
+my_numbers = [1, 4, 3, 7, 2, 6]
+p double_numbers!(my_numbers) # => [2, 8, 6, 14, 4, 12]
+
+# E3 The code below doubles the numbers in the array that are odd.
+# How would you implement a method that doubles the number if the position or index in the array is odd?
+def double_odd_numbers(numbers)
+  doubled_numbers = []
+  counter = 0
+
+  loop do
+    break if counter == numbers.size
+
+    current_number = numbers[counter]
+    current_number *= 2 if current_number.odd?
+    doubled_numbers << current_number
+
+    counter += 1
+  end
+
+  doubled_numbers
+end
+
+# SOLUTION
+def double_odd_numbers(numbers)
+  doubled_numbers = []
+  counter = 0
+
+  loop do
+    break if counter == numbers.size
+
+    current_number = numbers[counter]
+    current_number *= 2 if counter.odd?
+    doubled_numbers << current_number
+
+    counter += 1
+  end
+
+  doubled_numbers
+end
+
+my_numbers = [1, 4, 3, 7, 2, 6]
+p double_odd_numbers(my_numbers)  # => [2, 4, 6, 14, 2, 6]
+
+# not mutated
+p my_numbers                      # => [1, 4, 3, 7, 2, 6]
