@@ -19,3 +19,5 @@ Use a naming convention that immediately lets you identify if a method is mutati
 Example:
 - `update_total` <-- you read this and you expect this method to not return anything, just mutate in this case, the total
 - `total` <-- this one tells you there is a return value to be expected.
+
+#### Common Ruby Methods [[collection-methods#]]
