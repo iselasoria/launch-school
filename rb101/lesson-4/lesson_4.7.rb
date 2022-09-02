@@ -159,8 +159,12 @@ def general_multiply(arre, operand)
 
   loop do
     break if counter == arre.size
-    current_number ==  numbers[counter]
-    altered_numbers << current_number * operand
+
+    altered_numbers << arre[counter] * operand
+    counter += 1
   end
+  
   altered_numbers
 end
+arre = [2,4,6]
+p general_multiply(arre, 2)
