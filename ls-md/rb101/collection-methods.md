@@ -92,3 +92,25 @@ end
 _In this example we are passing an empty array as the method argument to .`each_with_object`. Then we are passing `num` as the first argument to the block. This represents each element in the array `[1,2,3]`. The `array` variable is the second argument we are passing to the block. This represents the empty array that we passed in as an argument to the method._
 
 _We are essentially initializing the empty array and then populating it with only the elements in the original collection for which the block returns true_
+
+_When used with a hash:_
+```
+{ a: "ant", b: "bear", c: "cat" }.each_with_object([]) do |pair, array|
+  array << pair.last <--- this bit here is what's pushing the last item in the key/value into the new array
+end
+# => ["ant", "bear", "cat"]
+```
+
+Notice how we can capture the `key, value` pair individually by using parentheses in the argument. 
+
+```
+{ a: "ant", b: "bear", c: "cat" }.each_with_object({}) do |(key, value), hash|
+  hash[value] = key
+end
+# => { "ant" => :a, "bear" => :b, "cat" => :c }
+```
+
+---
+
+
+---
