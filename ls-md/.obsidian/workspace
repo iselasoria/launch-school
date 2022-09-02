@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "rb101/strings.md",
+            "file": "rb101/collection-methods.md",
             "mode": "source",
             "source": false
           }
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "assoc",
+                "query": "each_with",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -49,12 +49,12 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3cd738d52738d29e",
@@ -70,7 +70,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rb101/strings.md",
+                "file": "rb101/collection-methods.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -90,12 +90,15 @@
   },
   "active": "75b73cde303cfe87",
   "lastOpenFiles": [
-    "rb101/strings.md",
-    "rb101/arrays.md",
-    "rb101/operations.md",
-    "rb101/quirky-blocks.md.md",
+    "rb101/iteration-methods.md",
+    "Excalidraw/each_with_object.excalidraw.png",
+    "rb101/collection-methods.md",
+    "Excalidraw/each_with_object.excalidraw.md",
     "rb101/methods.md",
     "rb101/lingo.md",
-    "offlimits/study-guide.md.md"
+    "rb101/variable-scope.md",
+    "rb101/quirky-blocks.md.md",
+    "rb101/strings.md",
+    "rb101/arrays.md"
   ]
 }
