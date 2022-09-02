@@ -22,9 +22,9 @@ irb :003 > end
 # `.select`
 `.select` is a method that is in fact part of the `Enumerable` class but it is made available to the `Array` and `Hash` classes.
 
-`.select` is used when we want to **_select_** elements in the original collection. This method relies on the return of the block to make its selection, which is always a boolean.
+`.select` is used when we want to **_select_** elements in the original collection. This method relies on the return of the block (which is always boolean) to make its selection.
 
-`.select` works by selecting elements from the original collection for which the blocked returned a truthy value.
+`.select` works by selecting elements from the original collection for which the blocked returned a truthy value, and returning them in a new collection.
 
 
 ## Example
@@ -90,6 +90,7 @@ irb :003 > end
 ```
 
 _The thing to remember with `.map` is-- it will always return a transformed array so don't expect to see elements from the original array._
+
 ---
 
 
