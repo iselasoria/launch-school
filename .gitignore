@@ -8,3 +8,5 @@ graph.json
 hotkeys.json
 workspace
 ls-md/offlimits/*
+ls-md/Excalidraw/*
+ls-md/.obsidian/*
