@@ -28,7 +28,7 @@ irb :003 > end
 
 
 ## Example
-_Since any `num` + 1 will return an integer, and an integer is considered truthy, `.select` will select the element corresponding to that itration._
+_Since any `num + 1` will return an integer, and an integer is considered truthy, `.select` will select the element corresponding to that itration._
   
 ```
 irb :001 > [1, 2, 3].select do |num|
@@ -89,5 +89,12 @@ irb :003 > end
 => ["hi", "hi", "hi"]
 ```
 
-_The thing to remember with `.map` is-- it will always return a transformed array so don't expect to see elements from the original array.
+_The thing to remember with `.map` is-- it will always return a transformed array so don't expect to see elements from the original array._
+---
 
+
+| Method           | Action                         |   Cares about return of block?      | Returns Original or New Collection? | Length of Returned Collection|
+| ---------------- |-------------------------------:|:----------------------------------: |-------------------------------------|------------------------------|
+| `.each`          |  iteration                     | No                                  |Returns the original collection      | Length of original           |
+| `.select`        | selection                      |Yes                                  |Returns a new collection             | Length of original or less   |
+| `.map`           | transformation                 |Yes                                  |Returns a new collection             |Length of original            |
