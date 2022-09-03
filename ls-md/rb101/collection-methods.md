@@ -164,3 +164,26 @@ In fact, `Hash.include?` is an alias for `Hash#key` or `hash#has_key?`.
 ```
 That being said, it is best to be more explicit and more concise:
 `hash.value?('cat')` is better than `hash.values.include?('cat')` because it lets us use one less method call to achieve the same result.
+
+## [`Enymerable#partition`](https://ruby-doc.org/core-3.1.2/Enumerable.html#method-i-partition)
+`.partition` divides the elements in the collection based on the return value of the block and then returns two collections with the elemets that got divvied up.
+
+- Example:
+```
+[1, 2, 3].partition do |num|
+  num.odd?
+end
+# => [[1, 3], [2]]
+```
+
+As you can see, the return value is a nested array. For this reason it makes the most sense to use this when parallel asssingning each partition to two different variables:
+
+```
+odd, even = [1, 2, 3].partition do |num|
+  num.odd?
+end
+
+odd  # => [1, 3]
+even # => [2]
+```
+
