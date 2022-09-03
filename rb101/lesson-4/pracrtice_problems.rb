@@ -51,6 +51,11 @@ end
 hash = { a: 'ant', b: 'bear' }
 hash.shift
 
+# SOLUTION
+# This method removes and returns the leading element in a hash.
+# So thi code will return a:'ant' 
+
+
 # E6 What is the return value if the following statement? Why?
 ['ant', 'bear', 'caterpillar'].pop.size
 
