@@ -111,6 +111,34 @@ end
 ```
 
 ---
+## [`Enumberable#first`](https://ruby-doc.org/core-3.1.2/Enumerable.html#method-i-first)
+This method does not take a block, but it can take optional arguments and returns the first `nth` elements of a collection as determined by the argument. If no argument is given, it will just return the first element in a collection.
+
+-Example:
+```
+irb(main):016:0> [1,2,3,4,5,6].first(3)
+=> [1, 2, 3]
+irb(main):017:0> 
+```
+
+```
+[1, 2, 3].first
+# => 1
+```
+`.first` has an interesting behaviour when it is used with a hash:
+
+```
+{ a: "ant", b: "bear", c: "cat" }.first(2)
+# => [[:a, "ant"], [:b, "bear"]]
+```
+
+
+1. Remember that hashes are _not_ technically organized. Since Ruby 1.9, Ruby let's you use some order like "first" but technically hashes are unordered lists.
+2. Notice how the result of calling `.first` on a hash with an argument results in a nested array. If you must use a hash, you can convert it back using:
+
+    `[[:a, "ant"], [:b, "bear"]].to_h`
+
+`.first` is hardly ever used on a hash though, it is a lot more typical to use it with arrays.
 
 
 ---
