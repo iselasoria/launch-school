@@ -80,14 +80,26 @@ end
 
 # E8 How does `take` work? Is it destructive? How can we find out?
 arr = [1, 2, 3, 4, 5]
-arr.take(2)
+p arr.take(2)
+
+# SOLUTION
+# this method takes an argument n, and returns a new collection containing the first n elements of the collection.
+# According to the ruby documentation, it does not modify the original collection so it is not destructive
+# In this example, the return of calling take on arre with 2 as the argument is [1,2]
+
 
 # E9 What is the return value of `map` in this code and why?
-{ a: 'ant', b: 'bear' }.map do |key, value|
-  if value.size > 3
-    value
-  end
-end
+newvar = { a: 'ant', b: 'bear' }.map do |key, value|
+            if value.size > 3
+              value
+            end
+          end
+p newvar
+# SOLUTION
+# the return is [nil, "bear"]. `.map` returns a new collection containing the transformed elements from the original.
+# It's important to remember that map always returns a transformation and that it returns a new collection the same length as the original.
+# In this example, the first key-value pair does not meet the criteria, but it does still get included in the new array that gets returned, in the form of `nil`
+# The second key-value pair does in fact meet the criteria specified in the block and therefore as the block states, it returns the value.
 
 # E10 What is the return value of the following code? Why?
 [1, 2, 3].map do |num|
@@ -97,3 +109,5 @@ end
     num
   end
 end
+
+# SOLUTION
