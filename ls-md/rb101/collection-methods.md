@@ -142,3 +142,25 @@ irb(main):017:0>
 
 
 ---
+
+## [`Enumerable#include?`](https://ruby-doc.org/core-3.1.2/Enumerable.html#method-i-include-3F)
+
+`.include?` does not take a block but it does take an argument. The argument we pass must be the item we want to search for in the collection.
+
+- Example
+```
+[1, 2, 3].include?(1)
+# => true
+```
+When called on a hash, `.include?` only checks the keys _NOT_ the values so be aware of that!
+In fact, `Hash.include?` is an alias for `Hash#key` or `hash#has_key?`.
+
+```
+{ a: "ant", b: "bear", c: "cat" }.include?("ant")
+# => false
+
+{ a: "ant", b: "bear", c: "cat" }.include?(:a)
+# => true
+```
+That being said, it is best to be more explicit and more concise:
+`hash.value?('cat')` is better than `hash.values.include?('cat')` because it lets us use one less method call to achieve the same result.
