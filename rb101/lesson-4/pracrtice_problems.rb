@@ -102,12 +102,16 @@ p newvar
 # The second key-value pair does in fact meet the criteria specified in the block and therefore as the block states, it returns the value.
 
 # E10 What is the return value of the following code? Why?
-[1, 2, 3].map do |num|
-  if num > 1
-    puts num
-  else
-    num
-  end
-end
+newvar = [1, 2, 3].map do |num|
+            if num > 1
+              puts num
+            else
+              num
+            end
+          end
+p newvar
 
 # SOLUTION
+# This code returns [1, nil, nil]. map is a transformation, so in the first iteration, the condition is met and so it returns num in this case 1.
+# The following two iterations dont meet the ccriteria and therefore it falls to puts num in the if statement, where the last evaluated expression
+# is the call to puts, which returns nil. This nil gets added to the collection to be returned.
