@@ -46,3 +46,37 @@ end
 # To deconstruct this, value[0] is "a" in the first iteration, "b" in the second, "c" in the third. The we use that as the new key when we 
 # use hash["a"] in the first iteartion, hash["b"] in the second iteration, and hash["c"] in the last iteration. Then for each of the keys,
 # we set a value. 
+
+# E5 What does `shift` do in this code?
+hash = { a: 'ant', b: 'bear' }
+hash.shift
+
+# E6 What is the return value if the following statement? Why?
+['ant', 'bear', 'caterpillar'].pop.size
+
+# E7 What is the block's return value in the following? How is it determined?
+# Also what is the return value of `.any?` in this code and what does it output?
+[1, 2, 3].any? do |num|
+  puts num
+  num.odd?
+end
+
+# E8 How does `take` work? Is it destructive? How can we find out?
+arr = [1, 2, 3, 4, 5]
+arr.take(2)
+
+# E9 What is the return value of `map` in this code and why?
+{ a: 'ant', b: 'bear' }.map do |key, value|
+  if value.size > 3
+    value
+  end
+end
+
+# E10 What is the return value of the following code? Why?
+[1, 2, 3].map do |num|
+  if num > 1
+    puts num
+  else
+    num
+  end
+end
