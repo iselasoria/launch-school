@@ -21,3 +21,17 @@ p sum
 
 # second solution uses inject on the array of ages
 ages.values.inject(:+) # => 6174
+
+
+# E3 In the age hash:
+ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 402, "Eddie" => 10 }
+# remove people who are 100 or older
+
+youngsters = ages.select! do |person, age|
+              age <= 100
+            end
+            p youngsters
+
+# second solution:
+ages.keep_if { |_, age| age < 100 }
+
