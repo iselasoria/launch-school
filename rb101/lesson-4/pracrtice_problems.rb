@@ -53,11 +53,17 @@ hash.shift
 
 # SOLUTION
 # This method removes and returns the leading element in a hash.
-# So thi code will return a:'ant' 
+# So thi code will return {a:'ant'} 
 
 
 # E6 What is the return value if the following statement? Why?
-['ant', 'bear', 'caterpillar'].pop.size
+p ['ant', 'bear', 'caterpillar'].pop.size
+
+# SOLUTION
+# pop removes and returns the trailing elements in an array. So this then gets passed to 
+# the method size which takes the length of a string or an array. Therefore the end return of 
+# this whole thing is 11, because pop removed the word "caterpillar" from the array and then size 
+# counts the characters in that word
 
 # E7 What is the block's return value in the following? How is it determined?
 # Also what is the return value of `.any?` in this code and what does it output?
@@ -65,6 +71,12 @@ hash.shift
   puts num
   num.odd?
 end
+
+# SOLUTION
+# this method returns true if any element in the array meets the criteria specified by the block. In this case, 
+# the last expression evaluated in the block is whether the current element is odd, therefore, the return value of
+# the block is true in the first iteration, at which point the iteration stops and so puts is only called on the 
+# first elements and not again.
 
 # E8 How does `take` work? Is it destructive? How can we find out?
 arr = [1, 2, 3, 4, 5]
