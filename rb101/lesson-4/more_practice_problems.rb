@@ -8,3 +8,16 @@ newvar = flintstones.each_with_object({}) do |name, hash|
          end
 
         p newvar
+
+# E2 Add up all the ages from the Munster family hash:
+ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
+
+sum = 0
+ages.each do |person, age|
+  sum += age
+end
+
+p sum
+
+# second solution uses inject on the array of ages
+ages.values.inject(:+) # => 6174
