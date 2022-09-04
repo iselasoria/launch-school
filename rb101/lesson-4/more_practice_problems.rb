@@ -78,6 +78,42 @@ p letter_count
 
 # ! Maybe come back to this, it is such a common occurance that shoul become second nature.
 
-# E8
+# E8 What happens when we iterate an array while iterating over it? What would be output by this code?
+numbers = [1, 2, 3, 4]
+numbers.each do |number|
+  p number
+  numbers.shift(1)
+end
+
+
+numbers = [1, 2, 3, 4]
+numbers.each_with_index do |number, index|
+  p "Index: #{index}  current number in the array: #{numbers.inspect}  current number in the iteration: #{number}"
+  numbers.shift(1)
+end
+# SOLUTION
+# each uses the index to iterate through the collection. In the first iteration, the element at index 0 is 
+# passed to the block and printed, this is integer 1. Immediatelty after that, the first element is removed
+# with .shift. So by the time the second iteration comes around, the array looks liek this [2,3,4]. Now, since
+# each uses index to iterate in real time, it goes to look for element at index 1, which now is integer 3. Immediately after
+# shit looks for the first element in the collection which in this second iteraetion is the integer 2, and deletes it. This is why 
+# the output is 1 and 3. The third iteration doesnt even happen because at this point out array looks like this: [3,4] and remember
+# each iterates in real time using the index, so by this point we've already itearted over index 0 and 1.
+
+
+# What would this output?
+numbers = [1, 2, 3, 4]
+numbers.each do |number|
+  p number
+  numbers.pop(1)
+end
+
+# print 1, remove 4
+# print 2, remove 3
+
+# In this example we start with [1,2,3,4] we output 1, and immediately after remove the last element whic is integer 4. 
+# In the second iteration, we now have3 [1,2,3], we output 2 and delete the last element which is now integer 3. 
+# In trhe third iterationm, our array is now [1,2], but we've already iterated through elements 0 and 1, and so the iteartions stop.
+
 
 # E9
