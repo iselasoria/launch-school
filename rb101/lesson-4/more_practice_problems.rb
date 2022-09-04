@@ -116,4 +116,7 @@ end
 # In trhe third iterationm, our array is now [1,2], but we've already iterated through elements 0 and 1, and so the iteartions stop.
 
 
-# E9
+# E9 Rails has a method called `titleize` which makes the first letter in each word like it would be in a title. Ruby itself does not have
+# a method like that. How would you write a titleize implementation to proper case this string?
+words = "the flintstones rock"
+# expected: words = "The Flintstones Rock"
