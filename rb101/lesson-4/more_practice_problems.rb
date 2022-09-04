@@ -62,7 +62,21 @@ shorty = flintstones.map! do |person|
 
         p shorty
 
-# E7
+# E7 Create a hash that expresses the frequency with which each letter occurs in this string:
+statement = "The Flintstones Rock"
+# expected: { "F"=>1, "R"=>1, "T"=>1, "c"=>1, "e"=>2, ... }
+
+letter_count={}
+letters = ('A'..'Z').to_a + ('a'..'z').to_a
+
+letters.each do |letter|
+  letter_frequency = statement.count(letter)
+  letter_count[letter] = letter_frequency if letter_frequency > 0
+end
+
+p letter_count
+
+# ! Maybe come back to this, it is such a common occurance that shoul become second nature.
 
 # E8
 
