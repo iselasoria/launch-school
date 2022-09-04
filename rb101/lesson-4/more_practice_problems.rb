@@ -52,3 +52,18 @@ p bename
 # It can also be used without a block, and just an element to search for instead:
 a = [:foo, 'bar', 2, 'bar']
 a.index('bar') # => 1
+
+# E6 Ammend this array so that the elements are shortened to just the first three characters:
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+shorty = flintstones.map! do |person|
+          person[0,3]
+        end
+
+        p shorty
+
+# E7
+
+# E8
+
+# E9
