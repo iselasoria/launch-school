@@ -41,3 +41,14 @@ ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, "Eddie" => 10, "Marily
 
 p ages.values.min
 
+# E5 In the array:
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+# find the index of the first name that starts with "Be"
+bename = flintstones.index {|name| name[0, 2]=="Be"}
+p bename
+
+# SOLUTION
+# this method returns the fist index for which the block returns true. 
+# It can also be used without a block, and just an element to search for instead:
+a = [:foo, 'bar', 2, 'bar']
+a.index('bar') # => 1
