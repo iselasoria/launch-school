@@ -120,3 +120,68 @@ end
 # a method like that. How would you write a titleize implementation to proper case this string?
 words = "the flintstones rock"
 # expected: words = "The Flintstones Rock"
+
+def titleize(str)
+  title = str.split.map do |word|
+            word[0] = word[0].upcase + word[1, word.size - 1]
+          end
+
+  title = title.join(" ")
+  title
+end
+
+p titleize(words)
+
+# E10 Given the hash below:
+munsters = {
+  "Herman" => { "age" => 32, "gender" => "male" },
+  "Lily" => { "age" => 30, "gender" => "female" },
+  "Grandpa" => { "age" => 402, "gender" => "male" },
+  "Eddie" => { "age" => 10, "gender" => "male" },
+  "Marilyn" => { "age" => 23, "gender" => "female"}
+}
+
+# Modify the has such that each member of the Munster family has an additional age_group key that has one of three values describing the age group is in-- kid, adult, senior.
+# kid: ages 0-17
+# adult: ages 18-64
+# senior: 65+
+# Your solution should produce the hash below:
+  # { "Herman" => { "age" => 32, "gender" => "male", "age_group" => "adult" },
+  #   "Lily" => {"age" => 30, "gender" => "female", "age_group" => "adult" },
+  #   "Grandpa" => { "age" => 402, "gender" => "male", "age_group" => "senior" },
+  #   "Eddie" => { "age" => 10, "gender" => "male", "age_group" => "kid" },
+  #   "Marilyn" => { "age" => 23, "gender" => "female", "age_group" => "adult" } }
+
+  age_groups =  munsters.each_with_index do |(key, value), idx|
+                  # p "Idex: #{idx}"
+                  # p "Key: #{key}"
+                  # p "Value: #{value}"
+                  # if value["age"] < 18
+                  #   p "THIS IS NEW: #{munsters[key] = { "age" => 10, "gender" => "male", "age_group" => "kid" }}"
+                  # end
+                  # if value["age"] < 18
+                  #   munsters[key] = munsters.store("age_group", "kid")
+                  # elsif value["age"] > 18
+                  #   munsters[key] = munsters.store("age_group","adult")
+                  # else
+                  #   munsters[key] = munsters.store("age_group","senior")
+                  # end
+                  case value["age"]
+                  when 0..17 then value["age_group"] = "kid"
+                  when 18..64 then value["age_group"] = "adult"
+                  when 65..100000 then value["age_group"] = "senior"
+                  end
+                end
+
+                puts age_groups
+# LS SOLUTION
+munsters.each do |name, details|
+  case details["age"]
+  when 0...18
+    details["age_group"] = "kid"
+  when 18...65
+    details["age_group"] = "adult"
+  else
+    details["age_group"] = "senior"
+  end
+end
