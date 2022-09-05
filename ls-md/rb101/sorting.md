@@ -37,3 +37,29 @@ Example:
 'b' <=> 'b' # => 0
 1 <=> 'a' # => nil
 ```
+
+## The ASCII Table
+When it comes to ordering strings, Ruby looks to the string's position on the ASCII table to determine which one comes first.
+
+**ASCII Character Order**
+ASCII order also known as `ASCIIbetical oder`. 
+- All uppercase letters come beforelowercase. For instance, `Z` comes before `a`.
+- Digits and many punctuation marks come before letters.
+
+Examples:
+```
+'A' <=> 'a' # => -1
+```
+
+```
+'!' <=> 'A' # => -1
+```
+
+To get the position on the ASCII table, we can call `ord` on a string:
+
+```
+'b'.ord # => 98
+'}'.ord # => 125
+```
+
+In the above example, since we know the
