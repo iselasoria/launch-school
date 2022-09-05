@@ -62,4 +62,13 @@ To get the position on the ASCII table, we can call `ord` on a string:
 '}'.ord # => 125
 ```
 
-In the above example, since we know the
+In the above example, since we know the `}` has a greater value position on the ASCII table, we expect it to come after `b`, and it does:
+
+```
+'b' <=> '}' # => -1
+```
+
+## General Ordering Rules to Remember
+- Uppercase letters come before lowercase
+- Digits and most punctuation come before letters
+- Accented characters, which are part of the extended ASCII table, come after the main ASCII table
