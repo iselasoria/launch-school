@@ -15,10 +15,10 @@ Example:
 Here, the return value is a new array with the integers ordered sequentially.
 
 
-## Comparison
+### Comparison
 Ruby looks at tow objects and performa a comparison to determine their order. 
 
-### The `<=>` Method
+#### The `<=>` Method
 This method is the one to perform the comparison between two objects of the same type. The return of this method is 
 - If first object is less than the second object:
 	- `-1`
@@ -26,6 +26,8 @@ This method is the one to perform the comparison between two objects of the same
 	- `0`
 - If first object is greater than the second object:
 	- `1`
+- If the two objects cannot be compared:
+	- `nil`
 
 Example:
 ```
@@ -38,7 +40,7 @@ Example:
 1 <=> 'a' # => nil
 ```
 
-## The ASCII Table
+### The ASCII Table
 When it comes to ordering strings, Ruby looks to the string's position on the ASCII table to determine which one comes first.
 
 **ASCII Character Order**
@@ -68,7 +70,73 @@ In the above example, since we know the `}` has a greater value position on the 
 'b' <=> '}' # => -1
 ```
 
-## General Ordering Rules to Remember
+### General Ordering Rules to Remember
 - Uppercase letters come before lowercase
 - Digits and most punctuation come before letters
 - Accented characters, which are part of the extended ASCII table, come after the main ASCII table
+
+## The `sort` Method
+Sorting can also be done with a block. Here we pass two arguments, which are the two that need to be compared.
+
+```
+[2, 5, 3, 4, 1].sort do |a, b|
+  a <=> b
+end
+# => [1, 2, 3, 4, 5]
+
+```
+In th example below, by switching the order in which the comparison is made we can get the sorted array in desceneding order:
+```
+[2, 5, 3, 4, 1].sort do |a, b|
+  b <=> a
+end
+# => [5, 4, 3, 2, 1]
+```
+
+### `String#<=>`
+looks at the string character by character. So if two strings start with `a` then it looks at the second character, and so on.
+
+Comparing a string that is longer than the other, the longer string will be considered greater.
+
+### `Array#sort`
+Comparison of arrays happens like this:
+`arre1[i]  <=> arre2[i]`
+
+If any result in the comparison is `-1`, then the result of the comparison will be `-1`.
+- `[0, 1, 2] <=> [0, 1, 3] # => -1`
+
+If the result in the comparison is `1`, then the result of the comparison will be `1`.
+- `[0,1,2] <=> [0,1,1] # => 1`
+
+When the comparison results in `0` (meaning all available comparable characters are the same):
+
+- Returns `-1` if `arre1` is smaller than `arre2`
+
+	`[0, 1, 2] <=> [0, 1, 2, 3] # => -1`
+- Returns `1` if `are1` is larger than `arre2`
+
+	`[0, 1, 2] <=> [0, 1] # => 1`
+- Returns `0` if both `arre1` and `arre2` contains the same characters and are the same length.
+---
+
+**Exercises:**
+
+_What is returned here:_
+```
+['arc', 'bat', 'cape', 'ants', 'cap'].sort
+```
+SOLUTION-
+['ants','arc','bat','cap','cape']
+
+`String#<=>` looks at the string character by character. So if two strings start with `a` then it looks at the second character, and so on.
+
+This method also considers length. In th case of `cap` and `cape`, they have the same three letters in common, but `cape` is considered "greater" because it has a longer lenght.
+
+
+_What is returned here:_
+```
+[['a', 'cat', 'b', 'c'], ['b', 2], ['a', 'car', 'd', 3], ['a', 'car', 'd']].sort
+```
+
+SOLUTION-
+`Array#sort` returns `-1` when any result of comparing `arre[i]` to `arre2[i]` is -1
