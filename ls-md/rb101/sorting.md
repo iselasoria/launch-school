@@ -180,3 +180,11 @@ people.sort_by do |name, _|
 end
 # => [[:john, 25], [:Kate, 27], [:Mike, 18]]
 ```
+
+### [Additional Relevant Methods](https://ruby-doc.org/core-3.1.2/Enumerable.html)
+- `min`
+- `max`
+- `minmax`
+- `min_by`
+- `max_by`
+- `minmax_by`
