@@ -139,4 +139,44 @@ _What is returned here:_
 ```
 
 SOLUTION-
-`Array#sort` returns `-1` when any result of comparing `arre[i]` to `arre2[i]` is -1
+`['a', 'car', 'd'],['a', 'car', 'd', 3],['a', 'cat', 'b', 'c'],['b', 2]`
+
+## The `sort_by` Method
+
+This method is called with a block, which determines how the items are compared:
+
+```
+['cot', 'bed', 'mat'].sort_by do |word|
+  word[1]
+end
+# => ["mat", "bed", "cot"]
+```
+We are telling the method to only look at the element in position 1, and it therefore ignores all the rest.
+
+We could sort a hash by pasing key-value pair as arguments to the block.
+
+**Quirk:**
+
+Suppose you have the hash:
+
+`people = { Kate: 27, john: 25, Mike:  18 }`
+
+and you want it sorted in alphabetical order.
+`sort_by` uses the ASCII position to determine order and in the ASCII table, capitals come before lower case. Simply calling `sort_by` would give us
+
+```
+people.sort_by do |_, age|
+  age
+end
+# => [[:Mike, 18], [:john, 25], [:Kate, 27]]
+```
+This is not what we want. We can see the keys are symbosl and check documentation for `Symbol#<=>`. We can see that it exists and that it works by first calling `to_s` on a symbol. So effictively, `Symbol#<=>`
+just compares strings.
+Now, for the issue with capitalization we can use `Symbol#capitalize` so that at the time of comparison, all are capitalized.
+
+```
+people.sort_by do |name, _|
+  name.capitalize
+end
+# => [[:john, 25], [:Kate, 27], [:Mike, 18]]
+```
