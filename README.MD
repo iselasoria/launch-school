@@ -1,15 +1,29 @@
 This directory contains a subdirectory for each course in the LS curriculum.
 Each course directory, in turn, contains more directories for each lesson and project in the course.
 
+---
+
+## Directory break-down
+
+**`ls-md`** 
+
+The materials listed under the directory `ls-md` are all notes on the various topics covered. Notes here are not organized by class or lesson but rather by concept. The best view of these is the local Obsidian valut for personal use.
+
+**Class Directories**
+
+
+The directory labeled with the class name, `rb101` for example, contains exercises that are embeded in the course material as well as projects.
+
 There are several naming conventions used for the comments in the repo, as well as the branches. 
 Convetions used in the comments are as follows:
 
-#### Naming Convention for commits
+
+## Naming Convention for commits
 - `CH#-E additional comment`---> this denotes the chapter in a book, followed by te `E` tag which indicates the push is related to exercises, and lastly an additional comment if needed.
 
 - `N-` this indicates the commit pertains to notes. This type of commit is used almost exclusevely in the `ls-md` directory.
 
-#### Naming convetion for branches
+## Naming convetion for branches
 Branches have the following naming convention:
 
 - Quick Tests
@@ -20,7 +34,9 @@ Branches have the following naming convention:
   - Ft---> Feature
   - Bug ---> Bug Fix
   
-  ## Full Example
+---
+
+### Full Example
 
 |     Branch Name    |      Commit Tag + Comment                    |
 | -------------------|:--------------------------------------------:|
