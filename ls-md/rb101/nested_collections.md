@@ -75,3 +75,13 @@ arr # => [[1, 5], [2]]
 ```
 
 When we modified `a` by doing `a[1] = 5`, the nested array `arr` is updated too because `a` is pointing to the array object that is in `arr`.
+
+### Mental Model
+| CODE          | BEHIND THE SCENES |
+| ------------- |:-----------------:|
+| `a = [1,3] `    | a --> `[1,3]`     |
+| `b = ['b']`     | b --> `['b']`    |
+| `arr = [a, b]  `    | arr -->   `[1,3]` <-- a   |
+|                     |            `[2]` <-- b|
+|       `a[1]`        |    arr --> `[1,5]`  <-- a   |
+|                     |     `[2]`      <-- b  |
