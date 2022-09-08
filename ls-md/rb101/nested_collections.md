@@ -85,3 +85,123 @@ When we modified `a` by doing `a[1] = 5`, the nested array `arr` is updated too 
 |                     |            `[2]` <-- b|
 |       `a[1]`        |    arr --> `[1,5]`  <-- a   |
 |                     |     `[2]`      <-- b  |
+
+## Shallow Copy
+
+You might want to make a copy of a collection before performing a major modification. Ruby allows you to do this using methods like `dup` and `clone`. The methods create a _shalow copy_ of an object. 
+
+`clone` and `dup` only make copies of the objects they are called on, **NOT** of the objects within. So in the case of an array, we can create a copy of the array, but the elements inside it are shared, meaning the elements inside the array are still the ones in thhe original collection:
+
+```
+irb(main):001:0> arr1 = ["a","b","c"]
+=> ["a", "b", "c"]
+irb(main):002:0> arr1.object_id
+=> 70296229279520 <------- first array
+irb(main):003:0> arr2 = arr1.dup
+=> ["a", "b", "c"]
+irb(main):004:0> arr2.object_id
+=> 70296220624500 <------- second array
+irb(main):005:0> arr1[0].object_id
+=> 70296229279700 <<------ first element in first array
+irb(main):006:0> arr2[0].object_id
+=> 70296229279700 <<------- first element in second array, notice they are the same!!
+irb(main):007:0> 
+
+```
+
+Since the elements are shared, performing updates at the element level will change both arrays:
+
+```
+arr1 = ["a", "b", "c"]
+arr2 = arr1.dup
+arr2[1].upcase!
+
+arr2 # => ["a", "B", "c"]
+arr1 # => ["a", "B", "c"]
+```
+
+`clone` works the same way:
+```arr1 = ["abc", "def"]
+arr2 = arr1.clone
+arr2[0].reverse!
+
+arr2 # => ["cba", "def"]
+arr1 # => ["cba", "def"]
+```
+
+Notice how the first element changed in both arrays, this is due to the fact that the destructive method was called on the **_element_** not the array, which is the shallow copy.
+
+To drive that point home, take the following code:
+```
+arr1 = ["a", "b", "c"]
+arr2 = arr1.dup
+arr2.map! do |char|
+  char.upcase
+end
+
+arr1 # => ["a", "b", "c"]
+arr2 # => ["A", "B", "C"]
+```
+Here, we are calling the destructive method `.map` on the shallow copy, `arr2`. This is why in the end we see that `arr1` is left untouched while `arr2` has been altered.
+
+The same is not true if we fiddle with the _elements_ in the array:
+```
+arr1 = ["a", "b", "c"]
+arr2 = arr1.dup
+arr2.each do |char|
+  char.upcase!
+end
+
+arr1 # => ["A", "B", "C"]
+arr2 # => ["A", "B", "C"]
+```
+Here, we iterate through the shallow copy and call destructive method `upcase!` on the elements which are shared! Thus, we change the original as well.
+
+## Freezing Objects
+
+The main reason is that `clone` preserves the frozen state of an object while `dup` does not.
+
+_freezing and cloning_
+```
+arr1 = ["a", "b", "c"].freeze
+arr2 = arr1.clone
+arr2 << "d"
+# => RuntimeError: can't modify frozen Array
+```
+
+_freezing and duping_
+
+```
+arr1 = ["a", "b", "c"].freeze
+arr2 = arr1.dup
+arr2 << "d"
+
+arr2 # => ["a", "b", "c", "d"]
+arr1 # => ["a", "b", "c"]
+```
+
+_freezing_ an object just means making a mutable object unable to be changed. 
+```
+str = "abc".freeze
+str << "d"
+# => RuntimeError: can't modify frozen String
+```
+As we know, integers in Ruby are immutable, so by default they are frozen.
+
+```
+5.frozen? # => true
+```
+
+Much like with `dup` and `clone`, `freeze` is applied to the object it is called on. So if we freez a collection, we can still change the objects within it because those arent frozen:
+```
+arr = [[1], [2], [3]].freeze
+arr[2] << 4
+arr # => [[1], [2], [3, 4]]
+
+
+OR
+
+arr = ["a", "b", "c"].freeze
+arr[2] << "d"
+arr # => ["a", "b", "cd"]
+```
