@@ -25,3 +25,18 @@ Meanwhile, the return of the block is `nil`, due to that call to `puts` being th
 - What is the effect of that action? (ie) destructive action, output)
 - What is the return value of the action?
 - Is the return value used by whatever triggered the action?
+
+
+Going back to [[breaking_down_blocks#Example 1]], we can organize that checklist in a table:
+
+
+| **Line**  | **Action**           |**Object**           |**Side Effect** |**Return Value** |**Is Return Value used?** |
+| :-----: |:----------------:|-----------------|------------|-------------|---|
+| 1     | method call `each` | The outer array |   None     |   The calling object          |No, but shown on line 6|
+| 1-3   | block execution  | Each sub-array  |   None     |      `nil`       | No|
+| 2     | method call `first` | Each sub-array |    None     |       Element at index `0` of sub-array  | Yes, used by `puts`
+| 2     | method call `puts`  | Element at index `0` of sub-array |  Outputs string representation of an Integer | `nil` | Yes, used to determine the return value of the block |       |
+
+
+
+
