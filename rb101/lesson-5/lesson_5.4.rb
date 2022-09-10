@@ -37,3 +37,22 @@ end
 |    3-5    | if statement                                     |The return value of the comparison (<)|      None                               |nil                                        | Yes, used to determine value of inner block                  |
 |     4     | method call `puts`                               |Element of the subarray at iteration  |Outputs string representation of integer |nil                                        | Yes, used to determine return value of conditional statement |
 =end
+
+
+# E3 Take apart the following code:
+[[1, 2], [3, 4]].map do |arr|
+  arr.map do |num|
+    num * 2
+  end
+end
+
+=begin
+| **Line**  | **Action**                  |**Object**                            |**Side Effect**                          |**Return Value**                           |**Is Return Value used?**                         |
+| :-------: |:---------------------------:|--------------------------------------|-----------------------------------------|-------------------------------------------|--------------------------------------------------|
+|     1     | method call `map`           |Original Array [[1,2],[3,4]]          |      None                               |New array                                  | No                                               |
+|    1-5    | outter block execution      |Each sub-array                        |      None                               |New transformed array                      | Used by first map for transformation             |
+|     2     | method call `map`           |Each sub-array                        |      None                               |New transformed array                      | Yes, used to determine outer blocks return       |
+|    2-4    | inner block execution       |Element within each subarray          |      None                               |An integer                                 | Yes, used by inner map for new array             |
+|     3     | method call * with 2 as arg |Element within each sub-array         |      None                               |An integer                                 | Used to deterine return value of inner block     |
+=end
+
