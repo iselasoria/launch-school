@@ -56,3 +56,22 @@ end
 |     3     | method call * with 2 as arg |Element within each sub-array         |      None                               |An integer                                 | Used to deterine return value of inner block     |
 =end
 
+# E4 No need to make a table now, but take apart this code:
+[{ a: 'ant', b: 'elephant' }, { c: 'cat' }].select do |hash|
+  hash.all? do |key, value|
+    value[0] == key.to_s
+  end
+end
+# => [{ :c => "cat" }]
+
+# SOLUTION
+# The elements in the outter collection are 
+# { a: 'ant', b: 'elephant' }
+# { c: 'cat' }
+# A call to select iterates through these and yields the use to the method call to `all?`
+# `all?` returns true if all elements in the collection meet the criteria specified by the subsequent block, false if any of them fail to pass.
+# Inside the block that all? is using, in the first iteration the object passed is { a: 'ant', b: 'elephant' } and the block asks if its 
+# value[0] which is 'a' in the first element, and 'e' in the second are equal to its corresponding string representation of symnbol-- 'a' and 'b' respectively. 
+# One meets the criteria the other does not. That's enough for the whole run to fail to meet the criteria so the first iteration returns false. The second element 
+# passed to `all?` is {c: "cat"} in this case the block does meet the criteria and therefore the method call to all? returns true. Going back up to the select level
+# of the code snippet, select will "select" the elements for which its block returned true. In this case, the only one that passed was {c: "cat"}.
