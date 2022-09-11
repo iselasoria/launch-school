@@ -75,3 +75,24 @@ end
 # One meets the criteria the other does not. That's enough for the whole run to fail to meet the criteria so the first iteration returns false. The second element 
 # passed to `all?` is {c: "cat"} in this case the block does meet the criteria and therefore the method call to all? returns true. Going back up to the select level
 # of the code snippet, select will "select" the elements for which its block returned true. In this case, the only one that passed was {c: "cat"}.
+
+# E5 Take a moment to break down this code:
+[[[1], [2], [3], [4]], [['a'], ['b'], ['c']]].map do |element1|
+  element1.each do |element2|
+    element2.partition do |element3|
+      element3.size > 0
+    end
+  end
+end
+# => [[[1], [2], [3], [4]], [["a"], ["b"], ["c"]]]
+
+# This code has three method calls. There are six return values to consider in a snippet like this:
+# - the return of `.map`
+# - the return of the block used by `.map`
+# - the return of `.each`
+# - the return of the block used by `.each`
+# - the return of `.partition`
+# - the return of the block used by `.partition`
+# We know that `.map` uses the return of its block to populate its resulting array. So we move on to the next line to see what its block returns.
+# We see that the next method call inside `map`s block is a method call to `each`, and since we know each returns its calling object we can actually determine what the overall return value of `map` will be
+# each returns its callinf objects and so that is the return value that gets used by `map`
