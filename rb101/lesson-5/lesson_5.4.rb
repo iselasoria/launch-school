@@ -96,3 +96,33 @@ end
 # We know that `.map` uses the return of its block to populate its resulting array. So we move on to the next line to see what its block returns.
 # We see that the next method call inside `map`s block is a method call to `each`, and since we know each returns its calling object we can actually determine what the overall return value of `map` will be
 # each returns its callinf objects and so that is the return value that gets used by `map`
+
+
+# E6 Let's say we have the following data structure of nested arrays and we want to increment every number by 1 without changing the data structure.
+[[[1, 2], [3, 4]], [5, 6]].map do |arr|
+  arr.map do |el|
+    if el.to_s.size == 1    # it's an integer
+      el + 1
+    else                    # it's an array
+      el.map do |n|
+        n + 1
+      end
+    end
+  end
+end
+
+# The return value is: [[[2,3],[4,5]], [6,7]]
+# the tricky part to pay attention to is the array has different levels of nesting. 
+# the breakdown of the different levels is as follows:
+# Outter Iterations:
+# [[1,2],[3,4]]
+# [5,6]
+# As we can see, the first element is a nested array, while the second one is a one-dimentional array,
+# this means that by the time we hit the inner iteration the breakdown is as follows:
+# [1,2]
+# [3,4]
+# 5
+# 6
+# We can then see that we can only begin incrementing the elements that we now have access to in their integer form, but the first two are still in an array,
+# so we have to get one level deeper in the iteration to be ablet to access those, thus the if statement checks for that and if they are still an array, it goes one level deeper.
+# The incrementation happens for the integers 5 and 5 in the second map, which the elements [[1,2],[3,4]] have to go into the deeper level iteration.
