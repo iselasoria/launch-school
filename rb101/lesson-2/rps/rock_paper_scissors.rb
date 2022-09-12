@@ -1,4 +1,12 @@
 VALID_CHOICES = %w(rock paper scissors lizard spock)
+WINNING_SCORE = 5
+WINNING_MOVES = {
+  rock: ['scissors', 'lizard'],
+  paper: ['rock', 'spock'],
+  scissors: ['lizard', 'paper'],
+  lizard: ['paper', 'spock'],
+  spock: ['scissors', 'rock']
+}
 
 def prompt(message)
   puts "=> #{message}"
@@ -24,8 +32,11 @@ def display_results(player, computer)
   end
 end
 
+player_tally = 0
+computer_tally = 0
 loop do
   choice = ''
+
   loop do
     prompt("Choose one:#{VALID_CHOICES.join(', ')}")
     choice = gets.chomp
@@ -43,9 +54,19 @@ loop do
 
   display_results(choice, computer_choice)
 
-  prompt('Do you want to play again?')
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  if win?(choice, computer_choice)
+    player_tally += 1
+  elsif win?(computer_choice, choice)
+    computer_tally += 1
+  end
+
+
+  p player_tally
+  p computer_tally
+  # prompt('Do you want to play again?')
+  # answer = gets.chomp
+  break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
+  # break unless answer.downcase.start_with?('y')
 end
 
 prompt('Thank you for playing, good bye!')
