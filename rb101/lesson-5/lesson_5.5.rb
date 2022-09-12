@@ -59,3 +59,26 @@ munsters.each do |person|
 end
 p total_male_age
 
+# LAUNCH SCHOOL SOLUTION
+total_male_age = 0
+munsters.each_value do |details|
+  total_male_age += details["age"] if details["gender"] == "male"
+end
+
+total_male_age # => 444
+
+# E5 Given the hash:
+munsters = {
+  "Herman" => { "age" => 32, "gender" => "male" },
+  "Lily" => { "age" => 30, "gender" => "female" },
+  "Grandpa" => { "age" => 402, "gender" => "male" },
+  "Eddie" => { "age" => 10, "gender" => "male" },
+  "Marilyn" => { "age" => 23, "gender" => "female"}
+}
+
+# print the information like this:
+# (Name) is a (age)-year-old (male or female).
+
+munsters.each_pair do |key, value|
+    p "#{key} is a #{value['age']}-year-old #{value['gender']}"
+end
