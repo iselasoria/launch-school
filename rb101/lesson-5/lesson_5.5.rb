@@ -40,7 +40,18 @@ hsh1 = {'a' => ['d', 'e'], 'b' => ['f', 'g'], 'c' => ['h', 'i']}
 hsh2 = {first: {'d' => 3}, second: {'e' => 2, 'f' => 1}, third: {'g' => 0}}
 # p hsh2[:third].key(0)
 
-# E4 Given this nested hash:
+#! skipped this number, come back to it
+# E4 For each of these collection obhects where teh value 3 occurs, demonstrate how you would change it to 4.
+arr1 = [1, [2, 3], 4]
+
+arr2 = [{a: 1}, {b: 2, c: [7, 6, 5], d: 4}, 3]
+
+hsh1 = {first: [1, 2, [3]]}
+
+hsh2 = {['a'] => {a: ['1', :two, 3], b: 4}, 'b' => 5}
+
+
+# E5 Given this nested hash:
 munsters = {
   "Herman" => { "age" => 32, "gender" => "male" },
   "Lily" => { "age" => 30, "gender" => "female" },
@@ -67,7 +78,7 @@ end
 
 total_male_age # => 444
 
-# E5 Given the hash:
+# E6 Given the hash:
 munsters = {
   "Herman" => { "age" => 32, "gender" => "male" },
   "Lily" => { "age" => 30, "gender" => "female" },
@@ -82,3 +93,12 @@ munsters = {
 munsters.each_pair do |key, value|
     p "#{key} is a #{value['age']}-year-old #{value['gender']}"
 end
+
+
+# E7 Given this code, what would be the final values for a and b?
+a = 2
+b = [5, 8]
+arr = [a, b]
+
+arr[0] += 2
+arr[1][0] -= a
