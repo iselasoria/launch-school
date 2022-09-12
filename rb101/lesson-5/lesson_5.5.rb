@@ -99,6 +99,13 @@ end
 a = 2
 b = [5, 8]
 arr = [a, b]
+p arr
+# [2,[5,8]]
 
-arr[0] += 2
-arr[1][0] -= a
+
+arr[0] += 2 # this updates the array, but it does not update the object referenced by local variable a, since we didnt reference a at all
+p arr
+#[4,[5,8]]
+
+arr[1][0] -= a # this does change because b is an array and we are modifying that array by accessing its elemenet at index 0
+p arr
