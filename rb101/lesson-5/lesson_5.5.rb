@@ -96,6 +96,7 @@ end
 
 
 # E7 Given this code, what would be the final values for a and b?
+# ! Review
 a = 2
 b = [5, 8]
 arr = [a, b]
