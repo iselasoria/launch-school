@@ -23,8 +23,6 @@ Implicit:
 # push one element
 
 
-# TODO come back after the lecture on advanced collections
-
 #----------------------------ALGO----------------------------------------
 def interleave(arr1, arr2)
   new_arr = []
@@ -35,3 +33,5 @@ def interleave(arr1, arr2)
 end
 # test cases
 p interleave([1, 2, 3], ['a', 'b', 'c']) == [1, 'a', 2, 'b', 3, 'c']
+
+# * DONE
