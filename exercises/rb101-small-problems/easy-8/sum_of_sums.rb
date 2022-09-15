@@ -21,32 +21,32 @@ Implicit:
 - add the current element to the element in previous iteration
 - increase iteration variable by 1
 
+
 ----------------------------ALGO----------------------------------------
 =end
 
 def sum_of_sums(arr)
   sum = []
-  iterator = 0
+  iterator = 1
   arr.each_with_index do |element, idx|
     # p "Element: #{element}"
     # p "Index: #{idx}"
     if arr.size == 1
+      p arr[0]
       sum << arr[0]
-    elsif  idx == 0
-      sum << element + arr[idx]
-    else
-      sum << element + arr[idx-1]
+    else 
+      sum << arr.take(iterator)
     end
+    iterator += 1
   end
-  p sum_of_sums
-  sum.inject {|sum, num| sum + num}
+  sum.flatten.inject {|sum, num| sum + num}
 end
 
 
 # test cases
 p sum_of_sums([3, 5, 2]) == (3) + (3 + 5) + (3 + 5 + 2) # -> (21)
-p sum_of_sums([1, 5, 7, 3]) #== (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) # -> (36)
+p sum_of_sums([1, 5, 7, 3]) == (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) # -> (36)
 p sum_of_sums([4]) == 4
-p sum_of_sums([1, 2, 3, 4, 5]) #== 35
+p sum_of_sums([1, 2, 3, 4, 5]) == 35
 
-# ! come back to this! just need to test a few more test cases 
+# * DONE
