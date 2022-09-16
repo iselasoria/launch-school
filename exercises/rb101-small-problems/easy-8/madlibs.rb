@@ -49,3 +49,5 @@ sentence2 = "Please, don't #{verb} the #{noun}, it #{adverb} feels #{adjective}.
 sentence3 = "This #{noun} does not #{verb} #{adverb}, how #{adjective}!"
 
 puts [sentence1, sentence2, sentence3].sample
+
+# * DONE
