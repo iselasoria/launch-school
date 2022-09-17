@@ -34,8 +34,25 @@ end
 def display_ultimate_winner(player_total, computer_total)
   if player_total == WINNING_SCORE
     puts "You're the ultimate winner!"
-  elsif computer_total == 5
+  elsif computer_total == WINNING_SCORE
     puts "Sorry, the computer won!"
+  end
+end
+
+def shorthand(str)
+  case str
+  when str[0] == 'r'
+    'rock'
+  when str[0] == 'p'
+    'paper'
+  when str[0] == 'l'
+    'lizard'
+  when str[0] == 's'
+    if str[1] == 'p'
+      'spock'
+    elsif str[1] == 'c'
+      'scissors'
+    end
   end
 end
 
@@ -74,7 +91,7 @@ loop do
   # answer = gets.chomp
   display_ultimate_winner(player_tally, computer_tally)
   break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
-  # display_ultimate_winner(player_tally, computer_tally)
+
   # break unless answer.downcase.start_with?('y')
 end
 
