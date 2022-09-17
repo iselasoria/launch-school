@@ -47,22 +47,24 @@ def substrings(str)
   result_array = []
   counter = 1 #! where does this start?
   list = str.chars
+  duped_list = list.dup
+  # p duped_list.join
 
-  while counter <= list.size
-    result_array << leading_substrings(str)
-    p result_array
-    list.shift(1) #! removing the firtst element in the array is what will get us to start at the next character with each iteration, but how?
-    p list
+  while counter <= duped_list.size + 4 # ! this is not best practice because we are essentially making up for the fact that we are altering the array while iterating, since all the idx have been iterated over and we have elements left whose new idx has already passed them but they still do nee to be ieterated over
+    result_array << leading_substrings(duped_list.join)
+    result_array.flatten!
+    duped_list.shift(1) # we are reseting the index each time to move one up
+
     counter += 1
   end
-  # p result_array
-end #! is this meant to be a do/while loop
+  result_array
+end 
 
 # test cases
-substrings('abcde') #== [
-#   'a', 'ab', 'abc', 'abcd', 'abcde',
-#   'b', 'bc', 'bcd', 'bcde',
-#   'c', 'cd', 'cde',
-#   'd', 'de',
-#   'e'
-# ]
+p substrings('abcde') == [
+  'a', 'ab', 'abc', 'abcd', 'abcde',
+  'b', 'bc', 'bcd', 'bcde',
+  'c', 'cd', 'cde',
+  'd', 'de',
+  'e'
+]
