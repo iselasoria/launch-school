@@ -13,13 +13,11 @@ def prompt(message)
 end
 
 def win?(first, second)
-  (first == 'rock' && second == 'scissors') ||
-  (first == 'paper' && second == 'rock') ||
-  (first == 'scissors' && second == 'paper')
-  (first == 'lizard' && second == 'spock') ||
-  (first == 'lizard' && second == 'paper') ||
-  (first == 'spock' && second == 'scissors') ||
-  (first == 'spock' && second == 'rock')
+  if WINNING_MOVES[first.to_sym].include? second.to_sym.to_s
+    true
+  else
+    false
+  end
 end
 
 def display_results(player, computer)
