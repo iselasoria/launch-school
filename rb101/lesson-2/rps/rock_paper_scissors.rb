@@ -1,5 +1,5 @@
 VALID_CHOICES = %w(rock paper scissors lizard spock)
-WINNING_SCORE = 5
+WINNING_SCORE = 3
 WINNING_MOVES = {
   rock: ['scissors', 'lizard'],
   paper: ['rock', 'spock'],
@@ -20,7 +20,6 @@ def win?(first, second)
   end
 end
 
-# TEST MESSAGE
 
 def display_results(player, computer)
   if win?(player, computer)
@@ -29,6 +28,14 @@ def display_results(player, computer)
     prompt('Computer won!')
   else
     prompt("It's a tie!")
+  end
+end
+
+def display_ultimate_winner(player_total, computer_total)
+  if player_total == WINNING_SCORE
+    puts "You're the ultimate winner!"
+  elsif computer_total == 5
+    puts "Sorry, the computer won!"
   end
 end
 
@@ -65,7 +72,9 @@ loop do
   p computer_tally
   # prompt('Do you want to play again?')
   # answer = gets.chomp
+  display_ultimate_winner(player_tally, computer_tally)
   break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
+  # display_ultimate_winner(player_tally, computer_tally)
   # break unless answer.downcase.start_with?('y')
 end
 
