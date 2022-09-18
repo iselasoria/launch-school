@@ -7,6 +7,7 @@ res = arr.sort do |a, b|
 end
 
 p res
+#* DONE
 
 # E2 How would you order this array of hashes based on the year of publication for each book from earliest to latest?
 books = [
@@ -22,6 +23,7 @@ sorted_books = books.sort_by do |book|
 
 p sorted_books
 
+#* DONE
 
 # E3 For each of these collections, access the letter 'g'
 
@@ -39,6 +41,8 @@ hsh1 = {'a' => ['d', 'e'], 'b' => ['f', 'g'], 'c' => ['h', 'i']}
 
 hsh2 = {first: {'d' => 3}, second: {'e' => 2, 'f' => 1}, third: {'g' => 0}}
 # p hsh2[:third].key(0)
+
+#* DONE
 
 #! skipped this number, come back to it
 # E4 For each of these collection obhects where teh value 3 occurs, demonstrate how you would change it to 4.
@@ -70,6 +74,8 @@ munsters.each do |person|
 end
 p total_male_age
 
+#* DONE
+
 # LAUNCH SCHOOL SOLUTION
 total_male_age = 0
 munsters.each_value do |details|
@@ -94,6 +100,8 @@ munsters.each_pair do |key, value|
     p "#{key} is a #{value['age']}-year-old #{value['gender']}"
 end
 
+#* DONE
+
 
 # E7 Given this code, what would be the final values for a and b?
 # ! Review
@@ -110,3 +118,22 @@ p arr
 
 arr[1][0] -= a # this does change because b is an array and we are modifying that array by accessing its elemenet at index 0
 p arr
+
+# E8 Using the `each` method, write some code to output all the vowels from the strings:
+hsh = {first: ['the', 'quick'], second: ['brown', 'fox'], third: ['jumped'], fourth: ['over', 'the', 'lazy', 'dog']}
+# expected:
+# 'euiooueoeeao'
+VOWELS = %w(a e i o u)
+vowels_in_values = []
+
+hsh.each do |_, word_group|
+  word_group.each do |word|
+    word.chars.each do |letter|
+      if VOWELS.include?(letter)
+        vowels_in_values << letter
+      end
+    end
+  end
+end
+
+p vowels_in_values.join
