@@ -204,3 +204,44 @@ new_hash = arr.each_with_object({}) do |item, hashy|
           end
 
 p new_hash
+
+# E13 Given the following data structure, return a new array containing the same sub-arrays as the original but ordered
+# logically by only taking into consideration the off numbers they contain.
+arr = [[1, 6, 9], [6, 1, 7], [1, 8, 3], [1, 5, 9]]
+
+# expected:
+# [[1, 8, 3], [1, 5, 9], [6, 1, 7], [1, 6, 9]]
+
+# ! LAUNCH SCHOOL SOLUTION. Come back to this!
+
+arr.sort_by do |sub_arr|
+  sub_arr.select do |num|
+    num.odd?
+  end
+end
+# => [[1, 8, 3], [1, 5, 9], [6, 1, 7], [1, 6, 9]]
+
+# E14 Given this data structure, write some code to return an array containing the colors of the fruits and the sizes of the vegetables. 
+# The sizes should be uppercase and the colors should be capitalized.
+
+hsh = {
+  'grape' => {type: 'fruit', colors: ['red', 'green'], size: 'small'},
+  'carrot' => {type: 'vegetable', colors: ['orange'], size: 'medium'},
+  'apple' => {type: 'fruit', colors: ['red', 'green'], size: 'medium'},
+  'apricot' => {type: 'fruit', colors: ['orange'], size: 'medium'},
+  'marrow' => {type: 'vegetable', colors: ['green'], size: 'large'},
+}
+# expected: 
+# [["Red", "Green"], "MEDIUM", ["Red", "Green"], ["Orange"], "LARGE"]
+
+new_array = hsh.map do |_, value|
+              if value[:type] == 'fruit'
+                value[:colors].map do |color|
+                  color.capitalize
+                end
+              elsif value[:type] == 'vegetable'
+                value[:size].upcase
+              end
+            end
+p new_array
+
