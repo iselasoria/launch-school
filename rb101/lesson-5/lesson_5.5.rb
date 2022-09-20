@@ -173,6 +173,7 @@ p new_arr
 
 arr = [[2], [3, 5, 7], [9], [11, 13, 15]]
 
+# using select
  new_arr = arr.map do |tiny_arr|
               tiny_arr.select do |item|
                 item % 3 == 0
@@ -181,8 +182,25 @@ arr = [[2], [3, 5, 7], [9], [11, 13, 15]]
 p new_arr
 
 # using reject
-new_arr = arr.map do |tiny_arr|
-  tiny_arr.select do |item|
-    item % 3 == 0
+new_arr2 = arr.map do |tiny_arr|
+  tiny_arr.reject do |item|
+    item % 3 != 0
   end
 end
+
+p new_arr2
+
+
+# E12 Given the following data structure, and without using the Array#to_h method,
+# write some code that will return a hash where the key is the first item in each
+# subarray and the value is the second item.
+
+arr = [[:a, 1], ['b', 'two'], ['sea', {c: 3}], [{a: 1, b: 2, c: 3, d: 4}, 'D']]
+# expected return value: 
+# {:a=>1, "b"=>"two", "sea"=>{:c=>3}, {:a=>1, :b=>2, :c=>3, :d=>4}=>"D"}
+
+new_hash = arr.each_with_object({}) do |item, hashy|
+            hashy[item[0]] = item[1]
+          end
+
+p new_hash
