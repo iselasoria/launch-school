@@ -245,3 +245,124 @@ new_array = hsh.map do |_, value|
             end
 p new_array
 
+# E15 Given this data structure, write some code to return an array which contains only the hashes where all the integers are even.
+arr = [{a: [1, 2, 3]}, {b: [2, 4, 6], c: [3, 6], d: [4]}, {e: [8], f: [6, 10]}]
+
+# [
+#   {a: [1, 2, 3]},
+#   {b: [2, 4, 6], c: [3, 6], d: [4]}, 
+#   {e: [8], f: [6, 10]}
+# ]
+
+
+new_collection = arr.map do |hashy|
+                    # p hashy.values
+                    hashy.values.select do |tiny_arr| 
+                      tiny_arr.all? do |item|
+                        p item.even?
+                      end
+
+                    end
+                  end 
+
+p new_collection
+
+# ! Come back to this. Why isn't it [[], [[2, 4, 6], [4]], [[8], [6, 10]]]
+
+# E16 Each UUID consists of 32 hexadecimal characters, and is typically broken into 5 sections like this 8-4-4-4-12 and represented as a string.
+# "f65c57f6-a6aa-17a8-faa1-a67f2dc9fa91"
+# Write a method that returns one UUID when called with no parameters.
+
+# algorithm
+# 8-4-4-4-12
+# - generate a starting 8-character chunk
+  # - initalize an emtpy array to hold the chunk
+  # - set variable to hold alphabet
+  # - set variable to hold 0-9
+  # - sample either alphabet or numbers randomly
+# - generate four middle 4-character chunks
+  # - initalize an emtpy array to hold the chunk
+  # - set variable to hold alphabet
+  # - set variable to hold 0-9
+  # - sample either alphabet or numbers randomly
+# - generate the last 12-character chunk
+  # - initalize an emtpy array to hold the chunk
+  # - set variable to hold alphabet
+  # - set variable to hold 0-9
+  # - sample either alphabet or numbers randomly
+def randomify()
+  randomizer_digit = rand(0...100)
+  if randomizer_digit % 3 == 0
+    1
+  else
+    2
+  end
+end
+
+def eight_chunk()
+  chunk = []
+  alpha = ('a'..'z').to_a
+  numeric  = (0..9).to_a
+
+  while chunk.size < 8
+    alpha_sample = alpha.sample
+    numeric_sample = numeric.sample
+    
+    if randomify.even?
+      chunk << alpha_sample
+    else 
+      chunk << numeric_sample
+    end
+  end
+  chunk
+end
+
+
+def four_chunk()
+  chunk = []
+  alpha = ('a'..'z').to_a
+  numeric  = (0..9).to_a
+
+  while chunk.size < 4
+    alpha_sample = alpha.sample
+    numeric_sample = numeric.sample
+    
+    if randomify.even?
+      chunk << alpha_sample
+    else 
+      chunk << numeric_sample
+    end
+  end
+  chunk
+end
+
+def twelve_chunk()
+  chunk = []
+  alpha = ('a'..'z').to_a
+  numeric  = (0..9).to_a
+
+  while chunk.size < 12
+    alpha_sample = alpha.sample
+    numeric_sample = numeric.sample
+    
+    if randomify.even?
+      chunk << alpha_sample
+    else 
+      chunk << numeric_sample
+    end
+  end
+  chunk
+end
+
+def uuid()
+  uuid_collection = []
+  
+  uuid_collection << eight_chunk.join << four_chunk.join << four_chunk.join << four_chunk.join << four_chunk.join  << twelve_chunk.join
+
+  uuid_clean = uuid_collection.map do |mod|
+                mod + '-'
+              end
+  uuid_clean = uuid_clean.join[0, 41] # this gets rid of the trailing '-'
+end
+
+p uuid()
