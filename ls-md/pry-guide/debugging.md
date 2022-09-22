@@ -113,3 +113,10 @@ In the example above, pry has access to the variable `c` but it does not have ac
 
     _Putting a `binding.pry` at the end of the method might affect the return value of the method._
 2. If you have a `binging.pry` in an iteration, you have to break out of the iteration `n` number of times. For instance, if the binding is inside a loop that goes three times, exiting `pry` will kick you out of the current iteration and into the second one. Then, exiting the second iteration will get you out of the second and into the third. This means in this example you have exied three times in order to make it entirely out of the `pry` session. 
+
+### `whereami`
+This lets you see your place in the code. It shows you some context on the code around the `binding.pry`. This command can also take an argument which dictates the number of lines you want to see.
+```
+whereami 15
+```
+This would show us 15 lines before and 15 lines after th position of the `binding.pry`.
