@@ -79,3 +79,37 @@ You can use common linux terminal commands to navigate scope within `pry`
 `cd ..` ## this will move us back to the main scope
 `cd -` ## this switches back to the last two contexts
 `cd /` ## this brings us back to the top-level scope at any point/location
+
+
+## Invoking `pry` at runtime
+
+Using `binding.pry`
+  - a binding is something that contains references to any variables that were in scope at that point of the program
+  `pry` interrupts the program execution and pries open the binding so we can have  a look
+
+
+### Deciding placement of the binding
+Sometimes, a `pry.binding` won't have access to the value of a variable:
+```
+require 'pry'
+
+a = 1
+b = 2
+bingind.pry
+c = 3
+
+
+pry(main)> a
+=> 1
+pry(main)> b
+=> 2
+pry(main)> c
+=> nil
+```
+In the example above, pry has access to the variable `c` but it does not have access to the assignment. This has to do with `hoisting` which we can come back to.
+
+**Things to keep in mind**
+1. `binding.pry` might affect return value
+
+    _Putting a `binding.pry` at the end of the method might affect the return value of the method._
+2. If you have a `binging.pry` in an iteration, you have to break out of the iteration `n` number of times. For instance, if the binding is inside a loop that goes three times, exiting `pry` will kick you out of the current iteration and into the second one. Then, exiting the second iteration will get you out of the second and into the third. This means in this example you have exied three times in order to make it entirely out of the `pry` session. 
