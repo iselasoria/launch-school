@@ -1,8 +1,16 @@
+require 'pry'
+
+INITIAL_MARKER = ' '
+PLAYER_MARKER = 'X'
+COMPUTER_MARKER = 'O'
+
+
 def prompt(msg)
   puts "=> #{msg}"
 end
 
 def display_board(brd)
+  system 'clear'
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -20,36 +28,48 @@ end
 
 def initialize_board()
   new_board = {}
-  (1..9).each {|num| new_board[num] = ' '}
+  (1..9).each {|num| new_board[num] = INITIAL_MARKER}
   new_board
 end
 
 def empty_squares(brd)
-  brd.keys.select {|num| brd[num] == ' '}
+
+  brd.keys.select {|num| brd[num] == INITIAL_MARKER}
 end
 
 def player_places_piece!(brd)
   square = ''
 
   loop do
-    prompt "Choose a square (1-9):"
+    prompt "Choose a square (#{empty_squares(brd).join(',')}):"
     square = gets.chomp.to_i
-    if empty_squares(brd).include?(square)
-      break
-    else
-      prompt "Sorry that is not a valid chice!"
-    end
+    break if empty_squares(brd).include?(square)
+    prompt "Sorry that is not a valid chice!" # no need for else, this line wont be reached if we break
   end
-  brd[square] = 'X'
+  brd[square] = PLAYER_MARKER
 end
 
+def computer_places_piece!(brd)
+  square = empty_squares(brd).sample
+  brd[square] = COMPUTER_MARKER
+end
 
+def board_full?(brd)
+  empty_squares(brd).empty?
+end
 
+def someone_won?(brd)
+  false
+end
 board = initialize_board 
 # here we can't just pass initialize_board because `board` is what keeps track of the state of the game
 display_board(board)
 
-puts board
+loop do
+  player_places_piece!(board)
+  computer_places_piece!(board)
+  display_board(board)
+  break if someone_won?(board) || board_full?(board)
+end
 
-player_places_piece!(board)
-puts board.inspect
+display_board(board)
