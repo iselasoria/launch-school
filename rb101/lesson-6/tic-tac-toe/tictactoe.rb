@@ -7,6 +7,19 @@ INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 
+def joinor(arr, sep=', ', keyword=' or ')
+  case arr.size
+  when 0 then ''
+  when 1 then arr.first
+  when 2 then 
+    arr[0].to_s + keyword + arr[-1].to_s
+  else
+    arr[0, arr.size - 1].join(sep) + sep + keyword +  arr[-1].to_s
+  end
+end
+
+
+
 def prompt(msg)
   puts "=> #{msg}"
 end
@@ -45,7 +58,8 @@ def player_places_piece!(brd)
   square = ''
 
   loop do
-    prompt "Choose a square (#{empty_squares(brd).join(',')}):"
+    # prompt "Choose a square (#{empty_squares(brd).join(',')}):"
+    prompt "Choose a square (#{joinor(empty_squares(brd))}):"
     square = gets.chomp.to_i
     break if empty_squares(brd).include?(square)
 
