@@ -6,6 +6,7 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # winning rows
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+WINNING_SCORE = 5
 
 def joinor(arr, sep=', ', keyword=' or ')
   case arr.size
@@ -17,8 +18,6 @@ def joinor(arr, sep=', ', keyword=' or ')
     arr[0, arr.size - 1].join(sep) + sep + keyword +  arr[-1].to_s
   end
 end
-
-
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -92,15 +91,25 @@ def detect_winner(brd)
   nil # outside the each . If inside each, it will return the rinning lines (each returns the caller) which will always be true and break out loop
 end
 
+def ultimate_winner(player, comp)
+  if player > comp
+    "Player is the ultimate winner!"
+  else
+    "Computer is the ultimate winner!"
+  end
+end
+
+player_tally = 0
+computer_tally = 0
+
 loop do
   board = initialize_board
 
   loop do
     display_board(board)
 
-    # binding.pry
     player_places_piece!(board)
-    # binding.pry
+
     break if someone_won?(board) || board_full?(board)
 
     computer_places_piece!(board)
@@ -114,9 +123,18 @@ loop do
   else
     prompt "It's a tie!"
   end
+
+  if detect_winner(board) == 'Player'
+    player_tally += 1
+  elsif detect_winner(board) == 'Computer'
+    computer_tally += 1
+  end
+
   prompt 'Do you want to play again? (y or n)'
   answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
+  ultimate_winner(player_tally, computer_tally)
+  # break unless answer.downcase.start_with?('y')
 end
 
 prompt('Thanks for playing Tic-Tac-Toe, good bye!')
