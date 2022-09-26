@@ -91,11 +91,11 @@ def detect_winner(brd)
   nil # outside the each . If inside each, it will return the rinning lines (each returns the caller) which will always be true and break out loop
 end
 
-def ultimate_winner(player, comp)
+def display_ultimate_winner(player, comp)
   if player > comp
-    "Player is the ultimate winner!"
+    puts "Player is the ultimate winner!"
   else
-    "Computer is the ultimate winner!"
+    puts "Computer is the ultimate winner!"
   end
 end
 
@@ -130,11 +130,13 @@ loop do
     computer_tally += 1
   end
 
+  break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
   prompt 'Do you want to play again? (y or n)'
   answer = gets.chomp
-  break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
-  ultimate_winner(player_tally, computer_tally)
+  # break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
+  display_ultimate_winner(player_tally, computer_tally)
   # break unless answer.downcase.start_with?('y')
 end
 
+display_ultimate_winner(player_tally, computer_tally)
 prompt('Thanks for playing Tic-Tac-Toe, good bye!')
