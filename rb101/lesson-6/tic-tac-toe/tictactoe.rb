@@ -1,4 +1,5 @@
 require 'pry'
+require 'Time'
 
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # winning rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # winning cols
@@ -126,6 +127,24 @@ def display_ultimate_winner(player, comp)
   end
 end
 
+def who_goes_first()
+  opening = [PLAYER_MARKER, COMPUTER_MARKER].sample
+  if opening == ' '
+    'Player'
+  else
+    'Computer'
+  end
+end
+puts '-------------------------------------------------------------------------------------------------'
+puts '|| Welcome to Tic-Tac-Toe                                                                      ||'
+puts '|| Complete three consecutive squares to win: rows, columns or diagonals                       ||'
+puts '|| You will play five rounds, and whoever reaches five wins first will be the ultimate winner  ||'
+puts "|| First, let's decide who will pleace the opening piece:                                      ||"
+puts '-------------------------------------------------------------------------------------------------'
+sleep(15)
+puts "||                           #{who_goes_first} will go first!                                  ||"
+puts '-------------------------------------------------------------------------------------------------'
+puts sleep(5)
 
 player_tally = 0
 computer_tally = 0
