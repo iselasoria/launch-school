@@ -67,8 +67,24 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
+def find_at_risk_square(line, board)
+  if board.values_at(*line).count('X') == 2
+    board.select{|k,v| line.include?(k) && v == ' '}.keys.first
+  else
+    nil
+  end
+end
+
 def computer_places_piece!(brd)
-  square = empty_squares(brd).sample
+  square = nil
+  WINNING_LINES.each do |line|
+    square = find_at_risk_square(line, brd)
+    break if square # the risk method returns nil or a square so this break logic makes sense
+  end
+
+  if !square
+    square = empty_squares(brd).sample
+  end
   brd[square] = COMPUTER_MARKER
 end
 
@@ -98,6 +114,7 @@ def display_ultimate_winner(player, comp)
     puts "Computer is the ultimate winner!"
   end
 end
+
 
 player_tally = 0
 computer_tally = 0
