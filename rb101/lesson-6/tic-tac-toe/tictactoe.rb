@@ -77,13 +77,7 @@ def find_at_risk_square(line, board, marker)
 end
 
 def computer_places_piece!(brd)
-  square = nil
-
-  #defense
-  WINNING_LINES.each do |line|
-    square = find_at_risk_square(line, brd, PLAYER_MARKER)
-    break if square # the risk method returns nil or a square so this break logic makes sense
-  end
+  square = nil # initialized here so we can access it after the blocks
 
   # offense
   if !square
@@ -92,6 +86,14 @@ def computer_places_piece!(brd)
       break if square
     end
   end
+
+
+  #defense
+  WINNING_LINES.each do |line|
+    square = find_at_risk_square(line, brd, PLAYER_MARKER)
+    break if square # the risk method returns nil or a square so this break logic makes sense
+  end
+
 
   # just pick any square
   if !square
@@ -142,10 +144,10 @@ puts '|| You will play five rounds agains the computer and whoever reaches five 
 puts '|| will be the ultimate winner                                                                 ||'
 puts "|| First, let's decide who will pleace the opening piece:                                      ||"
 puts '-------------------------------------------------------------------------------------------------'
-sleep(8)
+sleep(3)
 puts "||                                      #{who_goes_first} will go first!                       ||"
 puts '-------------------------------------------------------------------------------------------------'
-puts sleep(2)
+puts sleep(1)
 
 player_tally = 0
 computer_tally = 0
@@ -153,23 +155,19 @@ computer_tally = 0
 
 loop do
   board = initialize_board
-  # who goes first
-  if who_goes_first == 'Player'
-    player_places_piece!(board)
-  else
-    computer_places_piece!(board)
-  end
-
+ 
 
   loop do
     display_board(board)
 
-    player_places_piece!(board)
-
-    break if someone_won?(board) || board_full?(board)
-
-    computer_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
+    first_placement = who_goes_first
+    if first_placement == 'Player'
+      player_places_piece!(board)
+      break if someone_won?(board) || board_full?(board)
+    else
+      computer_places_piece!(board)
+      break if someone_won?(board) || board_full?(board)
+    end
   end
 
   display_board(board)
@@ -190,9 +188,9 @@ loop do
   break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
   
   display_ultimate_winner(player_tally, computer_tally)
-  prompt 'Do you want to play again? (y or n)'
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  # prompt 'Do you want to play again? (y or n)'
+  # answer = gets.chomp
+  # break unless answer.downcase.start_with?('y')
 end
 
 display_ultimate_winner(player_tally, computer_tally)
