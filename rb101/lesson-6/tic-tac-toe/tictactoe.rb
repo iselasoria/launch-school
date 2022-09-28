@@ -1,4 +1,5 @@
 require 'pry'
+require 'Time'
 
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # winning rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # winning cols
@@ -119,13 +120,32 @@ def detect_winner(brd)
 end
 
 def display_ultimate_winner(player, comp)
-  if player > comp
+  if (player == WINNING_SCORE) && (player > comp)
     puts "Player is the ultimate winner!"
-  else
+  elsif (comp == WINNING_SCORE) && (comp > player)
     puts "Computer is the ultimate winner!"
   end
 end
 
+def who_goes_first()
+  opening = [PLAYER_MARKER, COMPUTER_MARKER].sample
+  if opening == PLAYER_MARKER
+    'Player'
+  else
+    'Computer'
+  end
+end
+puts '-------------------------------------------------------------------------------------------------'
+puts '|| Welcome to Tic-Tac-Toe                                                                      ||'
+puts '|| Complete three consecutive squares to win: rows, columns or diagonals                       ||'
+puts '|| You will play five rounds agains the computer and whoever reaches five wins first           ||'
+puts '|| will be the ultimate winner                                                                 ||'
+puts "|| First, let's decide who will pleace the opening piece:                                      ||"
+puts '-------------------------------------------------------------------------------------------------'
+sleep(8)
+puts "||                                      #{who_goes_first} will go first!                       ||"
+puts '-------------------------------------------------------------------------------------------------'
+puts sleep(2)
 
 player_tally = 0
 computer_tally = 0
@@ -158,12 +178,12 @@ loop do
     computer_tally += 1
   end
 
-  break unless answer.downcase.start_with?('y')
+
   break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
+  
+  display_ultimate_winner(player_tally, computer_tally)
   prompt 'Do you want to play again? (y or n)'
   answer = gets.chomp
-  # break if player_tally == WINNING_SCORE || computer_tally == WINNING_SCORE
-  display_ultimate_winner(player_tally, computer_tally)
   break unless answer.downcase.start_with?('y')
 end
 
