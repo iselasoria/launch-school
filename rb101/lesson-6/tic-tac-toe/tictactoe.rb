@@ -150,8 +150,16 @@ puts sleep(2)
 player_tally = 0
 computer_tally = 0
 
+
 loop do
   board = initialize_board
+  # who goes first
+  if who_goes_first == 'Player'
+    player_places_piece!(board)
+  else
+    computer_places_piece!(board)
+  end
+
 
   loop do
     display_board(board)
