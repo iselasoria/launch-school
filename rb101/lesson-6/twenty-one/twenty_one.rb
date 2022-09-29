@@ -65,8 +65,13 @@ end
 player_hand = hand(DECK)
 dealer_hand = hand(DECK)
 bust = false
+
+
+
+
 loop do
   puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
+  puts "The dealer has #{dealer_hand} and an unkown card"
 
   prompt('Hit or stay?')
   answer = gets.chomp
@@ -84,4 +89,11 @@ if bust
   puts 'You busted! Yielding the turn to the dealer'
 else
   puts 'You chose to stay'
+end
+
+if bust
+  loop do
+    puts "HERE COMES THE DEALER HAND"
+    break
+  end
 end
