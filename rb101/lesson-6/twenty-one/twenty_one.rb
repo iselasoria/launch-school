@@ -27,8 +27,10 @@ def hand(deck_of_cards)
   [deck_of_cards.delete(first_card), deck_of_cards.delete(second_card)]
 end
 
-def busted?()
-  false
+def busted?(updated_hand)
+  if updated_hand >= 21
+    true
+  end
 end
 
 def determine_ace_value(hand)
@@ -59,13 +61,12 @@ end
 
 # p determine_ace_value([["C", "J"], ["D","A"]])
 
-# answer = nil
-
+# we initialize these outside the loop because we don't want to reset the hand with each hit
+player_hand = hand(DECK)
+dealer_hand = hand(DECK)
+bust = false
 loop do
-  # initial player hand
-  player_hand = hand(DECK)
-  puts "Your initial hand is: #{player_hand}"
-  p calculate_current_hand(player_hand)
+  puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
 
   prompt('Hit or stay?')
   answer = gets.chomp
@@ -73,5 +74,14 @@ loop do
   new_card = hit!(DECK)
   prompt("Your new card is: #{new_card}")
   current_hand = player_hand << new_card
-  break if answer == 'stay' || busted?
+  puts "Your updated hand is now: #{current_hand}"
+  puts "Your hand is now worth: #{calculate_current_hand(current_hand)}"
+  bust = busted?(calculate_current_hand(current_hand))
+  break if answer == 'stay' || busted?(calculate_current_hand(current_hand))
+end
+
+if bust
+  puts 'You busted! Yielding the turn to the dealer'
+else
+  puts 'You chose to stay'
 end
