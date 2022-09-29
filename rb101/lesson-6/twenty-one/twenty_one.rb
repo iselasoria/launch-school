@@ -15,13 +15,13 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-def hit!(deck_of_cards) # * this method is destructive, we can't deal the same card once we gave it out
-  new_draw = deck_of_cards.sample
-  deck_of_cards.delete(new_draw)
+def hit!(dealer_starting_hand) # * this method is destructive, we can't deal the same card once we gave it out
+  new_draw = dealer_starting_hand[1]
+  # deck_of_cards.delete(new_draw)
 end
 
 
-def hand(deck_of_cards)
+def hand!(deck_of_cards)
   first_card = deck_of_cards.sample
   second_card = deck_of_cards.sample
   [deck_of_cards.delete(first_card), deck_of_cards.delete(second_card)]
@@ -62,11 +62,13 @@ end
 # p determine_ace_value([["C", "J"], ["D","A"]])
 
 # we initialize these outside the loop because we don't want to reset the hand with each hit
-player_hand = hand(DECK)
-dealer_hand = hand(DECK)
+player_hand = hand!(DECK)
+dealer_hand = hand!(DECK)
 bust = false
 
-
+# TODO currently, the issue is the dealer's hand has two cards and after the player hits, the second card (face down card) 
+# TODO keeps coming up, we want to be able to push a new card into the dealer's hand, but we can't just draw straight from the DECK
+# TODO because that would make guessing really hard
 
 
 loop do
@@ -76,7 +78,8 @@ loop do
   prompt('Hit or stay?')
   answer = gets.chomp
 
-  new_card = hit!(DECK)
+  new_card = hit!(dealer_hand)
+
   prompt("Your new card is: #{new_card}")
   current_hand = player_hand << new_card
   puts "Your updated hand is now: #{current_hand}"
