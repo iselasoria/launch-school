@@ -15,9 +15,9 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-def hit!(dealer_starting_hand) # * this method is destructive, we can't deal the same card once we gave it out
-  new_draw = dealer_starting_hand[1]
-  # deck_of_cards.delete(new_draw)
+def hit!(deck_of_cards) # * this method is destructive, we can't deal the same card once we gave it out
+  new_draw = deck_of_cards.sample
+  deck_of_cards.delete(new_draw)
 end
 
 
@@ -28,7 +28,7 @@ def hand!(deck_of_cards)
 end
 
 def busted?(updated_hand)
-  if updated_hand >= 21
+  if updated_hand >= 22
     true
   end
 end
@@ -65,38 +65,56 @@ end
 player_hand = hand!(DECK)
 dealer_hand = hand!(DECK)
 bust = false
-
-# TODO currently, the issue is the dealer's hand has two cards and after the player hits, the second card (face down card) 
-# TODO keeps coming up, we want to be able to push a new card into the dealer's hand, but we can't just draw straight from the DECK
-# TODO because that would make guessing really hard
-
+current_hand = []
 
 loop do
   puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
   puts "The dealer has #{dealer_hand} and an unkown card"
 
   prompt('Hit or stay?')
-  answer = gets.chomp
+  answer = gets.chomp.downcase
 
-  new_card = hit!(dealer_hand)
+  if answer == 'hit'
+    new_card = hit!(DECK)
+    prompt("Your new card is: #{new_card}")
+    current_hand = player_hand << new_card
+    puts "Your updated hand is now: #{current_hand}"
+    puts "Your hand is now worth: #{calculate_current_hand(current_hand)}"
+  elsif answer == 'stay'
+    puts "YOU CHOSE TO SAY, NO ON TO THE DEALER"
 
-  prompt("Your new card is: #{new_card}")
-  current_hand = player_hand << new_card
-  puts "Your updated hand is now: #{current_hand}"
-  puts "Your hand is now worth: #{calculate_current_hand(current_hand)}"
-  bust = busted?(calculate_current_hand(current_hand))
+    system 'clear'
+
+    loop do
+      # break if calculate_current_hand(dealer_hand) >= 17
+      puts "Dealer's hand is: #{dealer_hand}"
+      puts 'Total hand value: #{calculate_current_hand(dealer_hand)}'
+      puts 'Dealer is deciding whether to hit or not...'
+      if calculate_current_hand(dealer_hand) < 17
+        dealer_new_card = hit!(DECK)
+        prompt("Dealer chose to hit, their new card is: #{dealer_new_card}")
+        dealer_current_hand = dealer_hand << dealer_new_card
+        puts "Total updated hand value: #{calculate_current_hand(dealer_current_hand)}"
+      else
+        puts "Dealer chose to stay. Comparing results shortly."
+      end
+    end
+  end
+
+  # binding.pry
+  # bust = busted?(calculate_current_hand(current_hand))
   break if answer == 'stay' || busted?(calculate_current_hand(current_hand))
 end
 
-if bust
-  puts 'You busted! Yielding the turn to the dealer'
-else
-  puts 'You chose to stay'
+if busted?(calculate_current_hand(current_hand))
+  puts "You busted, the Dealer wins!"
 end
-
-if bust
-  loop do
-    puts "HERE COMES THE DEALER HAND"
-    break
-  end
-end
+# if bust # game over if bust
+#   puts 'You busted! The Dealer wins!'
+# else # game continues but goes to the deler's turn
+#   puts 'You chose to stay, now yielding the turn to the Dealer'
+#   loop do
+#     puts "HERE COMES THE DEALER HAND"
+#     break
+#   end
+# end
