@@ -84,7 +84,7 @@ dealer_current_hand = []
 
 loop do
   puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
-  puts "The dealer has #{dealer_hand[0]} and an unkown card" # TODO we need to hide the card here
+  puts "The dealer has #{dealer_hand[0]} and an unkown card" 
 
   prompt('Hit or stay?')
   answer = gets.chomp.downcase
@@ -137,11 +137,9 @@ else
 end
 
 player_score = calculate_current_hand(current_hand)
-# p player_score
 dealer_score = calculate_current_hand(dealer_current_hand)
-# p dealer_score
 
-# TODO this step only gets executed if neither the dealer nor the player bust
+# only gets executed if neither the dealer nor the player bust
 if !busted?(calculate_current_hand(current_hand)) && !busted?(calculate_current_hand(current_hand))
   puts "#{compare_results(player_score, dealer_score)} wins!!"
 end
