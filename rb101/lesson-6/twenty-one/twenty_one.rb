@@ -58,15 +58,28 @@ def calculate_current_hand(current_hand) # * this is only calculating ace being 
   
 end
 
+def compare_results(p_score, d_score)
+  if p_score > d_score
+    'Player'
+  elsif d_score > p_score
+    'Dealer'
+  end
+end
 
 # p determine_ace_value([["C", "J"], ["D","A"]])
 
 # we initialize these outside the loop because we don't want to reset the hand with each hit
+# initial cards dealt
 player_hand = hand!(DECK)
 dealer_hand = hand!(DECK)
+
 new_card = []
+dealer_new_card = []
 bust = false
+
+# each hand at the end
 current_hand = []
+dealer_current_hand = []
 
 loop do
   puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
@@ -101,22 +114,31 @@ else
   loop do
     puts "Dealer hand: #{dealer_hand}"
     puts "Dealer is deciding whether to hit or not"
+    puts calculate_current_hand(dealer_hand)
 
     if calculate_current_hand(dealer_hand) < 17
       dealer_new_card = hit!(DECK)
-      puts dealer_new_card
       prompt("Dealer chose to hit, their new card is: #{dealer_new_card}")
       dealer_current_hand = dealer_hand << dealer_new_card
-      p "The updated hand is now: #{dealer_current_hand}"
-      p calculate_current_hand(dealer_current_hand)
+      puts "The updated hand is now: #{dealer_current_hand}"
       puts "Total updated hand value: #{calculate_current_hand(dealer_current_hand)}"
     else
-      puts "DEALER CHOSE TO STAY"
+      dealer_current_hand = dealer_hand
+      puts "SO FAR: #{dealer_current_hand}"
+      puts "Dealer chose to stay too, we'll need to compare results to determine a winner"
     end
     break
   end
 
 end
+
+player_score = calculate_current_hand(current_hand)
+p player_score
+dealer_score = calculate_current_hand(dealer_current_hand)
+p dealer_score
+
+
+puts "#{compare_results(player_score, dealer_score)} wins!!"
 # puts bust
 # if bust
 #   puts "You busted, the Dealer wins!"
