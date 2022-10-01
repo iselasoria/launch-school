@@ -1,4 +1,5 @@
 require 'pry'
+require 'Time'
 
 DECK = [['H','2'],['H','3'],['H','4'],['H','5'],['H','6'],['H','7'],['H','8'],['H','9'],['H','J'],['H','Q'],['H','K'],['H','A'],
         ['S','2'],['S','3'],['S','4'],['S','5'],['S','6'],['S','7'],['S','8'],['S','9'],['S','J'],['S','Q'],['S','K'],['S','A'],
@@ -6,10 +7,8 @@ DECK = [['H','2'],['H','3'],['H','4'],['H','5'],['H','6'],['H','7'],['H','8'],['
         ['D','2'],['D','3'],['D','4'],['D','5'],['D','6'],['D','7'],['D','8'],['D','9'],['D','J'],['D','Q'],['D','K'],['D','A'],
       ]
 
-# subset = DECK.select do |suit|
-#            suit[0] == 'S'
-#         end
-# p subset
+
+
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -63,6 +62,8 @@ def compare_results(p_score, d_score)
     'Player'
   elsif d_score > p_score
     'Dealer'
+  else
+    'There is a tie!'
   end
 end
 
@@ -83,7 +84,7 @@ dealer_current_hand = []
 
 loop do
   puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
-  puts "The dealer has #{dealer_hand} and an unkown card" # TODO we need to hide the card here
+  puts "The dealer has #{dealer_hand[0]} and an unkown card" # TODO we need to hide the card here
 
   prompt('Hit or stay?')
   answer = gets.chomp.downcase
@@ -99,6 +100,7 @@ loop do
   elsif answer == 'stay'
     current_hand = player_hand # this has to exists here in case player decides to never hit
     puts "You chose to stay, now yielding the turn to the Dealer"
+    sleep(4)
   end
 
   # binding.pry
@@ -114,7 +116,8 @@ else
   loop do
     puts "Dealer hand: #{dealer_hand}"
     puts "Dealer is deciding whether to hit or not"
-    puts calculate_current_hand(dealer_hand)
+    sleep(3)
+    # puts calculate_current_hand(dealer_hand)
 
     if calculate_current_hand(dealer_hand) < 17
       dealer_new_card = hit!(DECK)
@@ -124,8 +127,9 @@ else
       puts "Total updated hand value: #{calculate_current_hand(dealer_current_hand)}"
     else
       dealer_current_hand = dealer_hand
-      puts "SO FAR: #{dealer_current_hand}"
-      puts "Dealer chose to stay too, we'll need to compare results to determine a winner"
+      puts "Dealer chose to stay too, their current had is #{dealer_current_hand} and it is worth #{calculate_current_hand(dealer_hand)}"
+      puts "We'll need to compare results to determine a winner"
+      sleep(4)
     end
     break
   end
@@ -133,22 +137,12 @@ else
 end
 
 player_score = calculate_current_hand(current_hand)
-p player_score
+# p player_score
 dealer_score = calculate_current_hand(dealer_current_hand)
-p dealer_score
+# p dealer_score
 
+# TODO this step only gets executed if neither the dealer nor the player bust
+if !busted?(calculate_current_hand(current_hand)) && !busted?(calculate_current_hand(current_hand))
+  puts "#{compare_results(player_score, dealer_score)} wins!!"
+end
 
-puts "#{compare_results(player_score, dealer_score)} wins!!"
-# puts bust
-# if bust
-#   puts "You busted, the Dealer wins!"
-# else
-#   puts "The dealer's hand is: #{dealer_hand}"
-#   # here we enter the dealer's turn
-#   # loop do
-#   #   puts "IN LOOP Dealer's hand is: #{dealer_hand}"
-#   #   puts "Total value: #{calculate_current_hand(dealer_hand)}"
-#   #   puts 'Dealer is deciding whether to hit or not...'
-#   # end
-
-# end
