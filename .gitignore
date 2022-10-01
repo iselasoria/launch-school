@@ -1,5 +1,6 @@
 # ignore temp files
 temp*.rb
+temp*.ruby
 settings.json
 app.json
 appearance.json
