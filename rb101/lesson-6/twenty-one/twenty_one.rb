@@ -1,13 +1,17 @@
 require 'pry'
 require 'Time'
 
-DECK = [['H','2'],['H','3'],['H','4'],['H','5'],['H','6'],['H','7'],['H','8'],['H','9'],['H','J'],['H','Q'],['H','K'],['H','A'],
+DECK_ORIGINAL = [['H','2'],['H','3'],['H','4'],['H','5'],['H','6'],['H','7'],['H','8'],['H','9'],['H','J'],['H','Q'],['H','K'],['H','A'],
         ['S','2'],['S','3'],['S','4'],['S','5'],['S','6'],['S','7'],['S','8'],['S','9'],['S','J'],['S','Q'],['S','K'],['S','A'],
         ['C','2'],['C','3'],['C','4'],['C','5'],['C','6'],['C','7'],['C','8'],['C','9'],['C','J'],['C','Q'],['C','K'],['C','A'],
         ['D','2'],['D','3'],['D','4'],['D','5'],['D','6'],['D','7'],['D','8'],['D','9'],['D','J'],['D','Q'],['D','K'],['D','A'],
       ]
 
-
+DECK = [['D','Q'],['D','K'],['D','A'],
+        ['S','9'],['S','K'],['S','A'],
+        ['S','A'],
+        ['H','K'],['H','A']
+        ]
 
 
 def prompt(msg)
@@ -27,14 +31,14 @@ def hand!(deck_of_cards)
 end
 
 def busted?(updated_hand)
-  if updated_hand >= 22
+  if updated_hand >= 21
     true
   end
 end
 
 def determine_ace_value(hand)
-  puts "Player's hand: #{hand}"
-  puts "The value of your current hand is: #{calculate_current_hand(hand)}"
+  # puts "Player's hand: #{hand}"
+  # puts "The value of your current hand is: #{calculate_current_hand(hand)}"
   if calculate_current_hand(hand) < 20
     11
   else
@@ -44,13 +48,22 @@ end
 
 
 def calculate_current_hand(current_hand) # * this is only calculating ace being 11
+  a_draws = []
   card_values = current_hand.map do |card|
+                  
+                if card[1] == 'A'
+                  a_draws << 'A'
+                end
+    
                   if card[1].to_i.to_s == card[1] # check if it is a number
                     card[1].to_i
                   elsif ['J','Q','K'].include?(card[1])
                     10
-                  else
+                  elsif ['A'].include?(card[1]) && a_draws.count('A') < 2
                     11
+                    # determine_ace_value(current_hand) #! account for aces here
+                  else
+                    1
                   end
                 end
   card_values.inject {|sum, num| sum + num }
@@ -58,14 +71,27 @@ def calculate_current_hand(current_hand) # * this is only calculating ace being 
 end
 
 def compare_results(p_score, d_score)
-  if p_score > d_score
+  if (p_score > d_score) && p_score < 21
     'Player'
-  elsif d_score > p_score
+  elsif (d_score > p_score) && d_score < 21
     'Dealer'
   else
-    'There is a tie!'
+    'Neither of you '
   end
 end
+
+# def player_decision(p_hand,answer)
+#   answer = ''
+
+#   loop do
+#     prompt("Hit or stay?")
+#     answer = gets.chomp.downcase
+
+#     break if answer == 'stay' || answer == 'stay'
+#     prompt("Sorry, invalid choice!")
+#   end
+#   answer
+# end
 
 # p determine_ace_value([["C", "J"], ["D","A"]])
 
@@ -82,11 +108,19 @@ bust = false
 current_hand = []
 dealer_current_hand = []
 
+# answer = ''
 loop do
   puts "Your initial hand is: #{player_hand} with a value of: #{calculate_current_hand(player_hand)}"
-  puts "The dealer has #{dealer_hand[0]} and an unkown card" 
+  puts "The dealer has #{dealer_hand} and an unkown card" # todo come back and hide the second card
+
+  current_hand = player_hand
+  # todo start at the top to bust
+  bust = busted?(calculate_current_hand(current_hand)) #calling this method stack in the break condition was not working, why?
+  break if bust
+
 
   prompt('Hit or stay?')
+  # player_decision(player_hand, answer)
   answer = gets.chomp.downcase
 
   # binding.pry
