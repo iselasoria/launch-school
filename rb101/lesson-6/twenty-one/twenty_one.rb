@@ -75,6 +75,8 @@ def compare_results(p_score, d_score)
     'Player'
   elsif (d_score > p_score) && d_score < 21
     'Dealer'
+  elsif p_score == d_score
+    "It's a tie!"
   else
     'Neither of you '
   end
@@ -147,13 +149,15 @@ end
 if busted?(calculate_current_hand(current_hand))
   puts "You busted, the Dealer wins!"
 else
+  dealer_current_hand = dealer_hand
   loop do
-    puts "Dealer hand: #{dealer_hand}"
+    puts "Dealer hand: #{dealer_current_hand}"
     puts "Dealer is deciding whether to hit or not"
     sleep(3)
-    # puts calculate_current_hand(dealer_hand)
+    puts calculate_current_hand(dealer_hand)
+    puts calculate_current_hand(dealer_current_hand)
 
-    if calculate_current_hand(dealer_hand) < 17
+    if calculate_current_hand(dealer_current_hand) < 17
       dealer_new_card = hit!(DECK)
       prompt("Dealer chose to hit, their new card is: #{dealer_new_card}")
       dealer_current_hand = dealer_hand << dealer_new_card
@@ -161,13 +165,15 @@ else
       puts "Total updated hand value: #{calculate_current_hand(dealer_current_hand)}"
     else
       dealer_current_hand = dealer_hand
-      puts "Dealer chose to stay too, their current had is #{dealer_current_hand} and it is worth #{calculate_current_hand(dealer_hand)}"
+      puts "Dealer chose to stay too, their current had is #{dealer_current_hand} and it is worth #{calculate_current_hand(dealer_current_hand)}"
       puts "We'll need to compare results to determine a winner"
+      dealer_score = calculate_current_hand(dealer_current_hand)
       sleep(4)
     end
-    break
+    dealer_bust = busted?(calculate_current_hand(dealer_current_hand))
+    break if dealer_bust || dealer_new_card == nil
   end
-
+ puts "Dealer busted, player wins by default!"
 end
 
 player_score = calculate_current_hand(current_hand)
