@@ -33,8 +33,6 @@ def busted?(updated_hand)
 end
 
 def determine_ace_value(hand)
-  # puts "Player's hand: #{hand}"
-  # puts "The value of your current hand is: #{calculate_current_hand(hand)}"
   if calculate_current_hand(hand) < 20
     11
   else
@@ -43,13 +41,12 @@ def determine_ace_value(hand)
 end
 
 
-def calculate_current_hand(current_hand) # * this is only calculating ace being 11
+def calculate_current_hand(current_hand)
   a_draws = []
   card_values = current_hand.map do |card|
-                  
-                if card[1] == 'A'
-                  a_draws << 'A'
-                end
+                  if card[1] == 'A'
+                    a_draws << 'A'
+                  end
     
                   if card[1].to_i.to_s == card[1] # check if it is a number
                     card[1].to_i
@@ -57,7 +54,6 @@ def calculate_current_hand(current_hand) # * this is only calculating ace being 
                     10
                   elsif ['A'].include?(card[1]) && a_draws.count('A') < 2
                     11
-                    # determine_ace_value(current_hand) #! account for aces here
                   else
                     1
                   end
@@ -65,7 +61,7 @@ def calculate_current_hand(current_hand) # * this is only calculating ace being 
   card_values.inject {|sum, num| sum + num }
   
 end
-
+# ! Return to this to see of bust condition is necessary
 def compare_results(p_score, d_score)
   if (p_score > d_score) && p_score < 21
     'Player'
@@ -94,6 +90,7 @@ end
 # p determine_ace_value([["C", "J"], ["D","A"]])
 
 # we initialize these outside the loop because we don't want to reset the hand with each hit
+
 # initial cards dealt
 player_hand = hand!(DECK)
 dealer_hand = hand!(DECK)
