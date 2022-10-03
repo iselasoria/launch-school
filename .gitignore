@@ -1,6 +1,10 @@
 # ignore temp files
 temp*.rb
+<<<<<<< HEAD
 temp*ruby
+=======
+temp*.ruby
+>>>>>>> P-21-tests
 settings.json
 app.json
 appearance.json
