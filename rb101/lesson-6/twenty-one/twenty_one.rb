@@ -180,7 +180,7 @@ player_score = calculate_current_hand(current_hand)
 dealer_score = calculate_current_hand(dealer_current_hand)
 
 # only gets executed if neither the dealer nor the player bust
-if !busted?(calculate_current_hand(current_hand)) && !busted?(calculate_current_hand(current_hand))
+if !busted?(calculate_current_hand(current_hand)) && !busted?(calculate_current_hand(dealer_current_hand))
   puts "#{compare_results(player_score, dealer_score)} wins!!"
 end
 
