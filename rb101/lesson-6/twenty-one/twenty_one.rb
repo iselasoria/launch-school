@@ -150,7 +150,7 @@ else
     puts calculate_current_hand(dealer_hand)
     puts calculate_current_hand(dealer_current_hand)
 
-    if calculate_current_hand(dealer_current_hand) < 17
+    if calculate_current_hand(dealer_current_hand) <= 17
       dealer_new_card = hit!(DECK)
       prompt("Dealer chose to hit, their new card is: #{dealer_new_card}")
       dealer_current_hand = dealer_hand << dealer_new_card
