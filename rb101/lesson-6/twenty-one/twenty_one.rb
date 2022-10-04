@@ -95,7 +95,7 @@ end
 player_hand = hand!(DECK)
 dealer_hand = hand!(DECK)
 
-new_card = []
+player_new_card = []
 dealer_new_card = []
 bust = false
 
@@ -120,9 +120,9 @@ loop do
 
   # binding.pry
   if answer == 'hit'
-    new_card = hit!(DECK)
-    prompt("Your new card is: #{new_card}")
-    current_hand = player_hand << new_card
+    player_new_card = hit!(DECK)
+    prompt("Your new card is: #{player_new_card}")
+    current_hand = player_hand << player_new_card
     # binding.pry
     puts "Your updated hand is now: #{current_hand}"
     puts "Your hand is now worth: #{calculate_current_hand(current_hand)}"
