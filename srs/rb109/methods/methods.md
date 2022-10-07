@@ -206,3 +206,36 @@ irb(main):003:0> array.reverse.object_id
 irb(main):004:0> 
 ```
 #flashcard
+
+
+# `Array#join`
+Returns a string of all the elements of the array separated by the separator parameter.
+If no separator is passed, the method will join all elements together.
+```
+irb(main):010:0> pets
+=> ["Clarice", "Burbus"]
+irb(main):011:0> pets.join(" & ")
+=> "Clarice & Burbus"
+irb(main):012:0> pets.join
+=> "ClariceBurbus"
+```
+#flashcard
+
+# `Array#uniq`
+This method takes in an array containing duplicates and returns a new array containing only unique elements from the original array.
+```
+array = [1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 7, 8]
+array.uniq
+=> [1, 2, 3, 4, 5, 6, 7, 8]
+```
+#flashcard
+
+# `Array#concat`
+This method appends the elements from an array to the original array. This method can take
+in multiple arrays as an argument, which will in turn append multiple arrays to the original array.
+```
+array = [0, 1, 2, 3, 4]
+array.concat([5, 6, 7], [8, 9, 10])
+=> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+#flashcard
