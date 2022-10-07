@@ -63,3 +63,17 @@ A bit unexpected with a hash:
 When called on a hash this method returns a nested array because hashes are technically not ordered. Hardly ever does it get used with a hash though.
 
 # Enumerable#include?
+This method takes an argument which is the item we want to search for in the collection that calls it.
+
+```
+[1, 2, 3].include?(1)
+# => true
+```
+What happens when we use it with a hash?
+
+`.incluce?` is actually an alias for `Hash#key` or `Hash#has_key?` and therefore `.include?` only searches the keys _NOT_ the values.
+
+```
+
+
+```
