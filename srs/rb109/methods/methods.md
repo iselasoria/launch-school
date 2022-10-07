@@ -245,3 +245,25 @@ array.concat([5, 6, 7], [8, 9, 10])
 # `Array#flatten`
 
 # `Array#each_index`
+
+# `Array#count`
+
+# `Array3assoc`
+
+# `Array#difference`
+
+# `Array#fetch`
+
+# `Array#fill`
+
+# `Array#intersect?`
+
+# `Array#intersection`
+
+# `Array#keep_if`
+
+# `Array#reject`
+
+# `Array#zip`
+
+
