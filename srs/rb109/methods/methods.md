@@ -60,7 +60,8 @@ A bit unexpected with a hash:
 { a: "ant", b: "bear", c: "cat" }.first(2)
 # => [[:a, "ant"], [:b, "bear"]]
 ```
-When called on a hash this method returns a nested array because hashes are technically not ordered. Hardly ever does it get used with a hash though.
+When called on a hash this method returns a nested array because hashes are technically not ordered. Hardly ever does it get used with a hash though. #flashcard
+
 
 # Enumerable#include?
 This method takes an argument which is the item we want to search for in the collection that calls it.
@@ -71,9 +72,137 @@ This method takes an argument which is the item we want to search for in the col
 ```
 What happens when we use it with a hash?
 
-`.incluce?` is actually an alias for `Hash#key` or `Hash#has_key?` and therefore `.include?` only searches the keys _NOT_ the values.
+`.include?` is actually an alias for `Hash#key` or `Hash#has_key?` and therefore `.include?` only searches the keys _NOT_ the values.
+
+```
+{ a: "ant", b: "bear", c: "cat" }.include?("ant")
+# => false
+
+{ a: "ant", b: "bear", c: "cat" }.include?(:a)
+# => true
+```
+#flashcard
+
+# `Enumerable#partition`
+Divides elements from a collection based on the return of the block and returns two collections with the elements for which the block returned 1) true and 2) false.
+
+```
+[1, 2, 3].partition do |num|
+  num.odd?
+end
+# => [[1, 3], [2]]
+```
+Since this returns a nested array it makes the most sense to use this when assigning each partition to two different variables:
+
+```
+odd, even = [1, 2, 3].partition do |num|
+  num.odd?
+end
+
+odd  # => [1, 3]
+even # => [2]
+
+```
+#flashcard
+
+
+# `Array#length`
+returns an integer which represents the length of the array.
+
+```
+array = [0, 1, 2, 3, 4]
+array.length
+# => 5
+```
+#flashcard
+
+# `Array#last`
+Returns the last element in the array
+```
+array = [0, 1, 2, 3, 4]
+array.last
+=> 4
+```
+#flashcard
+# `Array#take`
+Returns the nth element in the array, depending on the argument passed.
+```
+array = [0, 1, 2, 3, 4]
+array.take(3)
+=> [0, 1, 2]
+```
+#flashcard
+
+# `Array#drop`
+This method returns the elements after `n` elements in the array
+```
+array = [0, 1, 2, 3, 4]
+array.drop(3)
+=> [3, 4]
+```
+#flashcard
+# `Array#pop`
+This method permanently removes the last element of an array
+```
+array = [0, 1, 2, 3, 4]
+array.pop
+=> [0, 1, 2, 3]
+```
+#flashcard
+# `Array#shift`
+This method permanently removes the first element in an array and returns it.
+```
+array = [0, 1, 2, 3, 4]
+
+array.shift
+=> 0  
+array
+=> [1, 2, 3, 4]
+```
+#flashcard
+# `Array#push`
+Adds an element at the end of an array. Mutates and returns the same object.
+```
+array = [0, 1, 2, 3, 4]
+array.push(99)
+=> [0, 1, 2, 3, 4, 99]
+```
+#flashcard
+# `Array#unshift`
+This method adds an element to the beginning of an array. Mutates and returns the same object.
+```
+array = [2, 3]
+array.unshift(1)
+=> [1, 2, 3]
+```
+#flashcard
+
+# `Array#delete`
+Permanently removes from an array the element specified in the argument.
+```
+array = [0, 1, 2, 3, 4]
+array.delete(1)
+=> [0, 2, 3, 4]
+```
+#flashcard
+# `Array#delete_at`
+Permanently deletes from an array the element at the specified index.
+```
+array = [0, 1, 2, 3, 4]
+array.delete_at(0)
+=> [1, 2, 3, 4]
 
 ```
 
-
+# `Array#reverse`
+This method reverses an array, but returns a new one, it is non-mutating.
 ```
+irb(main):001:0> array = [0, 1, 2, 3, 4]
+=> [0, 1, 2, 3, 4]
+irb(main):002:0> array.object_id
+=> 70251627035420
+irb(main):003:0> array.reverse.object_id
+=> 70251627110860
+irb(main):004:0> 
+```
+#flashcard
