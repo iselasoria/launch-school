@@ -31,28 +31,25 @@ end
 
 
 def rotate_rightmost_digits(cifra, n)
+  custom_rotated = []
   list_of_chars = cifra.to_s.chars
-  p list_of_chars[-n..-1]
-  # list_of_chars.each_with_index do |num, idx|
-  #   # p num.to_i
-  #   # p idx
-  #   # if (idx * -1) == n
-  #   #   rotate_array(list_of_chars)
-  #   # end
-  #   p (idx * -1) #== n
-  # end
+  # list_of_chars[-n..-1] # from the n you want to grab, up until the end
+  custom_rotated = list_of_chars[0..-n -1]
+  custom_rotated << rotate_array(list_of_chars[-n..-1])
+
+  custom_rotated.flatten!.join().to_i
 end
 
-p rotate_rightmost_digits(735291, 2)
+# p rotate_rightmost_digits(735291, 2)
 
 
 
 # test cases
-# rotate_rightmost_digits(735291, 1) == 735291
-# rotate_rightmost_digits(735291, 2) == 735219
-# rotate_rightmost_digits(735291, 3) == 735912
-# rotate_rightmost_digits(735291, 4) == 732915
-# rotate_rightmost_digits(735291, 5) == 752913
-# rotate_rightmost_digits(735291, 6) == 352917
+p rotate_rightmost_digits(735291, 1) == 735291
+p rotate_rightmost_digits(735291, 2) == 735219
+p rotate_rightmost_digits(735291, 3) == 735912
+p rotate_rightmost_digits(735291, 4) == 732915
+p rotate_rightmost_digits(735291, 5) == 752913
+p rotate_rightmost_digits(735291, 6) == 352917
 
-# * TODO
+# * DONE
