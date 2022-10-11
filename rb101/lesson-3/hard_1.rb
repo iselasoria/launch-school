@@ -10,7 +10,7 @@ greeting
 # SOLUTION 
 # when a local variable is intialized inside an `if` statement, the variable
 # gets initialized to nil even if the block doesnt get executed
-# TODO solved--> Pete confirmed if does _not_ create a block.
+# ! solved--> Pete confirmed if does _not_ create a block.
 
 # E2 what is the result of the last line of code?
 greetings = { a: 'hi' }
