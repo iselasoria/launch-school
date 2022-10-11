@@ -1,6 +1,19 @@
-# write a method that takes a string argument and returns a new string
-# that contains the value of the original string with all consecutive duplicate chars
-# collapsed into a single char. Don't use String#squeeze
+=begin
+-----------------------INSTRUCTIONS--------------------------------------
+Write a method that takes a string argument and returns a new string
+that contains the value of the original string with all consecutive duplicate chars
+collapsed into a single char. Don't use String#squeeze
+
+--------------------------PROBLEM----------------------------------------
+Questions:
+Input: 
+Output: 
+---------------------------RULES-----------------------------------------
+Explicit: 
+Implicit: 
+--------------------------EXAMPLES---------------------------------------
+----------------------------ALGO----------------------------------------
+=end
 
 
 
@@ -18,10 +31,10 @@ p crunch('ddaaiillyy ddoouubbllee')
 
 
 # test cases
-# crunch('ddaaiillyy ddoouubbllee') == 'daily double'
-# crunch('4444abcabccba') == '4abcabcba'
-# crunch('ggggggggggggggg') == 'g'
-# crunch('a') == 'a'
-# crunch('') == ''
+crunch('ddaaiillyy ddoouubbllee') == 'daily double'
+crunch('4444abcabccba') == '4abcabcba'
+crunch('ggggggggggggggg') == 'g'
+crunch('a') == 'a'
+crunch('') == ''
 
-# todo come back to this one
+# * DONE
