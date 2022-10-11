@@ -1,4 +1,9 @@
-`multiple assignment` is when you assig more than one value on the same line. When an array is assigned to two variables on the same line, each element of that array gets assigned to one of the variables. #TODO get better example
+`multiple assignment` is when you assign more than one value on the same line. When an array is assigned to two variables on the same line, each element of that array gets assigned to one of the variables. 
+```
+odd, even = [1, 2, 3].partition do |num|
+              num.odd?
+            end
+```
 
 
 ## Array#slice 
@@ -14,11 +19,11 @@
 ## Element Reference Gotchas
 
 ### Out of Bounds Gotchas
-Feferncing an array element that is out of bounds will return `nil` so beaware of that
+Referencing an array element that is out of bounds will return `nil` so be aware of that
 especially problematic in the case of arrays since an array can contain all kinds of object
 including `nil`
 
-`Array#fetch` is the best method to prevevent tryign to retrieve an element out of bounds. It will throw an error
+`Array#fetch` is the best method to prevent trying to retrieve an element out of bounds. It will throw an error
 ```
 arr = [3, 'd', nil]
 arr[2] # => nil
@@ -56,7 +61,7 @@ Methods that make up the `Enumerable` class are available to the `Array` class t
 
 One example, as shown in the `sp-easy-2/sum_or_product` exercise, `Enumerable#inject` can be used as a more rubyist way of computing sums and products. 
 
-This method can take a block and perform the given operaton for every item in the array. 
+This method can take a block and perform the given operation for every item in the array. 
 
 For example:
 ```
@@ -67,4 +72,4 @@ or
 um = (1..input_integer).inject {|product, number| product + number}
 ```
 
-This takes an array, as given by the range (as specified by `(1..upper_limit)`) and maps out an operation to perfrom in this case either sum or product. Then it sets `number` as the variable belonging to each element in the array and performs the specified operation.
+This takes an array, as given by the range (as specified by `(1..upper_limit)`) and maps out an operation to perform in this case either sum or product. Then it sets `number` as the variable belonging to each element in the array and performs the specified operation.
