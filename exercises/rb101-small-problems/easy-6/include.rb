@@ -25,14 +25,13 @@ this method will return false
 # return true if count = 1, false if not
 #----------------------------ALGO----------------------------------------
 
-# TODO this is not checking out for the second test case. Come back and make it work
 def include?(arre, search_value)
   copy_of_arre = []
   if arre.empty?
     false
   else
     arre.find do |element| 
-      if arre.count(element) == 1
+      if arre.count(search_value) == 1
         return true
       else
         return false
@@ -44,11 +43,15 @@ end
 
 
 # test cases
-# p include?([1,2,3,4,5], 3) == true
-# p include?([1,2,3,4,5], 6) #== false
-# p include?([], 3) == false
-# p include?([nil], nil) == true
-# p include?([], nil) == false
+p include?([1,2,3,4,5], 3) == true
+p include?([1,2,3,4,5], 6) == false
+p include?([], 3) == false
+p include?([nil], nil) == true
+p include?([], nil) == false
+
+# * DONE
+
+
 
 # LS SOLUTION
 def include?(array, value)
