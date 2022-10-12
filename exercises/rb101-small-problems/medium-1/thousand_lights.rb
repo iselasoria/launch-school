@@ -28,6 +28,27 @@ Rep 5 |   *   |       |       |   *   |       |
 
 result = [1,4] are the only lights that are on at the end of `n` repetitions.
 
-
 ----------------------------ALGO----------------------------------------
+- initialize an array that ranges from 1 to n
+- map an array to [true, true, true, true, true]
+- initialize a counter
+- iterate over the array
+  - if the element in the current iteration is a multiple of the counter
+    - toggle
+      - array at the current index changes to the opposite
 =end
+
+def toggle(n)
+initial_arr = (1..n).to_a
+truth_arr = initial_arr.map { |item| false }
+
+truth_arr.each_with_index do |light, idx|
+  if initial_arr[idx] % idx == 0
+    puts "change"
+  end
+end
+
+end 
+
+
+p toggle(5)
