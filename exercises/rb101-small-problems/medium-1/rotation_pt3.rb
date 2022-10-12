@@ -50,19 +50,35 @@ def rotate_rightmost_digits(cifra, n)
   custom_rotated.flatten!.join().to_i
 end
 
+
 def max_rotation(number)
+  list = number.to_s.chars
+  tiny = []
+  result = []
+
+  list.each_with_index do |digit, idx|
+    puts "Iteration #{idx}"
+    tiny = list[idx..list.size]
+    tiny << list.first(idx).flatten
+    p tiny
+    p rotate_array(list[idx..list.size])
+    p ' '
+    # p rotate_rightmost_digits(list[idx..list.size], 2)
+  end
 end
 
+max_rotation(735291)
 
 
 # test cases
-p max_rotation(735291) #== 321579
+# p max_rotation(735291) #== 321579
 # max_rotation(3) == 3
 # max_rotation(35) == 53
 # max_rotation(105) == 15 # the leading zero gets dropped
 # max_rotation(8_703_529_146) == 7_321_609_845
 
 # TODO the object returned by the previous method has some weird nesting, the algo should work. See the algo section
+# TODO come back to this, LS solution vastly different
 
 # def max_rotation(number)
   #   counter = 0
