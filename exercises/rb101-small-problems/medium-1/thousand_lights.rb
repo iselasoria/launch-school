@@ -39,16 +39,44 @@ result = [1,4] are the only lights that are on at the end of `n` repetitions.
 =end
 
 def toggle(n)
-initial_arr = (1..n).to_a
-truth_arr = initial_arr.map { |item| false }
+  numerical_arr = (1..n).to_a
+  truth_arr = 1.upto(n).map { |item| false } # set up the lights
 
-truth_arr.each_with_index do |light, idx|
-  if initial_arr[idx] % idx == 0
-    puts "change"
+  truth_arr.each_with_index do |light, idx|
+    if idx > 0
+      
+      puts "Index: #{idx} and check: #{numerical_arr[idx] % idx}"
+      truth_arr.map do |tog|
+        if numerical_arr[idx] % idx == 0
+          !tog
+        end
+      end
+    else
+      !light
+    end
   end
-end
-
+  truth_arr
 end 
 
 
 p toggle(5)
+
+
+# def toggle(n)
+#   truth_arr = 1.upto(n).map { |item| false } # 
+#   # puts truth_arr
+#   # result = []
+#   # truth_arr.each_with_index do |light, idx|
+#   #   if idx > 0
+#   #     p "#{idx} entering the conditions"
+#   #     # result = truth_arr.map! do |tog|
+#   #     #           if initial_arr[idx] % idx == 0
+#   #     #             p tog
+#   #     #           end
+#   #     #         end
+#   #   else 
+#   #     p !light # turns on the very first light
+#   #   end
+#   # end
+#   truth_arr
+# end 
