@@ -38,28 +38,21 @@ result = [1,4] are the only lights that are on at the end of `n` repetitions.
       - array at the current index changes to the opposite
 =end
 
+def is_multiple(num, check)
+  num % check == 0 ? true : false
+end
+
 def toggle(n)
   numerical_arr = (1..n).to_a
-  truth_arr = 1.upto(n).map { |item| false } # set up the lights
+  p numerical_arr
+  truth_arr = 1.upto(n).map { |item| false } # set up the lights, first they're off
 
-  truth_arr.each_with_index do |light, idx|
-    if idx > 0
-      
-      puts "Index: #{idx} and check: #{numerical_arr[idx] % idx}"
-      truth_arr.map do |tog|
-        if numerical_arr[idx] % idx == 0
-          !tog
-        end
-      end
-    else
-      !light
-    end
-  end
-  truth_arr
+  truth_arr.each_with_index
+
 end 
 
 
-p toggle(5)
+toggle(5)
 
 
 # def toggle(n)
@@ -79,4 +72,30 @@ p toggle(5)
 #   #   end
 #   # end
 #   truth_arr
+# end 
+
+
+
+
+
+# def toggle(n)
+#   numerical_arr = (1..n).to_a
+#   p numerical_arr
+#   truth_arr = 1.upto(n).map { |item| false } # set up the lights, first they're off
+
+
+#   counter = 0
+
+#   while counter < numerical_arr.size
+#     # p numerical_arr[counter]
+#     # p counter + 1
+#     p "Is #{numerical_arr[counter]} a multiple of #{numerical_arr[counter+1]}"
+#     if is_multiple(numerical_arr[counter], counter +2 )
+#        truth_arr.map! {|check| !check }
+      
+#     end
+#     counter += 1
+#   end
+# # p truth_arr
+# p counter
 # end 
