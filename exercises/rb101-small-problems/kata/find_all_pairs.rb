@@ -1,4 +1,4 @@
-# ! 7 kyu
+# ! 7 kyu on Ruby 3.0+
 =begin
 You are given array of integers, your task will be to count all pairs in that array and return their count.
 Notes:
@@ -23,17 +23,14 @@ def pairs(arr)
   tally_up = arr.tally
   pairs = []
 
-  p tally_up
-  tally_up.each do |k, v|
-    if v >= 4 && v.even?
-      pairs << k * 2
-    elsif v > 1 && v.even?
-      pairs << k
-
+  if tally_up.size == 0
+    pairs << 0
+  else
+    tally_up.each do |k, v|
+      pairs << (v / 2)
     end
   end
-  p pairs
-  pairs.size
+  pairs.inject {|sum, num| sum + num}
 end
 
 
@@ -44,3 +41,4 @@ p pairs([1, 2, 2, 20, 6, 20, 2, 6, 2])#== 4
 # p pairs([1000, 1000])== 1
 # p pairs([])== 0
 # p pairs([54])== 0
+# * DONE
