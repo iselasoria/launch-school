@@ -39,7 +39,7 @@ end
 def sub_count(str, search_test)
   all_substrings = sub(str)
 
-  sub_counts = all_substrings.tally
+  # sub_counts = all_substrings.tally
   # p all_substrings
   all_substrings.count(search_test)
 end
