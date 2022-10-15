@@ -115,20 +115,22 @@ def alpha_sym(arr)
     list = item.chars
     # p list
     list.keep_if do |char|
+      p "The chararacter: #{char} as position of #{alphabet_info.key(list.index(char))} to it is #{char == alphabet_info.key(list.index(char))}"
+
       # if list.index(item) == alphabet_info.key(list.index(item))
        char == alphabet_info.key(list.index(char))
         # new_arr << char
       # end
     end
-    # p list
+    p list
    new_arr << list.size
   end
-p new_arr
+new_arr
 end
 
 
-# # test cases
-p alpha_sym(["abode","ABc","xyzD"]) == [4, 3, 1]
-p alpha_sym(["abide","ABc","xyz"]) == [4,3,0]
-p alpha_sym(["IAMDEFANDJKL","thEdefgh","xyzDEFghijabc"]) == [6,5,7]
-p alpha_sym(["encode","abc","xyzD","ABmD"]) == [1, 3, 1, 3]
+# # # test cases
+# p alpha_sym(["abode","ABc","xyzD"]) == [4, 3, 1]
+# p alpha_sym(["abide","ABc","xyz"]) == [4,3,0]
+p alpha_sym(["IAMDEFANDJKL","thedefgh","xyzDEFghijabc"]) == [6,5,7]
+# p alpha_sym(["encode","abc","xyzD","ABmD"]) == [1, 3, 1, 3]
