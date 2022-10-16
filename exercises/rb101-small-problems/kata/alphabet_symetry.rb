@@ -115,10 +115,15 @@ def alpha_sym(arr)
     list = item.chars
     # p list
     list.keep_if do |char|
-      p "The chararacter: #{char} as position of #{alphabet_info.key(list.index(char))} to it is #{char == alphabet_info.key(list.index(char))}"
+      # p "The chararacter: #{char} as position of #{alphabet_info.key(list.index(char))} to it is #{char == alphabet_info.key(list.index(char))}"
+
+      p "The chararacter: #{char} is #{list.index(char)} in the word and #{alphabet_info.values_at(char)} in the alphabet so it is #{char == list.index(char)}"
+
 
       # if list.index(item) == alphabet_info.key(list.index(item))
-       char == alphabet_info.key(list.index(char))
+      list.index(char) == alphabet_info.values_at(char) 
+      # list.index(char) == alphabet_info.key(list.index(char))
+      #  char == alphabet_info.key(list.index(char))
         # new_arr << char
       # end
     end
