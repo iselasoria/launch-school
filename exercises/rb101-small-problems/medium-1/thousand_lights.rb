@@ -44,25 +44,27 @@ end
 
 def toggle(n)
   numerical_arr = (1..n).to_a
-  # p numerical_arr
   truth_arr = 1.upto(n).map { |item| false } # set up the lights, first they're off
-  new_arr = []
+  new_arr =  truth_arr.map.each_with_index do |num, idx|
+    # puts "#{num} is at index #{idx}"
+    numerical_arr.map do |light|
+      # p numerical_arr[idx + 1]
+      # p numerical_arr[idx + 1]
+       if idx < n
+        p numerical_arr[idx]
+        # is_multiple(light, numerical_arr[idx + 1])
+       end
 
-
-  numerical_arr.map.each_with_index do |num,idx|
-    # p "#{num} is at index #{idx}"
-    # p "We will check if #{num} is a multiple of #{numerical_arr[1]}"
-    if is_multiple(num, numerical_arr[1])
-    #   puts "#{num} is a multiple of #{numerical_arr[1]}"
-      !light
-    #   p new_arr
-    # end
+    end
+    p new_arr
   end
-
+    
+  # p new_arr.flatten
+# return of the function goes here
 end 
 
 
-p toggle(5)
+toggle(5)
 
 
 # def toggle(n)
@@ -109,3 +111,26 @@ p toggle(5)
 # # p truth_arr
 # p counter
 # end 
+
+
+# def toggle(n)
+#   numerical_arr = (1..n).to_a
+#   # p numerical_arr
+#   truth_arr = 1.upto(n).map { |item| false } # set up the lights, first they're off
+#   new_arr = []
+
+
+#   numerical_arr.map.each_with_index do |num,idx|
+#     # p "#{num} is at index #{idx}"
+#     # p "We will check if #{num} is a multiple of #{numerical_arr[1]}"
+#     # if is_multiple(num, numerical_arr[1])
+#     #   puts "#{num} is a multiple of #{numerical_arr[1]}"
+#     #   !light
+#     #   p new_arr
+#     # end
+#   end
+#   p "New #{new_arr}"
+# end 
+
+
+# toggle(5)
