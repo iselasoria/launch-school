@@ -2,7 +2,7 @@
 -----------------------INSTRUCTIONS--------------------------------------
 Write a methoid that takes one integer argument, which may be positive, negative, or zero.
 This method returns `true` if the numbers absolute value is idd. You may assume that
-the argument is a valid integer value.
+the argument is a valid integer value. DO NOT use odd? or even?
 --------------------------PROBLEM----------------------------------------
 Questions:
 Input: 
@@ -27,7 +27,7 @@ Implicit:
 def is_odd?(num)
   number = num < 1 ? num * -1 : num
 
-  number.odd? ? true : false
+  number % 2 != 0 ? true : false
 
 end
 
