@@ -37,4 +37,8 @@ end
 # test case
 p word_to_digit('Please call me at five five five one two three four. Thanks.') #== 'Please call me at 5 5 5 1 2 3 4. Thanks.'
 
+# LS notes:
+# The word to look for is interpolated into the regex, /\b#{word}\b/. We use \b to limit the operation to complete words, not substrings.
+# For instance, if the phrase/sentence passed into the method has the word "freight" in it, we won't replace it. If we don't use \b, we would convert "freight" to "fr8".
+
 # DONE 
