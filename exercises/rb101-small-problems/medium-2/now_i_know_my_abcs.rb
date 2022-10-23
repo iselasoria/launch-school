@@ -26,7 +26,14 @@ H is in the block with U and U does not get used
 
 ----------A
 - helper method xor
-  - 
+  - if first item in array is present and second is not
+    - true
+  -elsif second item in array is present and first is not
+    - true
+  - else
+    -false
+
+
 - initiate a nested array that holds the pairs of letters
 - iterate over nested array (top level iteration) --> ex) ['B','O']
   - one leverl deeper in the itration---> 'B' we might need index
@@ -39,27 +46,42 @@ H is in the block with U and U does not get used
 =end
 
 
+
+def xor?(word, arr)
+  just_one = false
+
+  pairs_found = arr.select do |pair|
+                  word.chars.include?(pair[0]) || word.chars.include?(pair[1])
+  end
+
+  pairs_found.each do |pair|
+    if word.chars.include?(pair[0]) && !word.chars.include?(pair[1])
+      just_one = true
+    elsif !word.chars.include?(pair[1]) && word.chars.include?(pair[0])
+      just_one = true
+    else
+      just_one = false
+    end
+  end
+  just_one
+end
+
+
+
+# bloques = [['B','O'], ['X','K' ], ['D','Q'], ['C','P'], [ 'N','A'], ['G','T'], ['R','E'], ['F','S'], ['J','W'], ['H','U'], ['V','I'], ['L','Y' ], ['Z','M']]
+# p xor?('BATCH', bloques)
+
 def block_word?(test_string)
   bloques = [['B','O'], ['X','K' ], ['D','Q'], ['C','P'], [ 'N','A'], ['G','T'], ['R','E'], ['F','S'], ['J','W'], ['H','U'], ['V','I'], ['L','Y' ], ['Z','M']]
 
-  bloques.each_with_index do |pair, idx|
-    p test_string.chars.include?(pair[0]) && test_string.chars.include?(pair[1])
-    p test_string.chars.include?(pair[0]) && !test_string.chars.include?(pair[1])
-    p !test_string.chars.include?(pair[0]) && test_string.chars.include?(pair[1])
+  # word_list = test_string.chars
 
-    # p pair
-    # if test_string.chars.include?(pair[0]) && test_string.chars.include?(pair[1])
-    #   false
-    # elsif test_string.chars.include?(pair[0]) && !test_string.chars.include?(pair[1])
-    #   true
-    # elsif !test_string.chars.include?(pair[0]) && test_string.chars.include?(pair[1])
-    #   true
-    # end
-  end
+  xor?(test_string, bloques)
+  
 end
 
 # test cases
 
 p block_word?('BATCH') == true
-# p block_word?('BUTCH') == false
-# p block_word?('jest') == true
+p block_word?('BUTCH') == false
+p block_word?('jest') == true
