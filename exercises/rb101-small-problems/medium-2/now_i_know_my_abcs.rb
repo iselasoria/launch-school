@@ -48,16 +48,20 @@ H is in the block with U and U does not get used
 
 
 def xor?(word, arr)
+  word.upcase!
+  letter_list = word.chars
   just_one = false
 
+  # these are only the relevant pairs
   pairs_found = arr.select do |pair|
-                  word.chars.include?(pair[0]) || word.chars.include?(pair[1])
+    letter_list.include?(pair[0]) || letter_list.include?(pair[1])
   end
 
+
   pairs_found.each do |pair|
-    if word.chars.include?(pair[0]) && !word.chars.include?(pair[1])
+    if letter_list.include?(pair[0]) && !letter_list.include?(pair[1])
       just_one = true
-    elsif !word.chars.include?(pair[1]) && word.chars.include?(pair[0])
+    elsif !letter_list.include?(pair[1]) && letter_list.include?(pair[0])
       just_one = true
     else
       just_one = false
@@ -73,9 +77,6 @@ end
 
 def block_word?(test_string)
   bloques = [['B','O'], ['X','K' ], ['D','Q'], ['C','P'], [ 'N','A'], ['G','T'], ['R','E'], ['F','S'], ['J','W'], ['H','U'], ['V','I'], ['L','Y' ], ['Z','M']]
-
-  # word_list = test_string.chars
-
   xor?(test_string, bloques)
   
 end
@@ -87,4 +88,4 @@ p block_word?('BUTCH') == false
 p block_word?('jest') == true
 
 
-# TODO
+# DONE
