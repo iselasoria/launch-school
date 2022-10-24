@@ -54,22 +54,25 @@ def triangle(angle1, angle2, angle3)
   any_zeros = [angle1, angle2, angle3].any?(0)
 
   if any_zeros == true || sum < 180
-  elsif [angle1, angle2, angle3].all? {|ang| ang < 90}
-    :acute
-  elsif [angle1, angle2, angle3].any? {|ang| ang > 90}
-    :obtuse
-  elsif  [angle1, angle2, angle3].any?(90)
-    :right
-  else
     :invalid
+  else
+    if [angle1, angle2, angle3].all? {|ang| ang < 90}
+    :acute
+    elsif [angle1, angle2, angle3].any? {|ang| ang > 90}
+      :obtuse
+    elsif  [angle1, angle2, angle3].any?(90)
+      :right
+    end
   end
 
 end
 
 
 # test cases
-# p triangle(60, 70, 50) == :acute
-# p triangle(30, 90, 60) == :right
-# p triangle(120, 50, 10) == :obtuse
-p triangle(0, 90, 90) #== :invalid
-p triangle(50, 50, 50)# == :invalid
+p triangle(60, 70, 50) == :acute
+p triangle(30, 90, 60) == :right
+p triangle(120, 50, 10) == :obtuse
+p triangle(0, 90, 90) == :invalid
+p triangle(50, 50, 50) == :invalid
+
+# DONE
