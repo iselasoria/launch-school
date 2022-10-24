@@ -15,6 +15,68 @@ depending on whether the triangle is equilateral, isosceles, scalene, or invalid
 
 
 ---------------------P
+Rules:
+- invalid
+  - sum of the two shortest is less than the third
+  - all three sides must be larger than 0
+
+- valid:
+  - equilaterial ---> all three sides are equal in length
+  - isosceles ---> 2 sides are equal, one is different
+  - scalene --> all sides are different in length
 ---------------------E
+3, 3, 3 all ----> three sides are the same :equilateral
+3, 3, 1.5 ----> two sides are equal, one different :isosceles
+3, 4, 5 ----> all sides are different :scalene
+0, 3, 3 == :invalid
+
 ---------------------D
+Model solution:
+arr = [3,4,5]
+arr.min(2)---> gives the two shortest,this must be greater than arr.max
 ---------------------A
+- initialize an array of the sides
+  - check for invalids
+    - if two shortes sides are less than third side, or if any_zeros
+      - invalid
+    - otherwise, check type
+      - if all sides are the same
+        - :equilateral
+      - if 2 sides are equal
+        - iscosceles
+      - none of the sides are the same
+        - scalene
+
+=end
+
+def triangle(side1, side2, side3)
+  arr = [side1, side2, side3]
+
+  two_shortest_sum = arr.min(2).reduce(:+)
+  longest = arr.max
+  any_zeros = arr.any? {|item| item == 0}
+  all_equal = arr.uniq.size == 1
+  
+
+  if (two_shortest_sum < longest) && any_zeros
+    puts "INVALID"
+    :invalid
+  else
+    puts "ENTERED THE ELSE"
+    if all_equal
+      :equilateral
+    elsif (arr[0] != arr[1]) && (arr[1] != arr[2]) && (arr[0] != arr[2]) # none are equal
+      :scalene #todo why doesnt this work?
+    else
+      :iscosceles # this needs work
+    end
+
+  end
+end
+
+# test cases
+# p triangle(3, 3, 3) # == :equilateral
+# p triangle(3, 3, 1.5) == :isosceles
+p triangle(3, 4, 5) == :scalene
+# triangle(0, 3, 3)# == :invalid
+# p triangle(3, 1, 1) #== :invalid
