@@ -57,9 +57,7 @@ def triangle(side1, side2, side3)
   any_zeros = arr.any? {|item| item == 0}
   all_equal = arr.uniq.size == 1
   two_sides_equal = arr.uniq.size == 2
-  # puts "equal sides"
-  # puts two_shortest_sum
-  # puts two_sides_equal
+
 
   if (two_shortest_sum < longest) || any_zeros # if the two small sides are not larger than the third
     :invalid
@@ -81,3 +79,5 @@ p triangle(3, 3, 1.5) == :isosceles
 p triangle(3, 4, 5) == :scalene
 p triangle(0, 3, 3) == :invalid
 p triangle(3, 1, 1) == :invalid
+
+# DONE
