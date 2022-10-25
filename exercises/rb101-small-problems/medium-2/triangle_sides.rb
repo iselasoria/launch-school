@@ -56,27 +56,28 @@ def triangle(side1, side2, side3)
   longest = arr.max
   any_zeros = arr.any? {|item| item == 0}
   all_equal = arr.uniq.size == 1
-  
+  two_sides_equal = arr.uniq.size == 2
+  # puts "equal sides"
+  # puts two_shortest_sum
+  # puts two_sides_equal
 
-  if (two_shortest_sum < longest) && any_zeros
-    puts "INVALID"
+  if (two_shortest_sum < longest) || any_zeros # if the two small sides are not larger than the third
     :invalid
   else
-    puts "ENTERED THE ELSE"
     if all_equal
       :equilateral
     elsif (arr[0] != arr[1]) && (arr[1] != arr[2]) && (arr[0] != arr[2]) # none are equal
-      :scalene #todo why doesnt this work?
-    else
-      :iscosceles # this needs work
+      :scalene
+    elsif two_sides_equal
+      :isosceles
     end
 
   end
 end
 
 # test cases
-# p triangle(3, 3, 3) # == :equilateral
-# p triangle(3, 3, 1.5) == :isosceles
+p triangle(3, 3, 3) == :equilateral
+p triangle(3, 3, 1.5) == :isosceles
 p triangle(3, 4, 5) == :scalene
-# triangle(0, 3, 3)# == :invalid
-# p triangle(3, 1, 1) #== :invalid
+p triangle(0, 3, 3) == :invalid
+p triangle(3, 1, 1) == :invalid
