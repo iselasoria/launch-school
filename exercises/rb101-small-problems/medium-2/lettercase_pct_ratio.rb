@@ -45,21 +45,17 @@ define helper method count_case(str)
         - lower += 1
       - else
         - other += 1
+    - handle case where only one case is present
+      - if no upper and no lower
+        - return a hash {:lowercase => 0, :uppercase => 0, :other => number_here}
 
 - main method
-- initialize an array containing a list of characters in the string
-  - count capitals
-    - call pct
-  - count lowercase
-    - call pct
-  - count all other chars
-    - call pct
+- initialize an array containing the result of case_count which is has ex: {:lowercase=>5, :uppercase=>1, :other=>4}
 
-  - initialize empty hash
-    - iterate 3 times
-      - set hash at lower equal to lower_pct
-      - set hash at upper equal to upper_pct
-      - set hash at other equal to other_pct
+  - iterate each with object to create a new hash
+    - keys will be keys from the case_count hash
+    - values will be the return of calling pct on the value from the case_counts hash and using the string length as the total
+
 =end
 
 def pct(number, total)
@@ -72,24 +68,54 @@ def count_case(str)
   lower = 0
   other = 0
 
-  list.each_with_object({}) do |letter, hash|
-    if letter == letter.upcase
-      hash[:uppercase] = upper += 1
-    elsif letter == letter.downcase
-      hash[:lowercase] = lower += 1
-    else
-      hash[:other] = other += 1
-    end
+  prelim = list.each_with_object({}) do |letter, hash|
+
+            alpha_low = ('a'..'z').to_a
+            alpha_cap = ('A'..'Z').to_a 
+          
+
+            if !alpha_low.include?(letter) && !alpha_cap.include?(letter)
+              hash[:neither] = other += 1
+            elsif letter == letter.upcase
+              hash[:uppercase] = upper += 1
+            elsif letter == letter.downcase
+              hash[:lowercase] = lower += 1
+            end
+          end
+# handles the edgecases where only one case is present
+  if  upper == 0 && lower == 0
+    prelim[:lowercase] = 0
+    prelim[:uppercase] = 0
+    prelim[:neither] = other
+  elsif upper == 0 && other == 0
+    prelim[:lowercase] = lower
+    prelim[:uppercase] = 0
+    prelim[:neither] = 0
+  elsif lower == 0 && other == 0
+    prelim[:lowercase] = 0
+    prelim[:uppercase] = upper
+    prelim[:neither] = 0
   end
   
-
+  prelim
 end
-# todo currently not working, needs to count case better, come back to algo
 
-p count_case('123')
+
+def letter_percentages(str)
+  case_counts = count_case(str)
+
+
+  letter_pct = case_counts.each_with_object({}) do |(case_type, num), hash|
+                hash[case_type] = pct(num, str.size)
+              end
+  letter_pct.sort_by {|type, pct| pct}.to_h
+end
+
+# p count_case('AbCd +Ef')
 
 # test cases
-# p letter_percentages('abCdef 123') #== { lowercase: 50.0, uppercase: 10.0, neither: 40.0 }
-# p letter_percentages('AbCd +Ef') == { lowercase: 37.5, uppercase: 37.5, neither: 25.0 }
-# p letter_percentages('123') == { lowercase: 0.0, uppercase: 0.0, neither: 100.0 }
+p letter_percentages('abCdef 123') == { lowercase: 50.0, uppercase: 10.0, neither: 40.0 }
+p letter_percentages('AbCd +Ef') == { lowercase: 37.5, uppercase: 37.5, neither: 25.0 }
+p letter_percentages('123') == { lowercase: 0.0, uppercase: 0.0, neither: 100.0 }
 
+# DONE
