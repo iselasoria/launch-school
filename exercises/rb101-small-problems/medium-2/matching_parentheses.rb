@@ -50,6 +50,10 @@ list count(')') ----> 2
         - true
       - else
         - false
+  - iterate over chars
+    - if char '(' open_tally
+    - if char ')' close_tally
+    break if 
 =end
 
 def balanced?(string)
@@ -69,19 +73,22 @@ def balanced?(string)
 
   # puts open_position < closing_position
 
-  if (opening_parentheses == closing_parentheses) && (open_position < closing_position)
+  return true if opening_parentheses == 0 && closing_parentheses == 0 # if no parenthesis present at all
+
+  if (opening_parentheses == closing_parentheses) && (open_position < closing_position) # same number of open/close and the open comes first
     true
   else
     false
   end
 
+  
 end
 # test cases
-# p balanced?('What (is) this?') == true
-# p balanced?('What is) this?') == false
-# p balanced?('What (is this?') == false
-# p balanced?('((What) (is this))?') == true
-# p balanced?('((What)) (is this))?') == false
-p balanced?('Hey!') == true ### todo handle this case
-# p balanced?(')Hey!(') == false
-p balanced?('What ((is))) up(') #== false # idk what this is
+p balanced?('What (is) this?') == true
+p balanced?('What is) this?') == false
+p balanced?('What (is this?') == false
+p balanced?('((What) (is this))?') == true
+p balanced?('((What)) (is this))?') == false
+p balanced?('Hey!') == true
+p balanced?(')Hey!(') == false
+p balanced?('What ((is))) up(') == false # idk what this is
