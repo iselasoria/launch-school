@@ -122,6 +122,15 @@ def featured(number)
   'There is no possible number that fulfills those requirements.'
 end
 
+p featured(12) == 21
+p featured(20) == 21
+p featured(21) == 35
+p featured(997) == 1029
+p featured(1029) == 1043
+p featured(999_999) == 1_023_547
+p featured(999_999_987) == 1_023_456_987 # TODO strangely, this one is a forever loop
+
+featured(9_999_999_999) # -> There is no possible number that fulfills those requirements
 =begin
 `number` increments the number starting from when it came in. We have a breaking condition for the incrementation right at the start, this way if the number
 immediately following the first incrementation meets the criteria, we return a result right away. This only checks for odds and multiples of 7.
