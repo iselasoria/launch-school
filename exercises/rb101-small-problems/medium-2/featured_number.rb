@@ -1,3 +1,4 @@
+# ! Runs on ruby 3+ tally method
 =begin
 
 https://launchschool.com/exercises/a1afc619
@@ -105,3 +106,29 @@ p featured(999_999) == 1_023_547
 # p featured(999_999_987) == 1_023_456_987 # TODO strangely, this one is a forever loop
 
 featured(9_999_999_999) # -> There is no possible number that fulfills those requirements
+
+# LAUNCH SCHOOL SOLUTION
+def featured(number)
+  number += 1
+  number += 1 until number.odd? && number % 7 == 0
+
+  loop do
+    number_chars = number.to_s.split('')
+    return number if number_chars.uniq == number_chars
+    number += 14
+    break if number >= 9_876_543_210
+  end
+
+  'There is no possible number that fulfills those requirements.'
+end
+
+=begin
+`number` increments the number starting from when it came in. We have a breaking condition for the incrementation right at the start, this way if the number
+immediately following the first incrementation meets the criteria, we return a result right away. This only checks for odds and multiples of 7.
+We then enter a loop to check repetition:
+  - here we split the digits of the number into chracters
+  - return the number if the number of unique characters and the total number of characters in number (after incrementatio above) are the same--> this means all are unique already
+  - the incrementation by 14 ensures that first we check that it is in fact a multiple of 7, and also by adding 14 at5 a time we are ensuring that the multiple of 7 is also odd--> our other condition
+  - break if the number is too large as given by 9_876_543_210
+  - throw an error if the number doesnt have a possible featured number
+  =end
