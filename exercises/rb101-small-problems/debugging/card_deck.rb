@@ -41,12 +41,11 @@ end
 # p player_cards
 
 sum = deck.reduce(0) do |sum, (_, remaining_cards)|
-  scores = remaining_cards.map do |card| # this gives a list of numerical values of each card.
+  scores = remaining_cards.map do |card| # !this gives a list of numerical values of each card, we capture the array here
     score(card)
   end
-puts "SUM"
-p scores.sum 
-  sum += scores.sum
+
+  sum += scores.sum # ! reference the newly craeted array
 end
 
 # puts sum
