@@ -5,3 +5,26 @@ The smallest such star you need to handle is a 7x7 grid.
 
 =end 
 # todo come back to this after algo
+
+# test cases
+star(7)
+
+*  *  *
+ * * *
+  ***
+*******
+  ***
+ * * *
+*  *  *
+
+star(9)
+
+*   *   *
+ *  *  *
+  * * *
+   ***
+*********
+   ***
+  * * *
+ *  *  *
+*   *   *
