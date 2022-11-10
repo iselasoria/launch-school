@@ -26,3 +26,18 @@ h1 == h2 # => true
 `h.length`
 
 ## Enumerating
+
+### Delete every key/value pair in the hash for which the block evaluates true
+`h.delete_if`
+
+### iterating key/value pairs
+`h.each`
+
+### iterating keys
+`h.each_key`
+
+### iterating values
+`h.each_value` 
+
+### delete each key/value pair for which the block evaluates to false
+`h.keep_if`
