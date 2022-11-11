@@ -53,24 +53,68 @@ irb(main):017:0> h.length
 
 ### Delete key/value pair and return value from hash h whose key is equal to key
 `h.delete(key)`
+```
+=> {"a"=>"apple", "b"=>"bug", "c"=>"cat"}
+irb(main):020:0> h.delete('b')
+=> "bug"
+irb(main):021:0> h
+=> {"a"=>"apple", "c"=>"cat"}
+```
 
 ### Return true of the key given is present
 `h.has_key?(key)`
+```
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):023:0> h.has_key?('a')
+=> true
+irb(main):024:0> h.has_key?('p')
+=> false
+```
 
 ### Return true if the given key is present in the hash
 `h.include?(key)`
+```
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):026:0> h.include?('a')
+=> true
+irb(main):027:0> h.include?('j')
+=> false
+```
 
-### Passing the value, returns its key
+### Get's the key: Passing the value, returns its key
 `h.key(value)`
+```
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):029:0> h.key('apple')
+=> "a"
+```
 
 ### Return true if the given key is present in the hash
 `h.key?(key)`
+```
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):031:0> h.key?('a')
+=> true
+```
+
 
 ### Return a new array populated with the keys from the hash
 `h.keys`
-
+```
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):033:0> h.keys
+=> ["a", "c"]
+```
 ### Return true if a given key is present in the hash
 `h.member?(key)`
+
+```
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):035:0> h.member?('a')
+=> true
+irb(main):036:0> h.member?('k')
+=> false
+```
 
 ---
 
