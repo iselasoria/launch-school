@@ -225,22 +225,80 @@ irb(main):066:0> h.object_id
 ## Enumerating II
 
 ### returns true if the block ever returns true
+When we pass an argument, key/value must be the exact for it to return true
+
 `h.any?`
+
+```
+When we pass a block:
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):071:0> h.any? {|k, v| v.start_with?('z')}
+=> false
+irb(main):072:0> h.any? {|k, v| v.start_with?('a')}
+=> true
+
+When given an argument: 
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):074:0> h.any?(['a', 'apple'])
+=> true
+
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):074:0> h.any?(['a', 'apple'])
+=> true
+irb(main):075:0> h.any?(['a', 'amigo'])
+=> false
+```
+
 
 ### call block once for each key/value pair
 `h.each_pair`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):077:0> h.each_pair {|k, v| puts "key: #{k} and value #{v}"}
+key: a and value apple
+key: b and value bear
+key: c and value cat
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+```
 
-### return a new hadh consisting of entries for which the block returns false
+
+### return a new hash consisting of entries for which the block returns false
 `h.reject `
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):081:0> h.reject {|k,v| v.start_with?('b')}
+=> {"a"=>"apple", "c"=>"cat"}
+```
+
 
 ### equivalent to `delete_if` but will return `nil` if no changes were made to the hash
 `h.reject!`
-
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):085:0> h.reject! {|k,v| v.start_with?('b')}
+=> {"a"=>"apple", "c"=>"cat"}
+irb(main):086:0> h
+=> {"a"=>"apple", "c"=>"cat"}
+```
 ### return a new hash for which the block returned true
 `h.select`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):090:0> h.select {|k,v| k == 'a'}
+=> {"a"=>"apple"}
+```
 
 ### equivalent to `keep_if` but returns true if no changes were made to the hash 
 `h.select!`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):100:0> h.object_id
+=> 70305943092020
+irb(main):101:0> h.select! {|k,v| k == 'c'}
+=> {"c"=>"cat"}
+irb(main):102:0> h.object_id
+=> 70305943092020
+```
 
 ---
 
