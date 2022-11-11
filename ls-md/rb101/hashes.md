@@ -164,18 +164,62 @@ irb(main):047:0> h.values_at("a","c")
 
 ### Delete every key/value pair in the hash for which the block evaluates true
 `h.delete_if`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):049:0> h.delete_if {|initial, animal| animal.size > 3}
+=> {"c"=>"cat"}
+irb(main):050:0> h
+=> {"c"=>"cat"}
+```
 
 ### iterating key/value pairs
 `h.each`
+```
+irb(main):055:0> h.each {|k, v| p k, v}
+"a"
+"apple"
+"b"
+"bear"
+"c"
+"cat"
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+```
 
 ### iterating keys
 `h.each_key`
+```
+irb(main):059:0> h.each_key {|key| puts key}
+a
+b
+c
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+```
 
 ### iterating values
 `h.each_value` 
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):061:0> h.each_value {|value| puts value}
+apple
+bear
+cat
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+```
 
-### delete each key/value pair for which the block evaluates to false
+### Delete each key/value pair for which the block evaluates to false
 `h.keep_if`
+```
+irb(main):062:0> h
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):063:0> h.object_id
+=> 70305939201600
+irb(main):064:0> h.keep_if {|k, v| v.start_with?('c')}
+=> {"c"=>"cat"}
+irb(main):065:0> h
+=> {"c"=>"cat"}
+irb(main):066:0> h.object_id
+=> 70305939201600
+```
 
 ---
 ## Enumerating II
