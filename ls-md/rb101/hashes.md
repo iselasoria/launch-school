@@ -53,8 +53,17 @@ h1 == h2 # => true
 
 ## Values
 
-###  
-`h.default`
+### Return true if the given value is present for some key in hash h (option1)
+`h.has_value?`
+
+### Return true if the given value is present for some key in hash h (option1)
+`h.value?(value)`
+
+### Return a new array populated with the values from a hash
+`h.values`
+
+### Return an array containing the values associates with the given keys of a hash
+`h.values_at(key1, key2)`
 
 ### 
 
@@ -97,3 +106,28 @@ h1 == h2 # => true
 
 ### equivalent to `keep_if` but returns true if no changes were made to the hash 
 `h.select!`
+
+---
+
+## General 
+
+### Check if two hashes are equal
+`h1.eql?(h2)`
+
+### Return a . new array that is one-dimensional flattening of hash h
+`h.flatten`
+
+### return a new hash created by using the original hash's values as keys, and the keys as values
+`h.invert`
+
+### Return a new hash containing the contents of h1 and h2 (can use block to solve conflicts)
+`h1.merge(h2)`
+
+### Remove a key/value pair from hash h and return it as the two item array `[key,value]`
+`h.shift`
+
+### Return the number of key value pairs
+`h.size`
+
+### Convert hash to a nested array of `[key, value]`
+`h.to_a`
