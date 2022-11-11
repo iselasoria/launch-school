@@ -122,17 +122,41 @@ irb(main):036:0> h.member?('k')
 
 ### Return true if the given value is present for some key in hash h (option1)
 `h.has_value?`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):038:0> h.has_value?('cow')
+=> false
+irb(main):039:0> h.has_value?('cat')
+=> true
+```
 
 ### Return true if the given value is present for some key in hash h (option1)
 `h.value?(value)`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):041:0> h.value?("bear")
+=> true
+irb(main):042:0> h.value?("bug")
+=> false
+```
 
 ### Return a new array populated with the values from a hash
 `h.values`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):044:0> h.values
+=> ["apple", "bear", "cat"]
+```
 
-### Return an array containing the values associates with the given keys of a hash
+### Return an array containing the values associated with the given keys of a hash
 `h.values_at(key1, key2)`
-
-### 
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):046:0> h.values_at("a","b")
+=> ["apple", "bear"]
+irb(main):047:0> h.values_at("a","c")
+=> ["apple", "cat"]
+```
 
 ---
 
