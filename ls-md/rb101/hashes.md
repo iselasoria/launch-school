@@ -4,7 +4,7 @@
 
 ### Comparing if the hashes contain the same keys and numbers
 
- `h1 == h2`
+`h1 == h2`
 
 ```
 h1 = {a: 'apple', b: 'bear', c: 'cat'}
@@ -15,15 +15,38 @@ h1 == h2 # => true
 
 ### Accessing a key
 `h[key]`
+```
+irb(main):007:0> h = {'a' => 'apple', 'b' => 'bear', 'c' => 'cat'}
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):008:0> h['b']
+=> "bear"
+```
 
 ### Setting the value of a key
 `h[key] = value`
+```
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):012:0> h['b'] = 'bug'
+=> "bug"
+irb(main):013:0> h
+=> {"a"=>"apple", "b"=>"bug", "c"=>"cat"}
+```
 
 ### Check if a hash contains no key value pairs
 `h.empty?`
+```
+=> {"a"=>"apple", "b"=>"bug", "c"=>"cat"}
+irb(main):015:0> h.empty?
+=> false
+```
 
 ### Check the number of key value pairs
 `h.length`
+```
+=> {"a"=>"apple", "b"=>"bug", "c"=>"cat"}
+irb(main):017:0> h.length
+=> 3
+```
 
 ---
 ## Keys
