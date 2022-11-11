@@ -109,7 +109,7 @@ h1 == h2 # => true
 
 ---
 
-## General 
+## General I
 
 ### Check if two hashes are equal
 `h1.eql?(h2)`
@@ -131,3 +131,10 @@ h1 == h2 # => true
 
 ### Convert hash to a nested array of `[key, value]`
 `h.to_a`
+
+---
+
+## General II
+
+### Make hash h compare its keys by identity (exact same objects)
+`h.compare_by_identity`
