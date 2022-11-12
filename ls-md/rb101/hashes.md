@@ -306,15 +306,44 @@ irb(main):102:0> h.object_id
 
 ### Check if two hashes are equal
 `h1.eql?(h2)`
+```
+irb(main):112:0> h1
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):113:0> h2
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):114:0> h1.eql?(h2)
+=> true
+```
 
-### Return a . new array that is one-dimensional flattening of hash h
+### Return a new array that is one-dimensional flattening of hash h
 `h.flatten`
+```irb(main):115:0> h1
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):116:0> h1.flatten
+=> ["a", "apple", "b", "bear", "c", "cat"]
+irb(main):117:0> h1
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+```
 
 ### return a new hash created by using the original hash's values as keys, and the keys as values
 `h.invert`
+```
+irb(main):118:0> h1
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):119:0> h1.invert
+=> {"apple"=>"a", "bear"=>"b", "cat"=>"c"}
+```
 
 ### Return a new hash containing the contents of h1 and h2 (can use block to solve conflicts)
 `h1.merge(h2)`
+```
+irb(main):126:0> h1
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat"}
+irb(main):127:0> h2
+=> {"d"=>"dog", "p"=>"pato", "t"=>"toro"}
+irb(main):128:0> h1.merge(h2)
+=> {"a"=>"apple", "b"=>"bear", "c"=>"cat", "d"=>"dog", "p"=>"pato", "t"=>"toro"}
+```
 
 ### Remove a key/value pair from hash h and return it as the two item array `[key,value]`
 `h.shift`
