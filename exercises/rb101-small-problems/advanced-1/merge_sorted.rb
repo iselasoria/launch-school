@@ -46,7 +46,19 @@ Main Method: merge(arr1, arr2)
 =end
 
 def merge(arr1, arr2)
-  arr1
+  results_arr = []
+
+  arr1.sort.each_with_index do |item, idx|
+    if item < arr2[idx]
+      results_arr << item 
+    elsif item == arr2[idx]
+      results_arr << item 
+      results_arr << arr2[idx]
+    else 
+      results_arr << arr2[idx]
+    end
+  end
+  results_arr
 end
 
 # test cases
