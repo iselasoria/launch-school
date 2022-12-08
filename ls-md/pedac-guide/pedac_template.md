@@ -6,6 +6,7 @@ Input:
 Output:
 
 Rules:
+
 	explicit:
 		-
 		-
@@ -15,6 +16,21 @@ Rules:
 GOAL:
 
 Examples / Model Solution:
+______
+
+
+
+
+Data:
+______
+Data Points to Capture:
+
+
+Data Structures in Use:
+- in:
+- interim:
+- out:
+
 
 
 
