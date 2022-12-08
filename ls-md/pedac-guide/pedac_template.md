@@ -31,6 +31,17 @@ Data Structures in Use:
 - interim:
 - out:
 
+Algorithm:
+___
+Helper Method: method_name(params)
+
+	- 
+	-
+Main Method: method_name(params)
+
+	-
+	-
+
 
 
 
