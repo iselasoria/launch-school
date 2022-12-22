@@ -22,18 +22,20 @@ Now we have a key pair. Navigate to your `ssh` folder:
 
 From that same folder, issue the following command to copy the *public* key we just generated: 
 
-`/Users/rosasoria/.ssh`
+`cat ~/.ssh/my_key_name_here.pub`
 
-Your terminal will now show you some text that starts with `ssh-rsa` following by a long string of text. This is the public key! Copy it, let's go to Github.
+Your terminal will now show you some text that starts with `ssh-rsa` followed by a long string of text. This is the public key! Copy it, let's go to Github.
 
 ## Step 3- Giving Github the public component of our `ssh` key pair
 
 Now we're ready to share part of our key with Github. Login, click on the top right where your profile picture icon is and you should see a dropdown menu of your profile. Go down to "settings." This takes you to your profile settings and on the left hand side of the page there is a menu with  the following headings:
+
 	- Access
 	- Code, planning, and automation
 	- Security 
 	- Integrations
 	- Archives
+
 Under the Access heading, click on `SSH and GPG keys` and then click `New SSH Key`.  Call it something intuitive `my-ls-key` or something, leave the default key type and now paste the public key you copied in the last step. That's it!
 
 ## Step4- Push a commit to test the connection
