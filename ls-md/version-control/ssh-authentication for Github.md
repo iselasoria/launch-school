@@ -6,7 +6,9 @@ Since the password authentication has been deprecated for Github, now we have to
 At this point you're likely in prep or `RB101` so don't worry too much if the following doesn't make a whole lot of sense yet.
 
 On you computer terminal, type the following command:
+
 `ssh-keygen -t ed25519 -C "myemail@mail.com"`
+
 	- `ssh-keygen` --> this is just the command to get the key generation going
 	- `-t ed25519` --> this is part of the command to dictate what key-generating algorithm to use
 	- `-C "myemail@mail.com"
