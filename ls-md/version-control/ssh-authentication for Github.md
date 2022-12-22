@@ -11,7 +11,7 @@ On you computer terminal, type the following command:
 
 	- `ssh-keygen` --> this is just the command to get the key generation going
 	- `-t ed25519` --> this is part of the command to dictate what key-generating algorithm to use
-	- `-C "myemail@mail.com"
+	- `-C "myemail@mail.com" --> here I just used the email associated with my Github
 
  When you run that command your terminal will tell you it's generating private/public key pair. It's going to ask where to save it, likely it will default to a hidden folder in your home directory called `/home/myuser/.ssh/` and this is fine. Then it might ask for a passphrase, you can just hit enter without entering one. It's going to generate the private/public keys and when it's done it will show you something that looks like ASCII art. 
  
