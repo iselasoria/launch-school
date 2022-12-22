@@ -1,6 +1,6 @@
 Since the password authentication has been deprecated for Github, now we have to authenticate with something called secure shell keys or `ssh keys.` I don't claim to know a whole lot about `ssh` keys but as a high-level explanation, they are a secure way for your local machine communicate with repositories on Github. I think of them as best friend necklaces-- in order to complete the heart, both pieces are needed, your best friend has one and you have another. Same with `ssh` keys-- your computer has one, and the server where your github repo is has the other one. In order to communicate, they must have pieces that fit together. Please take the fine details with a grain of salt, I am not an expert in `ssh` this is merely an explanation that helps me make some sense of it.
+![[bff.png]]
 
-![[Screenshot 2022-12-21 at 10.16.40 PM 1.png]]
 ## Step 1- Generate an `ssh` key locally
 At this point you're likely in prep or `RB101` so don't worry too much if the following doesn't make a whole lot of sense yet.
 
