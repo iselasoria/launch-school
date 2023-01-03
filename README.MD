@@ -22,6 +22,7 @@ Convetions used in the comments are as follows:
 - `CH#-E additional comment`---> this denotes the chapter in a book, followed by te `E` tag which indicates the push is related to exercises, and lastly an additional comment if needed.
 
 - `N-` this indicates the commit pertains to notes. This type of commit is used almost exclusevely in the `ls-md` directory.
+- `MP-` Mastery Practice: this is the code used to identify commits that are related to material used to master the fundamentals. This material is not necessarily related to any one class but rather to the mastery of the fundamental concepts presented in RB101.
 
 ## Naming convetion for branches
 Branches have the following naming convention:
