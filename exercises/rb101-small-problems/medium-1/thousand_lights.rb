@@ -134,3 +134,16 @@ toggle(5)
 
 
 # toggle(5)
+
+
+
+def lights(int)
+  current_odd = 1 
+  result = [1]
+  loop do
+    current_odd += 2 
+    result << result.last + current_odd
+    break if current_odd + result.last > int 
+  end
+  result 
+end 
