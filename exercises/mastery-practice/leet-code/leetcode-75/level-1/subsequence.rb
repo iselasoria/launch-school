@@ -32,11 +32,37 @@ out: boolean
 Algorithm:
 - delete all but the characters in string 1, from string 2
 =end
-
-def is_subsequence(str1, str2)
-  str1.chars.all? do |letter|
-    str2.chars.include?(letter)
+def sub(str)
+  subs = []
+  (0...str.size).each do |starting|
+    (starting...str.size).each do |ending|
+      subs << str[starting..ending]
+    end
   end
+  subs 
 end
 
-p is_subsequence("abc","ahbgdc")
+def is_subsequence(str1, str2)
+ check1 = str1.chars.all? do |letter|
+    str2.chars.include?(letter)
+  end
+  check2 = str1.chars.each do |l|
+    check2 = str2.scan(l)
+  end
+
+
+  p str1 
+  p check2.join
+ str1 == check2.join ? true : false
+
+ if check1 && (str1 == check2.join)
+  return true 
+ else
+  return false
+ end
+
+end
+
+# p is_subsequence("abc","ahbgdc") == true # true
+p is_subsequence("acb","ahbgdc") #== false # false
+# todo this does not pass the second test case-- it needs to preserve order
