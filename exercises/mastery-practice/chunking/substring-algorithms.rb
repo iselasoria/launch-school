@@ -34,7 +34,7 @@ def gen_subs(str)
   (0...str.size).each do |starting|
     (starting...str.size).each do |ending|
       current_sub = str[starting..ending]
-      break if !current_sub.chars.all? { |letter| %(a e i o u).include?(letter)}
+      break if !current_sub.chars.all? { |letter| %(a e i o u).include?(letter.downcase)}
       subs << current_sub
     end
   end
@@ -55,7 +55,7 @@ def gen_subs(str)
     end
   end
   subs.select do |sub|
-    sub.chars.all? { |letter| !%(a e i o u).include?(letter)}
+    sub.chars.all? { |letter| !%(a e i o u).include?(letter.downcase)}
   end
 
 end
