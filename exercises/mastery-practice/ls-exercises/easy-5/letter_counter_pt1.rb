@@ -1,4 +1,5 @@
 =begin 
+* DONE 12m
 Write a method that takes a string with one or more space separated words and
 returns a hash that shows the number of words of different sizes.
 
