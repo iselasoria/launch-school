@@ -1,5 +1,5 @@
 =begin 
-# TODO 
+# TODO Interview Practice
 Write a method that takes an Array as an argument, and reverses its elements in place; that is, mutate the Array passed into 
 this method. The return value should be the same Array object.
 
@@ -15,14 +15,13 @@ Algorithm:
 
 
 def reverse!(arr)
-  arr.each_index do |idx|
-    if idx == 0
-      arr[0] = arr[arr.size * -1]
-    else
-      p arr
-      p arr[idx], arr[arr.size * -1] = arr[arr.size - idx]
-      # arr[idx] = arr[arr.size - idx * -1]
-    end
+  left = 0
+  right = -1
+
+  while left < arr.size / 2 # until we reach the middle
+    arr[left], arr[right] = arr[right], arr[left]
+    left += 1
+    right -=1
   end
   arr
 end
@@ -31,16 +30,16 @@ list = [1,2,3,4]
 p result = reverse!(list)
 result == [4, 3, 2, 1] # true
 list == [4, 3, 2, 1] # true
-list.object_id == result.object_id # true
+p list.object_id == result.object_id # true
 
-# list = %w(a b e d c)
-# reverse!(list) == ["c", "d", "e", "b", "a"] # true
-# list == ["c", "d", "e", "b", "a"] # true
+list = %w(a b e d c)
+p reverse!(list) == ["c", "d", "e", "b", "a"] # true
+p list == ["c", "d", "e", "b", "a"] # true
 
-# list = ['abc']
-# reverse!(list) == ["abc"] # true
-# list == ["abc"] # true
+list = ['abc']
+p reverse!(list) == ["abc"] # true
+p list == ["abc"] # true
 
-# list = []
-# reverse!(list) == [] # true
-# list == [] # true
+list = []
+p reverse!(list) == [] # true
+p list == [] # true
