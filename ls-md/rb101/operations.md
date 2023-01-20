@@ -35,3 +35,9 @@ This is the reason we see the output `3 5 7` first. Only after those return valu
 
 [[quirky-blocks.md#Precedence]]]
 Blocks have the lowest precedence of all operators! But the way you pass them matters: `{}` has a slightly higher precedence than `do...end`
+
+
+
+
+# Squigly regexp
+Operator to find index number in a string by search term 
