@@ -48,7 +48,6 @@ Algorithm:
 
 
 def order(str)
-  # return '' if str.empty?
   words = str.split
 
   new_hash = {}
