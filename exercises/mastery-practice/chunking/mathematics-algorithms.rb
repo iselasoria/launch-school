@@ -36,7 +36,7 @@ end # todo
 # * Ruby Breakdown
 
 # deconstruct the permutations function
-def permutation(string)
+def permute(string)
   return [''] if string.empty?
 
   chrs = string.chars
