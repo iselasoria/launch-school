@@ -40,13 +40,13 @@ def permute(string)
   return [''] if string.empty?
 
   chrs = string.chars
-  (0...string.size).flat_map do  |moving_idx|
+  (0...string.size).flat_map do  |moving_idx| # can use map but you have to flatten at the end 
     cur_char, remaining_chars = string[moving_idx], string[0...moving_idx] + string[moving_idx+1..-1] 
 
     permutation(remaining_chars).map do  |sub| 
       cur_char + sub
     end
-  end
+  end # flatten jere
 end
 
 
