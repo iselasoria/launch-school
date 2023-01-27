@@ -23,4 +23,4 @@ Main Method:
 
 =end
 
-p words.sort.group_by {|item| item[0] }.to_a
+p words.sort.group_by {|item| item[0] }.to_a.map {|anagrams| anagrams[1]}
