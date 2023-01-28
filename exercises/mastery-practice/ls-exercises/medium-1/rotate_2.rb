@@ -1,4 +1,5 @@
 =begin 
+* DONE 10m
 Write a method that can rotate the last n digits of a number. For example:
 
 
@@ -30,10 +31,10 @@ Data Structures:
 arrays 
 
 Algorithm:
-- iterate over the digits 
-- get the size of the arrya that will need changes
-  - get a from -1 down to negative n 
-  - grab the 
+- initialize mini_arr as the array to rotate that goes from -n 
+- rotate using the previous method that rotates the first number to the last spot
+- concatenate both arrays as strings 
+- convert back to integer and return
 
 =end 
 
@@ -51,14 +52,16 @@ end
 
 def rotate_rightmost_digits(num, rotations)
   numeros = num.digits.reverse
-  rotate_array(numeros)
+  mini_arr = numeros[-rotations..-1]
+  concatenated_nums = numeros[0...-rotations].join + rotate_array(mini_arr).join
+  concatenated_nums.to_i
 end
 
 # test cases 
-p rotate_rightmost_digits(735291, 1) #== 735291
-p rotate_rightmost_digits(735291, 2)# == 735219
-# p rotate_rightmost_digits(735291, 3) == 735912
-# p rotate_rightmost_digits(735291, 4) == 732915
-# p rotate_rightmost_digits(735291, 5) == 752913
-# p rotate_rightmost_digits(735291, 6) == 352917
+p rotate_rightmost_digits(735291, 1) == 735291
+p rotate_rightmost_digits(735291, 2) == 735219
+p rotate_rightmost_digits(735291, 3) == 735912
+p rotate_rightmost_digits(735291, 4) == 732915
+p rotate_rightmost_digits(735291, 5) == 752913
+p rotate_rightmost_digits(735291, 6) == 352917
 
