@@ -109,3 +109,25 @@ p increment_string("foobar00") == "foobar01"
 # p increment_string("foobar00101") 
 # p increment_string("f00bar") --> "f00bar1" ---> "f0bar01" 
 ## find all potential significant figures in the number, those zeroes between two sig figs 
+
+
+def increment_string(str)
+  if str.chars.all? {|item| !('0'..'9').to_a.include?(item) } # checks when last char is not a num 
+    return str + '1'
+  end
+    
+  num = str.scan(/[\d]/).join.succ
+  letters = str.chars.select{|item| ('a'..'z').include?(item)}.join
+  letters + num
+end 
+
+# p increment_string("f00b4r") #== "f00b4r1"
+p increment_string("f00bar") #== "f00bar1" # fbar01"
+
+# TODO 
+# Cruz's solution
+def increament_str(str)
+  num = str.scan(/[\d]/).join.succ
+  letters = str.chars.select{|item| ('a'..'z').include?(item)}.join
+  letters + num
+end 

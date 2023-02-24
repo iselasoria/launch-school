@@ -70,13 +70,28 @@ def insert_missing_letters(str)
   str.chars.each do |ch|
     results << ch 
     if results.count(ch) > 1
-      results << ''
+      results << '' # can also be next 
     else
       results << alphabet_remainder.select {|item| item.ord > ch.ord }.join.upcase 
     end
   end
   results
 end 
+
+#####
+# def insert_missing_letters(str)
+#   new = ''
+#   str.chars.each do |char|
+#     if new.include?(char)
+#       new << char
+#       next 
+#     end 
+#     new << char 
+#     alphabet = (char.succ..'z').to_a - str.chars
+#     new << alphabet.join.upcase
+#   end
+#   new
+# end 
 
 p insert_missing_letters("holly") == "hIJKMNPQRSTUVWXZoPQRSTUVWXZlMNPQRSTUVWXZlyZ"
 p insert_missing_letters("hello") == "hIJKMNPQRSTUVWXYZeFGIJKMNPQRSTUVWXYZlMNPQRSTUVWXYZloPQRSTUVWXYZ"
