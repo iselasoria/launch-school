@@ -46,6 +46,17 @@ def word_to_digit(str)
   str
 end
 
+###
+DIGITS_WORDS = %w(zero one two three four five six seven eight nine)
+
+def word_to_digit(sentence)
+  DIGITS_WORDS.each do |num|
+    sentence.gsub!(num, DIGITS_WORDS.find_index(num).to_s)
+  end
+  sentence
+end
+
+
 
 WORDS = %w(one two three four five six seven eight nine)
 NUMBS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
