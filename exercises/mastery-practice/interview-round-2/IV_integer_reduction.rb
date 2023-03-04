@@ -47,21 +47,26 @@ Main Method: solve(n, k)
 
 def pair_size(arr, ideal)
   pairs = arr.permutation(2).to_a
+
   pairs.select! {|pair| pair[0].size + pair[1].size == ideal}
 
   pairs.select! {|pair| arr.index(pair[1]) > arr.index(pair[0])}
 
-  pairs.map! do |par|
-    if par[0] == [0]
-      (par[1].join).to_i
-    else
-     (par[0].join + par[1].join).to_i
-    end
-  end
-  # seelct only ideal size 
-  p pairs 
-  pairs.select! {|int_equivalent| int_equivalent.digits.size == ideal}#.min
+  
 
+  pairs.map! do |par|
+    # skip non-uniques because substrings sholdnt contain dupes if digits are unique 
+    next if par.flatten.join.size != par.flatten.uniq.size 
+
+    if par[0] == [0] &&  (par[0].join + par[1].join).size != ideal
+      (par[1].join)
+    else
+     par[0].join + par[1].join
+    end
+  end.compact! # <--- squeeze out the nils created by the map
+  # seelct only ideal size 
+  # pairs.select! {|int_equivalent| int_equivalent.digits.size == ideal}#.min
+  pairs.min
   
 end
 
@@ -79,20 +84,18 @@ def solve(n, k)
       subs << sub 
     end
   end
-  pair_size(subs, ideal_size).to_s
+  pair_size(subs, ideal_size)
 end
 
 
 # test cases 
 
 
-# p solve(123056,1) #== '12056'
-p solve(123056,3) #== '056'
-# p solve(123056,4) #== '05'
-# p solve(1284569,1) #== '124569'
-# p solve(1284569,2) == '12456'
-# p solve(1284569,3) == '1245'
-# p solve(1284569,4) == '124'
-
-
-# p solve(123056,2) == '1056'
+p solve(123056,1) == '12056'
+p solve(123056,3) == '056'
+p solve(123056,4) == '05'
+p solve(1284569,1) == '124569'
+p solve(1284569,2) == '12456'
+p solve(1284569,3) == '1245'
+p solve(1284569,4) == '124'
+p solve(123056,2) == '1056'
