@@ -62,6 +62,23 @@ def bubble_sort!(arr)
   arr
 end
 
+## Cruz Refactored 
+def bubble_sort!(arr)
+  until arr == arr.sort 
+    arr.each_index do |idx|
+      next if idx == arr.size - 1 #skipping last 
+      ele1 = arr[idx] # current 
+      ele2 = arr[idx + 1] # next 
+
+      if ele1 > ele2
+        arr[idx], arr[idx + 1] = arr[idx + 1], arr[idx]
+        # ele1, ele2 = ele2, ele1
+      end 
+    end 
+  end
+  arr
+end
+
 array = [5, 3]
 p bubble_sort!(array)
 p array == [3, 5]
