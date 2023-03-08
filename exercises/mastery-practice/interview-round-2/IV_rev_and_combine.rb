@@ -1,4 +1,5 @@
 =begin 
+* DONE 17m29s
 Your task is to Reverse and Combine Words. It's not too difficult, but there are some things you have to consider...
 
 So what to do?
