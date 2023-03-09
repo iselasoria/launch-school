@@ -15,7 +15,7 @@ workspace
 .DS_Store
 tempCodeRunnerFile.ruby
 exercises/mastery-practice/.DS_Store
-exercises/.DS_Store
+exercises/.DS_Store/
 ls-md/offlimits/*
 ls-md/Excalidraw/*
 ls-md/.obsidian/plugins/obsidian-emoji-toolbar
