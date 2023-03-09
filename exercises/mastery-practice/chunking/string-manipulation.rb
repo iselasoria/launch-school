@@ -80,3 +80,17 @@ puts "\n"
 # string center 
 p str6.ljust(10,"x")
 p str6.center(10, 'o')
+
+# string scanning 
+str7 = "codewarriors"
+
+p str7.scan(/[aeiou]/) # ["o", "e", "a", "i", "o"] single element
+p str7.scan(/[aeiou]+/) # ["o", "e", "a", "io"] allows for substrings
+
+str8 = "Buuuurbus"
+
+p str8.scan(/[u]/) # ["u", "u", "u", "u", "u"] all instances of the search term
+p str8.scan(/[u]+/) # ["uuuu", "u"]
+
+p str8.scan(/[b]+/) # ["b"]
+p str8.scan(/[Bb]+/) # ["B", "b"]
