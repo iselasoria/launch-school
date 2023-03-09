@@ -12,6 +12,9 @@ core-plugins.json
 graph.json
 hotkeys.json
 workspace
+.DS_Store
+exercises/mastery-practice/.DS_Store
+exercises/.DS_Store
 ls-md/offlimits/*
 ls-md/Excalidraw/*
 ls-md/.obsidian/plugins/obsidian-emoji-toolbar
