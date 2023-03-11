@@ -1,0 +1,84 @@
+Assessment Level Finds
+===================
+
+#### Groups in 10s
+https://www.codewars.com/kata/5694d22eb15d78fe8d00003a
+
+#### Length of Missing Arrray 
+https://www.codewars.com/kata/57b6f5aadb5b3d0ae3000611
+
+
+#### Reverse every other word in the string 
+https://www.codewars.com/kata/58d76854024c72c3e20000de
+
+#### Frog
+https://www.codewars.com/kata/536950ffc8a5ca9982001371
+
+#### String Average
+https://www.codewars.com/kata/5966847f4025872c7d00015b
+
+#### Inside Out String 
+https://www.codewars.com/kata/57ebdf1c2d45a0ecd7002cd5
+
+#### Longest Strict Bouncy Subarray 
+https://www.codewars.com/kata/5b483e70a4bc16eda40000f9
+
+
+#### Letter Shift
+https://edabit.com/challenge/pRfyZdJ6qgXAxPB8T
+
+#### Gold Distribution 
+https://edabit.com/challenge/R2GoXZSzi6Dyp8Cmf
+
+#### Broken Keyboard 
+https://edabit.com/challenge/Lau86uAZbaYcGnb27
+
+#### Mangle The String
+https://edabit.com/challenge/M6nYCzyx4g2qLJ7bL
+
+#### Minimum Steps to a Palindrome 
+
+https://edabit.com/challenge/J5zJc95koWg9cwSBs
+
+
+#### Abbreviations *** Modify this one to not take punctuation into account 
+https://www.codewars.com/kata/5375f921003bf62192000746
+
+
+#### Simple Frequency Sort
+
+https://www.codewars.com/kata/5a8d2bf60025e9163c0000bc
+
+#### String (Similar to ‘who likes it?’)
+
+https://www.codewars.com/kata/51689e27fe9a00b126000004
+
+
+#### Longest Alternating Substring
+https://edabit.com/challenge/2A3j69PiKPyujshFJ
+
+
+#### Deepest Subarray
+https://edabit.com/challenge/8yGWf7kLZycTxjRQd
+
+
+#### 3-Sum Closest
+https://leetcode.com/problems/3sum-closest/
+
+
+#### Does my Number look big in this?  
+
+https://www.codewars.com/kata/5287e858c6b5a9678200083c
+
+
+
+#### Convert PascalCase to snake_case
+https://www.codewars.com/kata/529b418d533b76924600085d
+
+#### EVEN FIBONACCI  
+https://www.codewars.com/kata/56662e268c0797cece0000bb
+
+#### MAKE A DEADFISH SWIM  
+https://www.codewars.com/kata/51e0007c1f9378fa810002a9
+
+
