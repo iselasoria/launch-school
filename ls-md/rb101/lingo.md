@@ -9,3 +9,5 @@
 break if number == 5
 ```
 It can be more readable but shouldnt be used when there are multiple lines of code within the `if` statement
+
+`a % b = a - floor(a/b) * b` Troy C Graves modulo mental model
