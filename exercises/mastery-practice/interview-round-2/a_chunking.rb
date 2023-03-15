@@ -41,7 +41,7 @@ p gen_pairs("onomatopeia")
 
 generate sliding slice 
 
-# def gen_slide(str, ch_size) # 12m36s
+def gen_slide(str, ch_size) # 12m36s
   slide = []
   
   stepper = []
