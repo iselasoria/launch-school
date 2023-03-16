@@ -38,7 +38,33 @@ Two rules to remember for now:
 ---
 ## Exercises
 1. Add a class method to your MyCar class that calculates the gas mileage of any car.
+```ruby
+  class MyCar
+
+  # code omitted for brevity...
+
+  def self.gas_mileage(gallons, miles)
+    puts "#{miles / gallons} miles per gallon of gas"
+  end
+end
+
+MyCar.gas_mileage(13, 351)  # => "27 miles per gallon of gas"
+```
 2. Override the to_s method to create a user friendly print out of your object.
+```ruby
+class MyCar
+  # code omitted for brevity...
+
+  def to_s
+    "My car is a #{color}, #{year}, #{@model}!"
+  end
+end
+
+my_car = MyCar.new("2010", "Ford Focus", "silver")
+puts my_car  # => My car is a silver, 2010, Ford Focus.
+
+## Note the "puts" calls "to_s" automatically.
+```
 3. When running the following code...
 ```ruby
 class Person
@@ -58,3 +84,7 @@ test.rb:9:in `<main>': undefined method `name=' for
 ```
 
 Why do we get this error and how do we fix it?
+
+We are only declaring an `attr_reader` method so Ruby can't update anything. We can fix
+by instead using `attr_accessor` to have access to both getter and setter methods, or we 
+can use `attr_writer` to get access to setter methods only. 
