@@ -51,24 +51,24 @@ This process gives us a new object `sparky` which is said to be an instance of t
 Modules are collections of behavior that can be used in other classes via `mixins`. We can mix in modules to a class with _include_ as below. In this example, we have a `Speak` module but we want to re-use it for both a human and a dog object:
 
 ```ruby
- 1| module Speak
- 2|  def speak(sound)
- 3|    puts sound 
- 4|  end
- 5| end
- 6| 
- 7| class GoodDog
- 8|   include Speak
- 9| end 
-10|
-11| class HumanBeing
-12|   include Speak
-13|  end 
-14|
-15| sparky = GoodDog.new
-16| sparky.speak("Arf!") # => Arf!
-17| bob = HumanBeing.new
-18| bob.speak("Hello!")  # => Hello!
+ module Speak
+  def speak(sound)
+    puts sound 
+  end
+ end
+ 
+ class GoodDog
+   include Speak
+ end 
+
+ class HumanBeing
+   include Speak
+  end 
+
+ sparky = GoodDog.new
+ sparky.speak("Arf!") # => Arf!
+ bob = HumanBeing.new
+ bob.speak("Hello!")  # => Hello!
 ```
 
 With the code above, both `bob` and `sparky` have access to the `Speak` module's functionality but each use it in their own way. 
