@@ -253,9 +253,75 @@ define some instance variables that tell us the year, color, and model of the ca
 that is set to 0 during instantiation of the object to track the current speed of the car as well. 
 Create instance methods that allow the car to speed up, brake, and shut the car off.
 
+```ruby
+class MyCar
+
+  def initialize(year, model, color)
+    @year = year
+    @model = model
+    @color = color
+    @current_speed = 0
+  end
+
+  def speed_up(number)
+    @current_speed += number
+    puts "You push the gas and accelerate #{number} mph."
+  end
+
+  def brake(number)
+    @current_speed -= number
+    puts "You push the brake and decelerate #{number} mph."
+  end
+
+  def current_speed
+    puts "You are now going #{@current_speed} mph."
+  end
+
+  def shut_down
+    @current_speed = 0
+    puts "Let's park this bad boy!"
+  end
+end
+
+lumina = MyCar.new(1997, 'chevy lumina', 'white')
+lumina.speed_up(20)
+lumina.current_speed
+lumina.speed_up(20)
+lumina.current_speed
+lumina.brake(20)
+lumina.current_speed
+lumina.brake(20)
+lumina.current_speed
+lumina.shut_down
+lumina.current_speed
+
+```
+
 
 2. Add an accessor method to your MyCar class to change and view the color of your car. Then add an accessor 
 method that allows you to view, but not modify, the year of your car.
+```ruby
+class MyCar
+  attr_accessor :color 
+  attr_reader :year
+  #### rest of the code 
+end
+lumina.color = 'black'
+puts lumina.color
+puts lumina.year
+```
 
 3. You want to create a nice interface that allows you to accurately describe the action you want your program 
 to perform. Create a method called spray_paint that can be called on an object and will modify the color of the car.
+```ruby
+class MyCar
+### rest of the code 
+
+  def spray_paint(color)
+    self.color = color 
+    puts "Your new #{color} paint job loks great!"
+  end
+end 
+
+lumina.spay_paint('red') # => "Your new red paint job looks great!"
+```
