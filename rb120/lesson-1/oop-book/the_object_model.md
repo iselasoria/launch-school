@@ -27,20 +27,20 @@ Polymorphysim refers to the flexibility of data to respond to a common interface
 Objects are created from classes. Classes can be thought of as molds and objects as the things we create using those molds. 
 
 In the example below, we can make two objects, both from the String Class:
-```
-1| irb :001 > "hello".class
-2| => String
-3| irb :002 > "world".class
-4| => String
+```ruby
+irb :001 > "hello".class
+=> String
+irb :002 > "world".class
+=> String
 ``` 
 
 Classes define objects-- a class is a blueprint for what its objects should be able to do and what they should be made of. Defining a class is similar to defining a method:
 
-```
-1| class GoodDog
-2| end 
-3|
-4| sparky = GoodDog.new
+```ruby
+class GoodDog
+end 
+
+sparky = GoodDog.new
 ```
 
 This process gives us a new object `sparky` which is said to be an instance of the `GoodDog` class.
@@ -50,7 +50,7 @@ This process gives us a new object `sparky` which is said to be an instance of t
 
 Modules are collections of behavior that can be used in other classes via `mixins`. We can mix in modules to a class with _include_ as below. In this example, we have a `Speak` module but we want to re-use it for both a human and a dog object:
 
-```
+```ruby
  1| module Speak
  2|  def speak(sound)
  3|    puts sound 
