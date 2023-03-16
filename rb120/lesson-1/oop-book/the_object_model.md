@@ -75,3 +75,74 @@ With the code above, both `bob` and `sparky` have access to the `Speak` module's
 
 ### Method Lookup
 
+Ruby follows a distinct lookup path that it follows each time it wants to search for a method. 
+We can see the method lookup path for the `GoodDog` class by calling the `ancestors` method on it:
+
+```ruby
+module Speak
+  def speak(sound)
+    puts "#{sound}"
+  end
+end
+
+class GoodDog
+  include Speak
+end
+
+class HumanBeing
+  include Speak
+end
+
+puts "---GoodDog ancestors---"
+puts GoodDog.ancestors
+puts ''
+puts "---HumanBeing ancestors---"
+puts HumanBeing.ancestors
+```
+
+The code above would output:
+
+```
+---GoodDog ancestors---
+GoodDog
+Speak
+Object
+Kernel
+BasicObject
+
+---HumanBeing ancestors---
+HumanBeing
+Speak
+Object
+Kernel
+BasicObject
+```
+
+As we can see, ruby will first search the current class, `HumanBeing` or `GoodDog`, if it doesn't find the method, it will search in the next custom class above that, the `Speak` module, if it still doesn't find anything, it will search in the `object` class, and so on until it does find it or decided that it cannot locate it at all.
+
+---
+### Exercises
+1. Create an object in ruby:
+```ruby
+class ThisClass
+end
+
+this_object = ThisClass.new
+```
+2. What is a module and what's its purpose? How are they used with classes? Create a module for the class you created above and include it properly.
+
+A module allows for shared functionality, much like a class but a module cannot create objects, only classes can. Modules can be used to extend the functionality of a class via mixins but they rely on classes to create objects. We use modules in a class by calling the `include` method followed by the module name. 
+
+```ruby
+module Move
+  def move(motion)
+    puts motion
+  end
+end
+
+class ThisClass
+  include Move
+end
+
+this_object = ThisClass.new
+```
