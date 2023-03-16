@@ -29,8 +29,11 @@ The `to_s` method gets automatically called every time we use `puts`; it's essen
 > NOTE: The `to_s` method gets called automatically on the object when we use `puts` or in string interpolation. This will be helpful in the future. 
 
 ### More About `self` 
+Two rules to remember for now:
+  1. When used inside of an instance method, `self` references the instance (or object) that called the method. So, `self.weight=` is the same as `sparky.weight`.
 
-### Summary 
+  2. When used outside of an instance method, `self` references the class and can be used to define class methods.
+
 
 ---
 ## Exercises
