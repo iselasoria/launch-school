@@ -99,7 +99,7 @@ end
 The above code means that now both  objects in the `Fish` and `Dog` classes can swim, but `Cat` objects cannot. 
 ### Inheritance vs Modules 
 | Inheritance                |          Modules          |
-| -------------------------- |:-------------------------:|
+| :------------------------: |:-------------------------:|
 | class inheritance          | interface inheritance     |
 | linear                     | horizontal                |
 | inherits from 1 class      | mix in as many modules    |
@@ -149,7 +149,11 @@ puts GoodDog.ancestors
 
 
 ### Private, Protected, and Public 
-
+`Method Access Control` let's us grant or restrict permission to a particular thing.
+**Types of Access Modifiers**
+- `public` -- these are available to all 
+- `private` -- the private method renders inaccessible anything defined bellow it. They are no accessible outside the method definition at all but are accessible from inside the class when called _without_ self. 
+- `protected` -- these are an in-between; they too cannot be called from outside the class but unlike private methods, protected methods allow access between instances. 
 ### Accidental Method Overriding 
 
 ---
