@@ -10,3 +10,17 @@ Then create a new class called MyTruck that inherits from your superclass
 that also has a constant defined that separates it from the MyCar class in some way.
 
 =end 
+class Vehicle
+  def self.gas_milleage(gallons, miles)
+    puts "#{miles / gallon} miles per gallon of gas"
+  end
+end
+
+
+class MyCar < Vehicle
+  NUMBER_OF_DOORS = 2
+end
+
+class MyTruck < Vehicle 
+  NUMBER_OF_DOORS = 4
+end 
