@@ -24,7 +24,7 @@ class MyCar < MyVehicle
   NUMBER_OF_DOORS = 2
 end
 
-class MyTruck < MyVehicle 
+class MyTruck < Vehicle 
   NUMBER_OF_DOORS = 4
 end 
 
