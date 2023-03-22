@@ -11,3 +11,4 @@ at all times which methods we might be overriding.
 The chain looks like this:
 
 singleton method -> Class -> Modules using inlcude -> Parent Class -> BasicObject
+=end 
