@@ -8,8 +8,8 @@ from person1 with the value of @secret from person2.
 class Person
   attr_writer :secret
 
-  def compare_secret
-    person1 == person2
+  def compare_secret(other_person)
+    secret == other_person.secret
   end
 
   protected
