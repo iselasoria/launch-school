@@ -7,7 +7,7 @@ class Person
   attr_reader :name
 
   def name=(name)
-    @name = name.capitalize
+    @name = name.capitalize #-----> the reason we write our own is because we want to extend funcitonality ie) capitalize
   end
 end
 
