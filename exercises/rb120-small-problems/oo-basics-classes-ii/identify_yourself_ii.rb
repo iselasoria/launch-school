@@ -1,35 +1,19 @@
-=begin 
-Using the following code, add two methods: 
-::generic_greeting and #personal_greeting. 
-The first method should be a class method and 
-print a greeting that's generic to the class. 
-The second method should be an instance method 
-and print a greeting that's custom to the object.
-=end 
+# Update the following code so that it prints I'm Sophie! when it invokes puts kitty.
 
 class Cat
   attr_reader :name
-
-  
 
   def initialize(name)
     @name = name
   end
 
-  def self.generic_greeting
-    puts "Hello! I'm a cat!"
-  end
-  
-  def personal_greeting
-    puts "Hello! My name is #{name}!"
+  def to_s # we override to_s
+    "I'm #{Sophie}!"
   end
 end
 
 kitty = Cat.new('Sophie')
+puts kitty
 
-Cat.generic_greeting
-kitty.personal_greeting
-
-# expected 
-# Hello! I'm a cat!
-# Hello! My name is Sophie!
+# expected
+# I'm Sophie!
