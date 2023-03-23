@@ -8,8 +8,7 @@ class Pet
   end
 
   def to_s
-    @name.upcase!
-    "My name is #{@name}."
+    "My name is #{@name.upcase}." # instead of mutating the object, we just upcase it in this one location
   end
 end
 
