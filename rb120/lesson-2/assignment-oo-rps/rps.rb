@@ -1,5 +1,5 @@
 class Move
-  VALUES = ['rock','paper','scissors']
+  VALUES = ['rock', 'paper', 'scissors']
 
   def initialize(value)
     @value = value
@@ -8,43 +8,32 @@ class Move
   def scissors?
     @value == 'scissors'
   end
+
   def rock?
     @value == 'rock'
   end
+
   def paper?
     @value == 'paper'
   end
 
   def >(other_move)
+    (rock? && other_move.scissors?) ||
+      (paper? && other_move.rock?) ||
+      (scissors? && other_move.paper?)
+  end
 
-    if rock?
-      return true if other_move.scissors?
-      return false 
-    elsif paper?
-      return true if other_move.rock?
-      return false 
-    elsif scissors?
-      return true if other_move.paper?
-      return false 
-    end
-  end
   def <(other_move)
-    if rock?
-      return true if other_move.paper?
-      return false 
-    elsif paper?
-      return true if other_move.scissors?
-      return false 
-    elsif scissors?
-      return true if other_move.rock?
-      return false
-    end
+    (rock? && other_move.paper?) ||
+      (paper? && other_move.scissors?) ||
+      (scissors? && other_move.rock?)
   end
+
   def to_s
     @value
   end
 end
-  
+
 class Player
   attr_accessor :move, :name
 
@@ -53,13 +42,12 @@ class Player
   end
 end
 
-
-class Human < Player 
-  def set_name 
+class Human < Player
+  def set_name
     n = ""
-    loop do 
+    loop do
       puts "What's your name?"
-      n = gets.chomp 
+      n = gets.chomp
       break unless n.empty?
       puts "Sorry, must enter a value: "
     end
@@ -68,19 +56,19 @@ class Human < Player
 
   def choose
     choice = nil
-      loop do 
-        puts "Please choose: rock, paper, scissors:"
-        choice = gets.chomp
-        break if Move::VALUES.include?(choice)
-        puts "Sorry, invalid choice."
-      end 
-      self.move = Move.new(choice)
+    loop do
+      puts "Please choose: rock, paper, scissors:"
+      choice = gets.chomp
+      break if Move::VALUES.include?(choice)
+      puts "Sorry, invalid choice."
+    end
+    self.move = Move.new(choice)
   end
 end
 
-class Computer < Player 
+class Computer < Player
   def set_name
-    self.name = ['R2D2', 'Hal','Chappie','Sonny', 'Number 5'].sample
+    self.name = ['R2D2', 'Hal', 'Chappie', 'Sonny', 'Number 5'].sample
   end
 
   def choose
@@ -88,15 +76,14 @@ class Computer < Player
   end
 end
 
-
-
 # Game Orchestration Engine
 class RPSGame
-  attr_accessor :human, :computer 
+  attr_accessor :human, :computer
+
   def initialize
     @human = Human.new
     @computer = Computer.new
-  end 
+  end
 
   def display_welcome_message
     "Welcome to Rock, Paper, Scissors!"
@@ -106,13 +93,18 @@ class RPSGame
     puts "Thanks for playing, good bye!"
   end
 
-  def display_winner
+  def display_move
     puts "#{human.name} chose #{human.move}."
     puts "#{computer.name} chose #{computer.move}"
+  end
 
-    if human.move > computer.move 
+  def display_winner
+    # puts "#{human.name} chose #{human.move}."
+    # puts "#{computer.name} chose #{computer.move}"
+
+    if human.move > computer.move
       puts "#{human.name} won!"
-    elsif human.move < computer.move 
+    elsif human.move < computer.move
       puts "#{computer.name} won!"
     else
       puts "It's a tie!"
@@ -120,25 +112,26 @@ class RPSGame
   end
 
   def play_again?
-    answer = nil 
+    answer = nil
 
-    loop do 
+    loop do
       puts "Would you like to play again? (y/n)"
-      answer = gets.chomp 
-      break if ['y','n'].include?(answer.downcase)
+      answer = gets.chomp
+      break if ['y', 'n'].include?(answer.downcase)
       puts "Sorry, you must choose y or n."
     end
-    return true if answer == 'y'
-    return false 
+    return false if answer.downcase == 'n'
+    return true if answer.downcase == 'y'
   end
 
-  def play 
+  def play
     display_welcome_message
-    loop do 
-    human.choose 
-    computer.choose 
-    display_winner 
-    break unless play_again?
+    loop do
+      human.choose
+      computer.choose
+      display_move
+      display_winner
+      break unless play_again?
     end
     display_goodbye_message
   end
