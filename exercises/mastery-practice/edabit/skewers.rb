@@ -77,7 +77,7 @@ Examples:
 =end 
 
 def is_authentic_skewer(str)
-  return false if %(A E I O U).include?(str.chars.last) || %(A E I O U).include?(str.chars.first)
+  # return false if %(A E I O U).include?(str.chars.last) || %(A E I O U).include?(str.chars.first)
 
   str_dupe = str.dup
   not_special = str.dup 
