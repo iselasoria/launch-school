@@ -76,6 +76,22 @@ class Computer < Player
   end
 end
 
+class Score
+  def score
+    # comes from move from player and computer
+    @score = # the move 
+  end
+
+  def winning_score
+    # compares which is greater, borrows functionality from Move class 
+  end
+
+  def feedback
+    # hands over the winner status to human or computer objects
+  end
+
+end
+
 # Game Orchestration Engine
 class RPSGame
   attr_accessor :human, :computer
