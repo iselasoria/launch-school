@@ -77,6 +77,10 @@ class Computer < Player
 end
 
 class Score
+  attr_reader :score 
+  # noun: score 
+  # verbs: increments itself, reads from Move 
+  # gives feedback to players
   def score
     # comes from move from player and computer
     @score = # the move 
@@ -84,6 +88,13 @@ class Score
 
   def winning_score
     # compares which is greater, borrows functionality from Move class 
+    if human.move > computer.move
+      puts "#{human.name} won!"
+    elsif human.move < computer.move
+      puts "#{computer.name} won!"
+    else
+      puts "It's a tie!"
+    end
   end
 
   def feedback
@@ -118,13 +129,14 @@ class RPSGame
     # puts "#{human.name} chose #{human.move}."
     # puts "#{computer.name} chose #{computer.move}"
 
-    if human.move > computer.move
-      puts "#{human.name} won!"
-    elsif human.move < computer.move
-      puts "#{computer.name} won!"
-    else
-      puts "It's a tie!"
-    end
+    ## todo this moved to the Score class
+    # if human.move > computer.move
+    #   puts "#{human.name} won!"
+    # elsif human.move < computer.move
+    #   puts "#{computer.name} won!"
+    # else
+    #   puts "It's a tie!"
+    # end
   end
 
   def play_again?
