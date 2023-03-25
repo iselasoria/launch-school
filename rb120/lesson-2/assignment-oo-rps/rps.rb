@@ -77,9 +77,10 @@ class Computer < Player
 end
 
 class Score
+  attr_reader :score 
   def score
     # comes from move from player and computer
-    @score = # the move 
+    @score = # the move that won this round
   end
 
   def winning_score
