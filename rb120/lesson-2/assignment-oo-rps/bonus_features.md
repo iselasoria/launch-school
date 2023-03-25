@@ -15,7 +15,7 @@
       - `score as class`
         - we can write methods that will give us access to how we view the data and how we interact with it from outside the class 
         - objects in this custom class become collaborator objects to the `Player` class 
-
+---
 2. Add Lizard and Spock 
 3. Add a class for each move 
 4. Keep track of a history of moves
