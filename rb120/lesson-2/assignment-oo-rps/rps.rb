@@ -78,15 +78,13 @@ end
 
 class Score
   attr_reader :score 
-<<<<<<< HEAD
-=======
   # noun: score 
   # verbs: increments itself, reads from Move 
   # gives feedback to players
->>>>>>> Pft-keeping-score
   def score
     # comes from move from player and computer
-    @score = # the move that won this round
+    @score = # the move 
+    @wins = wins 
   end
 
   def winning_score
