@@ -2,7 +2,7 @@
 ---
 
 ### Classes
-[Move :repeat:](#### Move :repeat:)
+[Move :repeat:](#Move :repeat:)
 
 Player :bust_in_silhouette:
 
