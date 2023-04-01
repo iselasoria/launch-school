@@ -2,6 +2,18 @@
 ---
 
 ### Classes
+Move :repeat:
+
+Player :bust_in_silhouette:
+
+Human :woman:
+
+Computer :desktop_computer:
+
+Score :abacus:
+
+RPSGame :joystick:
+### Modules
 ---
 
 #### Move :repeat:
@@ -68,4 +80,4 @@
       - breaks if the user doesn't want to play again 
     - goodbye
 
-### Modules
+
