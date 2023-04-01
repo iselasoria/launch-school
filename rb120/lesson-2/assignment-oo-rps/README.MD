@@ -4,7 +4,7 @@
 ### Classes
 ---
 
-#### Move
+#### Move :repeat:
 - noun 
 - no interface exposure
 - behaviors:
@@ -19,13 +19,13 @@
     If any of the conditions in the body of the instance method return true, teh calling object (move) is considered a loser to the second object
   - overrides `to_s` to output the value that was passed in (move)
 
-#### Player 
+#### Player :bust_in_silhouette:
 - noun 
 - exposes the move and player name to the public interface
 - behaviors:
   - instantiates an object with a call to `set_name` which is handled differently by Human and Computer
   
-#### Human
+#### Human :woman:
 - noun
 - inherits from Player 
 - behaviors:
@@ -40,11 +40,11 @@
   - chooses a computer name at random 
   - chooses a computer move at random 
 
-#### Score
+#### Score :abacus:
 - noun
 - 
 
-#### RPSGame 
+#### RPSGame :joystick:
 - noun 
 - exposes :human and :computer ivars to the public interface so we can display moves
 - behviors:
