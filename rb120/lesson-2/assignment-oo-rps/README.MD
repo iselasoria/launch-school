@@ -42,14 +42,20 @@
 
 #### Score :abacus:
 - noun
-- 
+- no exposure to the public interface 
+- behaviors:
+  - checks current move from Human/Computer object 
+    - the `Move` as entered by the user or chosen by the computer will be what gets checked 
+  - determines a winner
+    - adds to the state of a player by incrementing its running score with each win
+
 
 #### RPSGame :joystick:
 - noun 
 - exposes :human and :computer ivars to the public interface so we can display moves
-- behviors:
+- behaviors:
   - hello 
-  - goodye 
+  - goodbye 
   - displays the moves in the current round
   - displays the winner of the current round
   - play functionality
