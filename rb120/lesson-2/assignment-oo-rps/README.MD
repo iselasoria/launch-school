@@ -2,18 +2,7 @@
 ---
 
 ### Classes
-[Move :repeat:](#Move :repeat:)
 
-Player :bust_in_silhouette:
-
-Human :woman:
-
-Computer :desktop_computer:
-
-Score :abacus:
-
-RPSGame :joystick:
-### Modules
 ---
 
 #### Move :repeat:
@@ -81,3 +70,4 @@ RPSGame :joystick:
     - goodbye
 
 
+### Modules
