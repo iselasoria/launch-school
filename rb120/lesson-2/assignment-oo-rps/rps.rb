@@ -85,35 +85,6 @@ class Computer < Player
   end
 end
 
-class Score
-  # noun: score 
-  # no attr access because all the parts that touch this object are internal 
-  # verbs: increments itself, reads from Move 
-  # gives feedback to players
-  protected # we want a setter but we don't want to expose it 
-
-  def determine_winner
-    # compares which is greater, borrows functionality from Move class 
-    if human.move > computer.move
-      puts "#{human.name} won!"
-      self.running_score = human.running_score += 1
-    elsif human.move < computer.move
-      puts "#{computer.name} won!"
-      self.running_score = computer.running_score += 1
-    else
-      puts "It's a tie!"
-    end
-  end
-
-  def ultimate_winner
-    # is Score object the same as 10
-  end
-
-  def feedback
-    # hands over the winner status to human or computer objects
-  end
-
-end
 
 # Game Orchestration Engine
 class RPSGame
@@ -138,20 +109,25 @@ class RPSGame
   end
 
   def display_winner
-    puts "#{human.name} chose #{human.move}."
-    puts "#{computer.name} chose #{computer.move}"
-
-    # todo this moved to the Score class
     if human.move > computer.move
-      puts "#{human.name} won!"
+      puts "#{human.name} gets 1 point!"
       human.running_score += 1
     elsif human.move < computer.move
-      puts "#{computer.name} won!"
+      puts "#{computer.name} gets 1 point!"
       computer.running_score += 1
     else
       puts "It's a tie!"
     end
   end
+
+  def display_ultimate_winner
+    if human.running_score == 10
+      puts "#{human.name} wins the game!"
+    elsif computer.running_score == 10 
+      puts "A computer just beat you at rock, paper, scissors, #{computer.name} is the ultimate winner!"
+    end
+  end
+
 
   def play_again?
     answer = nil
@@ -168,15 +144,19 @@ class RPSGame
 
   def play
     display_welcome_message
-    loop do
+    loop do 
       human.choose
       computer.choose
       display_move
+      sleep(1)
+      system("clear")
       display_winner
       human.display_running_score
       computer.display_running_score
-      break unless play_again?
+      break if (human.running_score >= 10) || (computer.running_score >= 10)
     end
+    # display ultimate winner here 
+    display_ultimate_winner
     display_goodbye_message
   end
 end
