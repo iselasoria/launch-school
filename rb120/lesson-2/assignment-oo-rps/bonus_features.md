@@ -21,7 +21,7 @@
         - objects in this custom class become collaborator objects to the `Player` class
 ---
 2. Add Lizard and Spock
----
+
 |     Move      |     Wins Over     |
 | ------------- |:-----------------:|
 | Rock          | scissors, lizard  |
@@ -29,7 +29,27 @@
 | Scissors      | lizard, paper     |
 | Lizard        | paper, spock      |
 | Spock         | rock, scissors    |
+---
 
 3. Add a class for each move
+Adding the following classes:
+  - `rock`
+  - `paper`
+  - `scissors`
+  - `lizard`
+  - `spock`
+
+  *Pros of splitting moves into classes*
+
+  - the winning moves might be handled here as behaviors
+
+    - `Spock` class responds (behaves) with a win, when the opposing move is `Rock` or `Scissors` class
+
+  *Cons of splitting moves into classes*
+
+  - having so many classes might be confusing to read
+  - might seem repetitive
+
+---
 4. Keep track of a history of moves
 5. Computer Personalities
