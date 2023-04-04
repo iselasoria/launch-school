@@ -85,7 +85,6 @@ class Computer < Player
   end
 end
 
-
 # Game Orchestration Engine
 class RPSGame
   attr_accessor :human, :computer
@@ -103,17 +102,20 @@ class RPSGame
     puts "Thanks for playing, good bye!"
   end
 
-  def display_move
-    puts "#{human.name} chose #{human.move}."
-    puts "#{computer.name} chose #{computer.move}"
-  end
+  # def display_move
+  #   puts "#{human.name} chose #{human.move}."
+  #   puts "#{computer.name} chose #{computer.move}"
+  # end
 
   def display_winner
+    puts "#{human.name} chose #{human.move}."
+    puts "#{computer.name} chose #{computer.move}"
+
     if human.move > computer.move
       puts "#{human.name} gets 1 point!"
       human.running_score += 1
     elsif human.move < computer.move
-      puts "#{computer.name} gets 1 point!"
+      puts "#{computer.name} gets one point!"
       computer.running_score += 1
     else
       puts "It's a tie!"
@@ -123,11 +125,10 @@ class RPSGame
   def display_ultimate_winner
     if human.running_score == 10
       puts "#{human.name} wins the game!"
-    elsif computer.running_score == 10 
-      puts "A computer just beat you at rock, paper, scissors, #{computer.name} is the ultimate winner!"
+    elsif computer.running_score == 10
+      puts "#{computer.name} is the ultimate winner!"
     end
   end
-
 
   def play_again?
     answer = nil
@@ -142,23 +143,26 @@ class RPSGame
     return true if answer.downcase == 'y'
   end
 
+  def system_functionality
+    sleep(1)
+    system("clear")
+  end
+
   def play
     display_welcome_message
-    loop do 
+    loop do
       human.choose
       computer.choose
-      display_move
-      sleep(1)
-      system("clear")
+      system_functionality
       display_winner
       human.display_running_score
       computer.display_running_score
+      display_ultimate_winner
       break if (human.running_score >= 10) || (computer.running_score >= 10)
     end
-    # display ultimate winner here 
-    display_ultimate_winner
     display_goodbye_message
   end
+
 end
 
 RPSGame.new.play
