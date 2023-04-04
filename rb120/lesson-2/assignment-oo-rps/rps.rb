@@ -1,6 +1,14 @@
 class Move
   VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
+  WINNING_MOVES = {
+    rock: ['scissors', 'lizard'],
+    paper: ['rock', 'spock'],
+    scissors: ['lizard', 'paper'],
+    lizard: ['paper', 'spock'],
+    spock: ['scissors', 'rock']
+}
+
   def initialize(value)
     @value = value
   end
@@ -35,6 +43,11 @@ class Move
     (rock? && other_move.paper?) ||
       (paper? && other_move.scissors?) ||
       (scissors? && other_move.rock?)
+  end
+
+  def win?(other_move)
+    # for the move called on, check if the other includes the array in the hash
+    WINNING_MOVES[@value.to_sym].include?(other_move.to_s)
   end
 
   def to_s
@@ -74,7 +87,7 @@ class Human < Player
   def choose
     choice = nil
     loop do
-      puts "Please choose: rock, paper, scissors:"
+      puts "Please choose: rock, paper, scissors, lizard, spock:"
       choice = gets.chomp
       break if Move::VALUES.include?(choice)
       puts "Sorry, invalid choice."
@@ -110,19 +123,14 @@ class RPSGame
     puts "Thanks for playing, good bye!"
   end
 
-  # def display_move
-  #   puts "#{human.name} chose #{human.move}."
-  #   puts "#{computer.name} chose #{computer.move}"
-  # end
-
   def display_winner
     puts "#{human.name} chose #{human.move}."
     puts "#{computer.name} chose #{computer.move}"
 
-    if human.move > computer.move
+    if human.move.win?(computer.move)
       puts "#{human.name} gets 1 point!"
       human.running_score += 1
-    elsif human.move < computer.move
+    elsif computer.move.win?(human.move)
       puts "#{computer.name} gets one point!"
       computer.running_score += 1
     else
@@ -170,7 +178,6 @@ class RPSGame
     end
     display_goodbye_message
   end
-
 end
 
 RPSGame.new.play
