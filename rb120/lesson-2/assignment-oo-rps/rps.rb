@@ -1,5 +1,5 @@
 class Move
-  VALUES = ['rock', 'paper', 'scissors']
+  VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
   def initialize(value)
     @value = value
@@ -15,6 +15,14 @@ class Move
 
   def paper?
     @value == 'paper'
+  end
+
+  def lizard?
+    @value = 'lizard'
+  end
+
+  def spock?
+    @value = 'spock'
   end
 
   def >(other_move)
