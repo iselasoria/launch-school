@@ -1,3 +1,21 @@
+module Prettifyable
+  attr_reader :msg
+
+  def flashing_display(msg)
+    5.times do
+      print "\r#{msg}"
+      sleep 0.5
+      print "\r#{ ' ' * msg.size }" # the lenght of the input message
+      sleep 0.5
+    end
+  end
+
+  def slow_display(msg)
+    msg.each_char {|c| putc c ; sleep 0.08; $stdout.flush }
+  end
+
+end
+
 class Move
   VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
@@ -108,7 +126,9 @@ end
 
 # Game Orchestration Engine
 class RPSGame
+  include Prettifyable
   attr_accessor :human, :computer
+
 
   def initialize
     @human = Human.new
@@ -120,8 +140,9 @@ class RPSGame
   end
 
   def display_goodbye_message
-    puts "Thanks for playing, good bye!"
+    slow_display("Thanks for playing, good bye!")
   end
+
 
   def display_winner
     puts "#{human.name} chose #{human.move}."
@@ -139,10 +160,12 @@ class RPSGame
   end
 
   def display_ultimate_winner
-    if human.running_score == 10
-      puts "#{human.name} wins the game!"
-    elsif computer.running_score == 10
-      puts "#{computer.name} is the ultimate winner!"
+    if human.running_score == 5 # TODO for debug only, come back and make this 10
+      # puts "#{human.name} wins the game!"
+      flashing_display("#{human.name} wins the game!")
+    elsif computer.running_score == 5
+      # puts "#{computer.name} is the ultimate winner!"
+      flashing_display("#{computer.name} is the ultimate winner!")
     end
   end
 
@@ -174,7 +197,7 @@ class RPSGame
       human.display_running_score
       computer.display_running_score
       display_ultimate_winner
-      break if (human.running_score >= 10) || (computer.running_score >= 10)
+      break if (human.running_score >= 5) || (computer.running_score >= 5) # TODO for debug
     end
     display_goodbye_message
   end
