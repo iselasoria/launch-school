@@ -51,18 +51,6 @@ class Move
     @value = 'spock'
   end
 
-  def >(other_move)
-    (rock? && other_move.scissors?) ||
-      (paper? && other_move.rock?) ||
-      (scissors? && other_move.paper?)
-  end
-
-  def <(other_move)
-    (rock? && other_move.paper?) ||
-      (paper? && other_move.scissors?) ||
-      (scissors? && other_move.rock?)
-  end
-
   def win?(other_move)
     # for the move called on, check if the other includes the array in the hash
     WINNING_MOVES[@value.to_sym].include?(other_move.to_s)
@@ -86,7 +74,7 @@ class Player
   end
 
   def display_running_score
-    puts "#{name}'s current score is: #{@running_score}"
+    puts "#{name}'s current score is: #{running_score}"
   end
 end
 
@@ -169,6 +157,11 @@ class RPSGame
     end
   end
 
+  def winner_stop_playing?
+    (human.running_score >= 5 && play_again? == false ) ||
+    (computer.running_score >= 5 && play_again? == false )
+  end
+
   def play_again?
     answer = nil
 
@@ -197,8 +190,9 @@ class RPSGame
       human.display_running_score
       computer.display_running_score
       display_ultimate_winner
-      break if (human.running_score >= 5) || (computer.running_score >= 5) # TODO for debug
+      break if winner_stop_playing? # TODO for debug
     end
+    puts "\n"
     display_goodbye_message
   end
 end
