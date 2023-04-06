@@ -51,7 +51,7 @@ Adding the following classes:
   - might seem repetitive
 
 After trying this out I chose to revert back to the version before implementing the various classes. The way I saw it, having five classes, one for each move, was making the game cluttered and not all that better.
-Upon user intake, the new objects of their corresponding class was getting instantiated and then evaluated for `win`. However, since the `win?` method evaluates all the types of objects in one single line method, it didn't make much sense to then override it in each of the move classes to check for a win. In fact, it would have required some hard coding like:
+Upon user intake, the new objects of their corresponding class were getting instantiated and then evaluated for `win?`. However, since the `win?` method evaluates all the types of objects in one single line method, it didn't make much sense to then override it in each of the move classes to check for a win. In fact, it would have required some hard coding like:
 - "Paper covers Rock and disproves Spock"
 - "Rock crushes lizard and scissors"
 

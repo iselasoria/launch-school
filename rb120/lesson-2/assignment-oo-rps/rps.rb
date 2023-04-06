@@ -43,6 +43,10 @@ class Move
     @value = 'spock'
   end
 
+  def history_based_sample
+    # TODO
+  end
+
   def win?(other_move)
     # for the move called on, check if the other includes the array in the hash
     WINNING_MOVES[@value.to_sym].include?(other_move.to_s)
@@ -50,36 +54,6 @@ class Move
 
   def to_s
     @value
-  end
-end
-
-class Rock
-  def initialize
-    super
-  end
-end
-
-class Paper
-  def initialize
-    super
-  end
-end
-
-class Scissors
-  def initialize
-    super
-  end
-end
-
-class Lizard
-  def initialize
-    super
-  end
-end
-
-class Spock
-  def initialize
-    super
   end
 end
 
@@ -93,7 +67,7 @@ class Player
     @running_score = 0
   end
 
-  def update_grand_score
+  def update_grand_score # TODO maybe change name
     @ultimate_score = Score.new
   end
 end
@@ -129,8 +103,31 @@ class Computer < Player
     self.name = ['Terminator', 'Rusty', 'Chappie', 'Rosie Jetson', "Andy Roid", 'Mr. Roboto'].sample
   end
 
+  def probability_based_sample(tendencies)
+    case rand(100)
+      when tendencies[0]  then 'rock'
+      when tendencies[1]  then 'paper'
+      when tendencies[2]  then 'scissors'
+      when tendencies[3]  then 'lizard'
+      when tendencies[4]  then 'spock'
+    end
+  end
+
+  def assign_personality
+    case
+      when self.name == 'Terminator' then [(0..30), (60..75),(75..90),(90..100), (30..60)]
+      when self.name == 'Rusty' then [(0..25), (25..50),(50..90), (0..0), (90..100)]
+      when self.name == 'Chappie' then  [(0..25), (25..50),(50..75),(0..0), (75..100)]
+      when self.name == 'Rosie Jetson' then [(0..25), (25..75),(75..90),(90..100), (0..0)]
+      when self.name == 'Andy Roid' then [(0..33), (33..66),(66..99),(0..0), (0..0)]
+      when self.name == 'Mr. Roboto' then [(0..20),(20..40), (40..60),(60..80),(80..100)]
+    end
+  end
+
   def choose
-    self.move = Move.new(Move::VALUES.sample)
+    # self.move = Move.new(Move::VALUES.sample)
+    # will be a case statement when we add Mr. Roboto's history functionality
+    self.move = Move.new(self.probability_based_sample(assign_personality))
   end
 end
 
