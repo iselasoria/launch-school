@@ -53,3 +53,20 @@ Adding the following classes:
 ---
 4. Keep track of a history of moves
 5. Computer Personalities
+Give each robot a personality, a tendency toward or against choosing certain moves.
+How would you approach a feature like this?
+
+- Might be able to be implemented with collaborator objects.
+  upon instantiation, conditional determines which personality each robot is getting.
+  At selection time, each move (from `Move` class) behaves a certain way (tendencies).
+  Polymorphism?!
+- Makes use of the `Score` and `Move`s history in order to determine what to choose next.
+
+|     Robot          |                       Qualities                           |
+| ------------------ |:---------------------------------------------------------:|
+| Terminator         | chooses rock most of the time, second favorite is spock   |
+| Chappie            | never chooses lizard                                      |
+| Rosie Jettson      | tends to choose paper, and never chooses spock            |
+| Andy Roid          | chooses only rock, paper, or scissors                     |
+| Rusty              | tends to choose scissors, and never chooses lizard        |
+| Mr. Roboto         | chooses only moves he has not chosen in the current round |
