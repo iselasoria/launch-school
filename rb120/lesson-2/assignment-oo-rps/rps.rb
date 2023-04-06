@@ -67,6 +67,7 @@ module Orchestratable
     elsif computer.running_score == 5
       flashing_display("#{computer.name} is the ultimate winner!")
     end
+    puts "\n"
   end
 
   def game_round
@@ -221,7 +222,6 @@ class RPSGame
       increment_score
       display_scoreboard
       display_ultimate_winner
-      puts "\n"
       break if winner_stop_playing? # TODO for debug
     end
     puts "\n"
