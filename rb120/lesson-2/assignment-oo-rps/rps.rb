@@ -28,6 +28,11 @@ module Orchestratable
     system("clear")
   end
 
+  def display_rules
+    slow_display(MESSAGES["orchestration"]["rules"])
+    puts "\n"
+  end
+
   def display_move
     puts "#{human.name} chose #{human.move}."
     puts "#{computer.name} chose #{computer.move}."
@@ -53,12 +58,15 @@ module Orchestratable
 
   def display_scoreboard # TODO Score class
     human_padding = human.running_score.to_s.center(human.name.size)
+    human_size = human.name.size
     comp_padding = computer.running_score.to_s.center(computer.name.size)
-    puts "+" + "-" * (human.name.size) + "+" + "-" * (computer.name.size) + "+"
+    comp_size = computer.name.size
+
+    puts "+" + "-" * human_size + "+" + "-" * comp_size + "+"
     puts "|" + human.name + "|" + computer.name + "|"
-    puts "+" + "-" * (human.name.size) + "+" + "-" * (computer.name.size) + "+"
+    puts "+" + "-" * human_size + "+" + "-" * comp_size + "+"
     puts "|" + human_padding + "|" + comp_padding + "|"
-    puts "+" + "-" * (human.name.size) + "+" + "-" * (computer.name.size) + "+"
+    puts "+" + "-" * human_size + "+" + "-" * comp_size + "+"
   end
 
   def display_ultimate_winner
@@ -216,6 +224,7 @@ class RPSGame
   end
 
   def play # on 2nd rnd immediate ask again
+    display_rules
     loop do
       game_round
       display_winner

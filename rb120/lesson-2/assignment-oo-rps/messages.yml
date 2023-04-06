@@ -8,6 +8,14 @@ choice:
   options: "Please choose: rock, paper, scissors, lizard, spock:"
 
 orchestration:
+  rules: |- # no line break at the end
+      Remember the rules-
+      1) Rock -> crushes Lizard and Scissors
+      2) Paper -> covers Rock and disproves Spock
+      3) Scissors -> cuts Paper and decapitates Lizard
+      4) Lizard -> eats Paper and poisons Spock
+      5) Spock -> smashes Scissors and vaporizes Rock
+
   girl_bye: "Thanks for playing, good bye!"
   go_again: "Would you like to play again? (y/n)"
   tie: "It's a tie!"
