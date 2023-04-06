@@ -1,3 +1,6 @@
+require "yaml"
+MESSAGES = YAML.load_file("messages.yml")
+
 module Prettifyable
   attr_reader :msg
 
@@ -36,7 +39,7 @@ module Orchestratable
     elsif computer.move.win?(human.move)
       puts "#{computer.name} gets 1 point!"
     else
-      puts "It's a tie!"
+      puts MESSAGES["orchestration"]["tie"]
     end
   end
 
@@ -146,10 +149,10 @@ class Human < Player
   def set_name
     n = ""
     loop do
-      slow_display("Welcome to RPS, enter your name to meet your oponent: ")
+      slow_display(MESSAGES["validation"]["welcome"])
       n = gets.chomp
       break unless n.empty?
-      slow_display("Sorry, must enter a value: ")
+      slow_display(MESSAGES["validation"["invalid_choice"]])
     end
     self.name = n
   end
@@ -157,10 +160,10 @@ class Human < Player
   def choose
     choice = nil
     loop do
-      prompt("Please choose: rock, paper, scissors, lizard, spock:")
+      prompt(MESSAGES["choice"]["options"])
       choice = gets.chomp
       break if Move::VALUES.include?(choice)
-      slow_display("Sorry, invalid choice.")
+      slow_display(MESSAGES["validation"["name_validation"]])
     end
     self.move = Move.new(choice)
   end
@@ -182,7 +185,6 @@ class RPSGame
   include Prettifyable
   include Orchestratable
 
-
   attr_accessor :human, :computer
 
   def initialize
@@ -191,7 +193,7 @@ class RPSGame
   end
 
   def display_goodbye_message
-    slow_display("Thanks for playing, good bye!")
+    slow_display(MESSAGES["orchestration"]["girl_bye"])
   end
 
   def winner_stop_playing?
@@ -203,10 +205,10 @@ class RPSGame
     answer = nil
 
     loop do
-      prompt("Would you like to play again? (y/n)")
+      prompt(MESSAGES["orchestration"]["go_again"])
       answer = gets.chomp
       break if ['y', 'n'].include?(answer.downcase)
-      prompt("Sorry, you must choose y or n.")
+      prompt(MESSAGES["validation"]["yes_or_no"])
     end
     return false if answer.downcase == 'n'
     return true if answer.downcase == 'y'
@@ -219,6 +221,7 @@ class RPSGame
       increment_score
       display_scoreboard
       display_ultimate_winner
+      puts "\n"
       break if winner_stop_playing? # TODO for debug
     end
     puts "\n"

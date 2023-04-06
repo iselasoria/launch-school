@@ -1,0 +1,13 @@
+validation:
+  welcome: "Welcome to RPS, enter your name to meet your opponent: "
+  name_validation: "Sorry, must enter a value: "
+  invalid_choice: "Sorry, invalid choice."
+  yes_or_no: "Sorry, you must choose y or n."
+
+choice:
+  options: "Please choose: rock, paper, scissors, lizard, spock:"
+
+orchestration:
+  girl_bye: "Thanks for playing, good bye!"
+  go_again: "Would you like to play again? (y/n)"
+  tie: "It's a tie!"
