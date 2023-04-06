@@ -66,7 +66,7 @@ How would you approach a feature like this?
 | ------------------ |:---------------------------------------------------------:|
 | Terminator         | chooses rock most of the time, second favorite is spock   |
 | Chappie            | never chooses lizard                                      |
-| Rosie Jettson      | tends to choose paper, and never chooses spock            |
+| Rosie Jetson       | tends to choose paper, and never chooses spock            |
 | Andy Roid          | chooses only rock, paper, or scissors                     |
 | Rusty              | tends to choose scissors, and never chooses lizard        |
 | Mr. Roboto         | chooses only moves he has not chosen in the current round |

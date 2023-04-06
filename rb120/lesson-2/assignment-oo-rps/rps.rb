@@ -180,7 +180,7 @@ end
 
 class Computer < Player
   def set_name
-    self.name = ['R2D2', 'Hal', 'Chappie', 'Sonny', 'Number 5'].sample
+    self.name = ['Terminator', 'Rusty', 'Chappie', 'Rosie Jetson', "Andy Roid", 'Mr. Roboto'].sample
   end
 
   def choose
