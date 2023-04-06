@@ -5,15 +5,79 @@ module Prettifyable
     5.times do
       print "\r#{msg}"
       sleep 0.5
-      print "\r#{ ' ' * msg.size }" # the lenght of the input message
+      print "\r#{' ' * msg.size}"
       sleep 0.5
     end
   end
 
   def slow_display(msg)
-    msg.each_char {|c| putc c ; sleep 0.08; $stdout.flush }
+    msg.each_char do |c|
+      putc c
+      sleep(0.05)
+      $stdout.flush
+    end
+  end
+end
+
+module Orchestratable
+  def system_functionality
+    sleep(1)
+    system("clear")
   end
 
+  def display_move
+    puts "#{human.name} chose #{human.move}."
+    puts "#{computer.name} chose #{computer.move}."
+  end
+
+  def display_winner
+    if human.move.win?(computer.move)
+      puts "#{human.name} gets 1 point!"
+    elsif computer.move.win?(human.move)
+      puts "#{computer.name} gets 1 point!"
+    else
+      puts "It's a tie!"
+    end
+  end
+
+  def increment_score
+    if human.move.win?(computer.move)
+      human.running_score += 1
+    elsif computer.move.win?(human.move)
+      computer.running_score += 1
+    end
+  end
+
+  def display_scoreboard # TODO Score class
+    human_padding = human.running_score.to_s.center(human.name.size)
+    comp_padding = computer.running_score.to_s.center(computer.name.size)
+    puts "+" + "-" * (human.name.size) + "+" + "-" * (computer.name.size) + "+"
+    puts "|" + human.name + "|" + computer.name + "|"
+    puts "+" + "-" * (human.name.size) + "+" + "-" * (computer.name.size) + "+"
+    puts "|" + human_padding + "|" + comp_padding + "|"
+    puts "+" + "-" * (human.name.size) + "+" + "-" * (computer.name.size) + "+"
+  end
+
+  def display_ultimate_winner
+    if human.running_score == 5 # TODO
+      flashing_display("#{human.name} wins the game!")
+    elsif computer.running_score == 5
+      flashing_display("#{computer.name} is the ultimate winner!")
+    end
+  end
+
+  def game_round
+    human.choose
+    computer.choose
+    system_functionality
+    display_move
+  end
+end
+
+module Askable
+  def prompt(msg)
+    puts "=> #{msg}"
+  end
 end
 
 class Move
@@ -25,7 +89,7 @@ class Move
     scissors: ['lizard', 'paper'],
     lizard: ['paper', 'spock'],
     spock: ['scissors', 'rock']
-}
+  }
 
   def initialize(value)
     @value = value
@@ -62,7 +126,9 @@ class Move
 end
 
 class Player
-  attr_accessor :move, :name, :running_score
+  include Askable
+  include Orchestratable
+  attr_accessor :move, :name, :running_score, :reset_score
 
   def initialize
     set_name
@@ -72,20 +138,18 @@ class Player
   def update_grand_score
     @ultimate_score = Score.new
   end
-
-  def display_running_score
-    puts "#{name}'s current score is: #{running_score}"
-  end
 end
 
 class Human < Player
+  include Prettifyable
+
   def set_name
     n = ""
     loop do
-      puts "What's your name?"
+      slow_display("Welcome to RPS, enter your name to meet your oponent: ")
       n = gets.chomp
       break unless n.empty?
-      puts "Sorry, must enter a value: "
+      slow_display("Sorry, must enter a value: ")
     end
     self.name = n
   end
@@ -93,10 +157,10 @@ class Human < Player
   def choose
     choice = nil
     loop do
-      puts "Please choose: rock, paper, scissors, lizard, spock:"
+      prompt("Please choose: rock, paper, scissors, lizard, spock:")
       choice = gets.chomp
       break if Move::VALUES.include?(choice)
-      puts "Sorry, invalid choice."
+      slow_display("Sorry, invalid choice.")
     end
     self.move = Move.new(choice)
   end
@@ -114,81 +178,46 @@ end
 
 # Game Orchestration Engine
 class RPSGame
+  include Askable
   include Prettifyable
-  attr_accessor :human, :computer
+  include Orchestratable
 
+
+  attr_accessor :human, :computer
 
   def initialize
     @human = Human.new
     @computer = Computer.new
   end
 
-  def display_welcome_message
-    "Welcome to Rock, Paper, Scissors!"
-  end
-
   def display_goodbye_message
     slow_display("Thanks for playing, good bye!")
   end
 
-
-  def display_winner
-    puts "#{human.name} chose #{human.move}."
-    puts "#{computer.name} chose #{computer.move}"
-
-    if human.move.win?(computer.move)
-      puts "#{human.name} gets 1 point!"
-      human.running_score += 1
-    elsif computer.move.win?(human.move)
-      puts "#{computer.name} gets one point!"
-      computer.running_score += 1
-    else
-      puts "It's a tie!"
-    end
-  end
-
-  def display_ultimate_winner
-    if human.running_score == 5 # TODO for debug only, come back and make this 10
-      # puts "#{human.name} wins the game!"
-      flashing_display("#{human.name} wins the game!")
-    elsif computer.running_score == 5
-      # puts "#{computer.name} is the ultimate winner!"
-      flashing_display("#{computer.name} is the ultimate winner!")
-    end
-  end
-
   def winner_stop_playing?
-    (human.running_score >= 5 && play_again? == false ) ||
-    (computer.running_score >= 5 && play_again? == false )
+    (human.running_score >= 5 && play_again? == false) ||
+      (computer.running_score >= 5 && play_again? == false)
   end
 
   def play_again?
     answer = nil
 
     loop do
-      puts "Would you like to play again? (y/n)"
+      prompt("Would you like to play again? (y/n)")
       answer = gets.chomp
       break if ['y', 'n'].include?(answer.downcase)
-      puts "Sorry, you must choose y or n."
+      prompt("Sorry, you must choose y or n.")
     end
     return false if answer.downcase == 'n'
     return true if answer.downcase == 'y'
   end
 
-  def system_functionality
-    sleep(1)
-    system("clear")
-  end
-
-  def play
-    display_welcome_message
+  def play # on 2nd rnd immediate ask again
     loop do
-      human.choose
-      computer.choose
-      system_functionality
+      game_round
       display_winner
-      human.display_running_score
-      computer.display_running_score
+      increment_score
+      display_scoreboard
       display_ultimate_winner
       break if winner_stop_playing? # TODO for debug
     end
