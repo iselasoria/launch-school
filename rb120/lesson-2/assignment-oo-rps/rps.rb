@@ -161,7 +161,7 @@ class RPSGame
 
     loop do
       prompt(MESSAGES["orchestration"]["go_again"])
-      answer = gets.chomp
+      answer = gets.chomp.capitalize
       break if ['y', 'n'].include?(answer.downcase)
       prompt(MESSAGES["validation"]["yes_or_no"])
     end

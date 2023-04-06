@@ -50,8 +50,19 @@ Adding the following classes:
   - having so many classes might be confusing to read
   - might seem repetitive
 
+After trying this out I chose to revert back to the version before implementing the various classes. The way I saw it, having five classes, one for each move, was making the game cluttered and not all that better.
+Upon user intake, the new objects of their corresponding class was getting instantiated and then evaluated for `win`. However, since the `win?` method evaluates all the types of objects in one single line method, it didn't make much sense to then override it in each of the move classes to check for a win. In fact, it would have required some hard coding like:
+- "Paper covers Rock and disproves Spock"
+- "Rock crushes lizard and scissors"
+
+So all of a sudden, a method that can check for wins in one line would have turned into five little hard-coded methods that check for that move type's win.
+I started coding it and halfway through as I saw the code getting longer and with no benefit, I reverted to a previous commit.
+As the remaining features get implemented this might make sense, in which case I'll come back and amend. As of now, I won't implement this feature.
+
 ---
 4. Keep track of a history of moves
+
+---
 5. Computer Personalities
 Give each robot a personality, a tendency toward or against choosing certain moves.
 How would you approach a feature like this?
