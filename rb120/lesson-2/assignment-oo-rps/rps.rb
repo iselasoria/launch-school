@@ -43,6 +43,16 @@ class Move
     @value = 'spock'
   end
 
+  # def probability_based_sample(tendencies)
+  #   case rand(100)
+  #     when arr[0]  then 'Rock'
+  #     when arr[1]  then 'Paper'
+  #     when arr[2]  then 'Scissors'
+  #     when arr[3]  then 'Lizard'
+  #     when arr[4]  then 'Spock'
+  #   end
+  # end
+
   def history_based_sample
     # TODO
   end
@@ -79,7 +89,7 @@ class Human < Player
     n = ""
     loop do
       slow_display(MESSAGES["validation"]["welcome"])
-      n = gets.chomp
+      n = gets.chomp.capitalize
       break unless n.empty?
       slow_display(MESSAGES["validation"]["invalid_choice"])
     end
@@ -126,7 +136,7 @@ class Computer < Player
 
   def choose
     # self.move = Move.new(Move::VALUES.sample)
-    # will be a case statement when we add Mr. Roboto's history functionality
+    # will likely be a case when we add Mr. Roboto
     self.move = Move.new(self.probability_based_sample(assign_personality))
   end
 end
