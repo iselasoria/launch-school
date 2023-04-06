@@ -53,6 +53,36 @@ class Move
   end
 end
 
+class Rock
+  def initialize
+    super
+  end
+end
+
+class Paper
+  def initialize
+    super
+  end
+end
+
+class Scissors
+  def initialize
+    super
+  end
+end
+
+class Lizard
+  def initialize
+    super
+  end
+end
+
+class Spock
+  def initialize
+    super
+  end
+end
+
 class Player
   include Askable
   include Orchestratable
@@ -77,7 +107,7 @@ class Human < Player
       slow_display(MESSAGES["validation"]["welcome"])
       n = gets.chomp
       break unless n.empty?
-      slow_display(MESSAGES["validation"["invalid_choice"]])
+      slow_display(MESSAGES["validation"]["invalid_choice"])
     end
     self.name = n
   end
@@ -88,7 +118,7 @@ class Human < Player
       prompt(MESSAGES["choice"]["options"])
       choice = gets.chomp
       break if Move::VALUES.include?(choice)
-      slow_display(MESSAGES["validation"["name_validation"]])
+      slow_display(MESSAGES["validation"]["name_validation"])
     end
     self.move = Move.new(choice)
   end
