@@ -104,7 +104,7 @@ class Human < Player
     choice = nil
     loop do
       prompt(MESSAGES["choice"]["options"])
-      choice = gets.chomp
+      choice = gets.chomp.downcase
       break if Move::VALUES.include?(choice)
       slow_display(MESSAGES["validation"]["name_validation"])
     end
@@ -191,7 +191,7 @@ class RPSGame
   end
 
   def display_game_stats
-    puts "This game took a total of #{@moves_history} on your part."
+    puts "You made #{human.moves_history.size} moves."
   end
 
   def play # on 2nd rnd immediate ask again

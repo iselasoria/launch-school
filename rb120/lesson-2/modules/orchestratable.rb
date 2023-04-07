@@ -50,7 +50,7 @@ module Orchestratable
 
   def display_ultimate_winner
     if human.running_score == 5 # TODO
-      flashing_display("#{human.name} wins the game!")
+      flashing_display("#{human.name} is the ultimate winner!")
     elsif computer.running_score == 5
       flashing_display("#{computer.name} is the ultimate winner!")
     end
