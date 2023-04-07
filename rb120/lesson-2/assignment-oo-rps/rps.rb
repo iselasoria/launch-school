@@ -115,7 +115,10 @@ end
 
 class Computer < Player
   def set_name
-    self.name = ['Terminator', 'Rusty', 'Chappie', 'Rosie Jetson', "Andy Roid", 'Mr. Roboto'].sample
+    self.name = [
+      'Terminator', 'Rusty', 'Chappie', 'Rosie Jetson',
+      "Andy Roid", 'Mr. Roboto'
+    ].sample
   end
 
   def probability_based_sample(tendencies)
@@ -195,15 +198,13 @@ class RPSGame
     display_rules
     loop do
       game_round
-      display_winner
       increment_score
       display_scoreboard
       display_ultimate_winner
       break if winner_stop_playing? # TODO for debug
     end
     puts "\n"
-    display_game_stats
-    display_goodbye_message
+    end_of_round
   end
 end
 

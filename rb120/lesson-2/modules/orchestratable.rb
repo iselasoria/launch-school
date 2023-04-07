@@ -64,5 +64,11 @@ module Orchestratable
     display_move
     puts "\n"
     human.display_log
+    display_winner
+  end
+
+  def end_of_round
+    display_game_stats
+    display_goodbye_message
   end
 end
