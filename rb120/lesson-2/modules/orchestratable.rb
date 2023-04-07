@@ -62,6 +62,7 @@ module Orchestratable
     computer.choose
     system_functionality
     display_move
+    puts "\n"
     human.display_log
   end
 end

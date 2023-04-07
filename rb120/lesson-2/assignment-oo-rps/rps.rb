@@ -10,8 +10,7 @@ include Prettifyable
 
 class Move
   attr_reader :total_moves, :value
-  # todo maybe a class method to track all the moves
-  @@total_moves = 0
+
   VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
   WINNING_MOVES = {
@@ -24,7 +23,6 @@ class Move
 
   def initialize(value)
     @value = value
-    @@total_moves += 1
   end
 
   def scissors?
@@ -64,25 +62,31 @@ end
 class Player
   include Askable
   include Orchestratable
+
   attr_accessor :move, :name, :running_score, :moves_history, :reset_score
 
   def initialize
     set_name
     @running_score = 0
-    @moves_history =[]
+    @moves_history = []
   end
 
   def log_move(chosen_move)
-    self.moves_history << chosen_move.value
+    moves_history << chosen_move.value
   end
 
   def display_log
     puts "Your current moves log: #{@moves_history}"
   end
 
+  def to_s
+    @moves_history
+  end
 end
 
 class Human < Player
+  attr_reader :moves_history
+
   include Prettifyable
 
   def set_name
@@ -116,29 +120,35 @@ class Computer < Player
 
   def probability_based_sample(tendencies)
     case rand(100)
-      when tendencies[0]  then 'rock'
-      when tendencies[1]  then 'paper'
-      when tendencies[2]  then 'scissors'
-      when tendencies[3]  then 'lizard'
-      when tendencies[4]  then 'spock'
+    when tendencies[0] then 'rock'
+    when tendencies[1] then 'paper'
+    when tendencies[2] then 'scissors'
+    when tendencies[3] then 'lizard'
+    when tendencies[4] then 'spock'
     end
   end
 
   def assign_personality
-    case
-      when self.name == 'Terminator' then [(0..30), (60..75),(75..90),(90..100), (30..60)]
-      when self.name == 'Rusty' then [(0..25), (25..50),(50..90), (0..0), (90..100)]
-      when self.name == 'Chappie' then  [(0..25), (25..50),(50..75),(0..0), (75..100)]
-      when self.name == 'Rosie Jetson' then [(0..25), (25..75),(75..90),(90..100), (0..0)]
-      when self.name == 'Andy Roid' then [(0..33), (33..66),(66..99),(0..0), (0..0)]
-      when self.name == 'Mr. Roboto' then [(0..20),(20..40), (40..60),(60..80),(80..100)]
+    case name
+    when 'Terminator'
+      then [(0..30), (60..75), (75..90), (90..100), (30..60)]
+    when 'Rusty'
+      then [(0..25), (25..50), (50..90), (0..0), (90..100)]
+    when 'Chappie'
+      then [(0..25), (25..50), (50..75), (0..0), (75..100)]
+    when 'Rosie Jetson'
+      then [(0..25), (25..75), (75..90), (90..100), (0..0)]
+    when 'Andy Roid'
+      then [(0..33), (33..66), (66..99), (0..0), (0..0)]
+    when 'Mr. Roboto'
+      then [(0..20), (20..40), (40..60), (60..80), (80..100)]
     end
   end
 
   def choose
     # self.move = Move.new(Move::VALUES.sample)
     # will likely be a case when we add Mr. Roboto
-    self.move = Move.new(self.probability_based_sample(assign_personality))
+    self.move = Move.new(probability_based_sample(assign_personality))
   end
 end
 
@@ -177,6 +187,10 @@ class RPSGame
     return true if answer.downcase == 'y'
   end
 
+  def display_game_stats
+    puts "This game took a total of #{@moves_history} on your part."
+  end
+
   def play # on 2nd rnd immediate ask again
     display_rules
     loop do
@@ -188,6 +202,7 @@ class RPSGame
       break if winner_stop_playing? # TODO for debug
     end
     puts "\n"
+    display_game_stats
     display_goodbye_message
   end
 end
