@@ -1,12 +1,15 @@
 module Orchestratable
+  private
+
   def system_functionality
     sleep(1)
     system("clear")
   end
 
   def display_rules
-    slow_display(MESSAGES["orchestration"]["rules"])
-    puts "\n"
+    # slow_display(MESSAGES["orchestration"]["rules"])
+    puts (MESSAGES["orchestration"]["rules"])
+    # puts "\n"
   end
 
   def display_move
@@ -59,5 +62,6 @@ module Orchestratable
     computer.choose
     system_functionality
     display_move
+    human.display_log
   end
 end

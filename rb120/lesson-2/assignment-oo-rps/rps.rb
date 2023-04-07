@@ -9,6 +9,9 @@ include Orchestratable
 include Prettifyable
 
 class Move
+  attr_reader :total_moves, :value
+  # todo maybe a class method to track all the moves
+  @@total_moves = 0
   VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
   WINNING_MOVES = {
@@ -21,6 +24,7 @@ class Move
 
   def initialize(value)
     @value = value
+    @@total_moves += 1
   end
 
   def scissors?
@@ -43,16 +47,6 @@ class Move
     @value = 'spock'
   end
 
-  # def probability_based_sample(tendencies)
-  #   case rand(100)
-  #     when arr[0]  then 'Rock'
-  #     when arr[1]  then 'Paper'
-  #     when arr[2]  then 'Scissors'
-  #     when arr[3]  then 'Lizard'
-  #     when arr[4]  then 'Spock'
-  #   end
-  # end
-
   def history_based_sample
     # TODO
   end
@@ -70,16 +64,22 @@ end
 class Player
   include Askable
   include Orchestratable
-  attr_accessor :move, :name, :running_score, :reset_score
+  attr_accessor :move, :name, :running_score, :moves_history, :reset_score
 
   def initialize
     set_name
     @running_score = 0
+    @moves_history =[]
   end
 
-  def update_grand_score # TODO maybe change name
-    @ultimate_score = Score.new
+  def log_move(chosen_move)
+    self.moves_history << chosen_move.value
   end
+
+  def display_log
+    puts "Your current moves log: #{@moves_history}"
+  end
+
 end
 
 class Human < Player
@@ -105,6 +105,7 @@ class Human < Player
       slow_display(MESSAGES["validation"]["name_validation"])
     end
     self.move = Move.new(choice)
+    self.moves_history = log_move(move)
   end
 end
 
@@ -147,7 +148,7 @@ class RPSGame
   include Prettifyable
   include Orchestratable
 
-  attr_accessor :human, :computer
+  attr_accessor :human, :computer, :moves_history
 
   def initialize
     @human = Human.new
