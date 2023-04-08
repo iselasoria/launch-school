@@ -55,9 +55,10 @@ class Player
   end
 
   def display_log
-    favorite = moves_history.group_by {|mc| mc}.map {|k,v| [k, v.size]}
-    tendency = favorite.sort_by! {|par| par[1]}.reverse.first
-    slow_display("Your go-to move was: #{tendency[0]}, you chose that #{tendency[1]} times.")
+    favorite = moves_history.group_by { |mc| mc }.map { |k, v| [k, v.size] }
+    tendency = favorite.sort_by! { |par| par[1] }.reverse.first
+    slow_display("Your go-to move was: #{tendency[0]}, \
+    you chose that #{tendency[1]} times.") # TODO weird space in terminal
   end
 
   def to_s
@@ -149,6 +150,12 @@ class RPSGame
     @computer = Computer.new
   end
 
+  def pre_game
+    display_rules
+    display_oponent_face
+    puts "\n"
+  end
+
   def display_goodbye_message
     slow_display(MESSAGES["orchestration"]["girl_bye"])
   end
@@ -176,9 +183,7 @@ class RPSGame
   end
 
   def play # on 2nd rnd immediate ask again
-    display_rules
-    display_oponent_face
-    puts "\n"
+    pre_game
     display_oponent_secret
     loop do
       game_round
