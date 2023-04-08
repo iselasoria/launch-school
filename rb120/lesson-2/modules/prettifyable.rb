@@ -17,4 +17,5 @@ module Prettifyable
       $stdout.flush
     end
   end
+  puts "\n"
 end

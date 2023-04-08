@@ -7,9 +7,8 @@ module Orchestratable
   end
 
   def display_rules
-    # slow_display(MESSAGES["orchestration"]["rules"])
     puts (MESSAGES["orchestration"]["rules"])
-    # puts "\n"
+    puts "\n"
   end
 
   def display_oponent_secret
@@ -21,6 +20,7 @@ module Orchestratable
     when 'Andy Roid' then slow_display(MESSAGES["opponents"]["intro"]["Andy_Roid"])
     when 'Mr. Roboto' then slow_display(MESSAGES["opponents"]["intro"]["Mr.Roboto"])
     end
+    puts "\n"
   end
   def display_oponent_face
     case computer.name
@@ -85,12 +85,12 @@ module Orchestratable
     system_functionality
     display_move
     puts "\n"
-    human.display_log
     display_winner
   end
 
   def end_of_round
     display_game_stats
+    human.display_log
     display_goodbye_message
   end
 end

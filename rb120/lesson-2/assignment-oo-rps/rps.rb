@@ -55,7 +55,9 @@ class Player
   end
 
   def display_log
-    puts "Your current moves log: #{@moves_history}"
+    favorite = moves_history.group_by {|mc| mc}.map {|k,v| [k, v.size]}
+    tendency = favorite.sort_by! {|par| par[1]}.reverse.first
+    slow_display("Your go-to move was: #{tendency[0]}, you chose that #{tendency[1]} times.")
   end
 
   def to_s
@@ -170,7 +172,7 @@ class RPSGame
   end
 
   def display_game_stats
-    puts "You made #{human.moves_history.size} moves."
+    puts "You made a total of #{human.moves_history.size} moves."
   end
 
   def play # on 2nd rnd immediate ask again
