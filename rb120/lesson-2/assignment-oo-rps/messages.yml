@@ -15,7 +15,87 @@ orchestration:
       3) Scissors -> cuts Paper and decapitates Lizard
       4) Lizard -> eats Paper and poisons Spock
       5) Spock -> smashes Scissors and vaporizes Rock
-
   girl_bye: "Thanks for playing, good bye!"
   go_again: "Would you like to play again? (y/n)"
   tie: "It's a tie!"
+
+opponents:
+  intro:
+    Terminator: "Hasta la vista, baby! You're up against The Terminator himself, his two favorite moves end with 'k'."
+    Rusty: "You're up against Rusty, this robot never chooses lizard; his favorite move is scissors."
+    Chappie: "You're up against Chappie, lad! He doesn't like reptiles."
+    Rosie_Jetson: "You're up against Rosie Jetson, she likes paper and hates spock."
+    Andy_Roid: "You're up against Andy Roid, Andy is a traditionalist when it comes to moves."
+    Mr.Roboto: "I pitty the fool! You're up against Mr. Roboto, he has the most complex move selection logic."
+
+  ascii:
+    Terminator: |-
+      "     ~~~~~~~~~     "
+      "   /           \   "
+      "  /             \  "
+      " | )           ( | "
+      "  \  /C\   /C\  /  "
+      "  /  ~~~   ~~~  \  "
+      "  \___  .^,  ___/  "
+      "   `| _______ |'   "
+      "    | HHHHHHH |    "
+      "    \         /    "
+
+    Rusty: |-
+      "    ,)(8)).     "
+      "  (()))())()).  "
+      " (()"````"::= ) "
+      " )| _    _ ::= )"
+      "(()(o)/ (o) ?(/)"
+      " )(  c   .( :(/)"
+      "(( \ .__. ;,/(/)"
+      " ) `.___,'/ (/) "
+
+
+    Chappie: |-
+      "                ____               "
+      "               ()__ \____          "
+      "                  _-()__ \-_       "
+      "                _-     , /  -_     "
+      "              _-      ./       -_  "
+      "             /"\  /"\           _- "
+      "             \O/  \O/          _-  "
+      "               ,-.            _-   "
+      "               `._;          _-    "
+      "                  -_        _-     "
+      "                   /////\\\\       "
+
+    Rosie_Jetson: |-
+      "   __mmm__   "
+      "*-\ o  o /-* "
+      "   \  - /    "
+      "    WWWW     "
+      "  /   •   \  "
+      " /    •    \ "
+      " \    •    / "
+      "   ---T---   "
+      "      d      "
+
+
+    Andy_Roid: |-
+      " o       o "
+      "  \_____/  "
+      "  /=O=O=\  "
+      " /   ^   \ "
+      " \ \___/ / "
+      "  \_ V _/  "
+
+
+
+    Mr.Roboto: |-
+      "  ,    ,    /\   /\   "
+      " /( /\ )\  _\ \_/ /_  "
+      " |\_||_/| < \_   _/ >"
+      " \______/  \|0   0|/"
+      "   _\/_   _(_  ^  _)_"
+      "  ( () ) /`\|V"""V|/`\"
+      "    {}   \  \_____/  /"
+      "    ()   /\   )=(   /\"
+      "    {}  /  \_/\=/\_/  \"
+
+

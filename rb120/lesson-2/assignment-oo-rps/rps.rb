@@ -25,26 +25,6 @@ class Move
     @value = value
   end
 
-  def scissors?
-    @value == 'scissors'
-  end
-
-  def rock?
-    @value == 'rock'
-  end
-
-  def paper?
-    @value == 'paper'
-  end
-
-  def lizard?
-    @value = 'lizard'
-  end
-
-  def spock?
-    @value = 'spock'
-  end
-
   def history_based_sample
     # TODO
   end
@@ -61,7 +41,6 @@ end
 
 class Player
   include Askable
-  include Orchestratable
 
   attr_accessor :move, :name, :running_score, :moves_history, :reset_score
 
@@ -196,6 +175,9 @@ class RPSGame
 
   def play # on 2nd rnd immediate ask again
     display_rules
+    display_oponent_face
+    puts "\n"
+    display_oponent_secret
     loop do
       game_round
       increment_score
