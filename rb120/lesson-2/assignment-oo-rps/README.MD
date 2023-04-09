@@ -1,6 +1,14 @@
 # Design Decisions #
 ---
 
+# Table of Contents
+1. [Move](#move-repeat)
+2. [Player](#player-bust_in_silhouette)
+3. [Human](#human-woman)
+4. [Computer](#computer-desktop_computer)
+5. [RPSGame](#rpsgame-joystick)
+
+---
 ### Classes
 
 ---
