@@ -70,8 +70,19 @@ end
 
 class Human < Player
   attr_reader :moves_history
+  @@human_input = nil
 
   include Prettifyable
+
+  def shorthand_moves(user_choice) # might always choose spock
+    case user_choice
+    when "r" then @@human_input = 'rock'
+    when "p" then @@human_input = 'paper'
+    when "s" then @@human_input = 'scissors'
+    when "l" then @@human_input = 'lizard'
+    when "sp" then @@human_input = 'spock'
+    end
+  end
 
   def set_name
     n = ""
@@ -91,6 +102,7 @@ class Human < Player
     loop do
       prompt(MESSAGES["choice"]["options"])
       choice = gets.chomp.downcase
+      choice = shorthand_moves(choice)
       break if Move::VALUES.include?(choice)
       slow_display(MESSAGES["validation"]["move_validation"])
       puts "\n"
