@@ -1,14 +1,14 @@
 module Orchestratable
   private
 
-  def system_functionality
-    sleep(1)
+  def system_functionality(sec)
+    sleep(sec)
     system("clear")
   end
 
-  def display_rules
+  def display_rules(sec)
     puts (MESSAGES["orchestration"]["rules"])
-    puts "\n"
+    system_functionality(sec)
   end
 
   def display_move
@@ -65,7 +65,7 @@ module Orchestratable
   def game_round
     human.choose
     computer.choose
-    system_functionality
+    system_functionality(1)
     display_move
     puts "\n"
     display_winner

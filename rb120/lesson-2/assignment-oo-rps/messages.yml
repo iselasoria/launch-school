@@ -9,7 +9,7 @@ choice:
 
 orchestration:
   rules: |- # no line break at the end
-      Remember the rules-
+      Here are the rules-
       1) Rock -> crushes Lizard and Scissors
       2) Paper -> covers Rock and disproves Spock
       3) Scissors -> cuts Paper and decapitates Lizard

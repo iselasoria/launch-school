@@ -77,7 +77,7 @@ class Human < Player
     n = ""
     loop do
       slow_display(MESSAGES["validation"]["welcome"])
-      n = gets.chomp.capitalize
+      n = gets.chomp.strip.capitalize
       break unless n.empty?
       slow_display(MESSAGES["validation"]["invalid_choice"])
     end
@@ -120,13 +120,15 @@ class RPSGame
 
   attr_accessor :human, :computer, :moves_history
 
+  WINNING_SCORE = 5
+
   def initialize
     @human = Human.new
     @computer = Computer.new
   end
 
   def pre_game
-    display_rules
+    display_rules(6)
     display_opponent_face
     puts "\n"
   end
@@ -136,8 +138,8 @@ class RPSGame
   end
 
   def winner_stop_playing?
-    (human.running_score >= 5 && play_again? == false) ||
-      (computer.running_score >= 5 && play_again? == false)
+    (human.running_score >= WINNING_SCORE && play_again? == false) ||
+      (computer.running_score >= WINNING_SCORE && play_again? == false)
   end
 
   def play_again?
@@ -166,7 +168,7 @@ class RPSGame
       display_scoreboard
       display_ultimate_winner
       # break if winner_stop_playing? # TODO for debug
-      if( human.running_score >= 5) || (computer.running_score >= 5)
+      if( human.running_score >= WINNING_SCORE) || (computer.running_score >= WINNING_SCORE)
         if play_again?
           wipe_scoreboard
           next
