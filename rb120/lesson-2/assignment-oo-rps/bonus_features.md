@@ -80,4 +80,4 @@ How would you approach a feature like this?
 | Rosie Jetson       | tends to choose paper, and never chooses spock            |
 | Andy Roid          | chooses only rock, paper, or scissors                     |
 | Rusty              | tends to choose scissors, and never chooses lizard        |
-| Mr. Roboto         | chooses only moves he has not chosen in the current round |
+| Mr. Roboto         | chooses offensive moves, but you can still beat him       |

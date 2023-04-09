@@ -1,4 +1,5 @@
 require "yaml"
+require "pry"
 require "../modules/askable.rb"
 require "../modules/orchestratable.rb"
 require "../modules/prettifyable.rb"
@@ -43,6 +44,8 @@ class Player
   include Askable
 
   attr_accessor :move, :name, :running_score, :moves_history, :reset_score
+
+  @@previous_move = []
 
   def initialize
     set_name
@@ -92,6 +95,7 @@ class Human < Player
     end
     self.move = Move.new(choice)
     self.moves_history = log_move(move)
+    @@previous_move = move
   end
 end
 
@@ -103,37 +107,48 @@ class Computer < Player
     ].sample
   end
 
-  def probability_based_sample(tendencies)
-    case rand(100)
-    when tendencies[0] then 'rock'
-    when tendencies[1] then 'paper'
-    when tendencies[2] then 'scissors'
-    when tendencies[3] then 'lizard'
-    when tendencies[4] then 'spock'
-    end
-  end
+  # def attack(human_turn)
+  #   case human_turn
+  #   when "rock" then [(0..25), (25..50), (0..0), (50..75), (75..100)] # ['paper', 'spock', 'rock', 'lizard']
+  #   when "paper" then [(0..0), (0..0), (0..50), (50..100), (0..0)] # ['lizard', 'scissors']
+  #   when "scissors" then [(0..0), (0..0), (0..50), (0..0), (50..100)] # ['spock', 'scissors']
+  #   when "lizard" then [(0..50), (0..0), (50..100), (0..0), (0..0)] # ['rock', 'scissors']
+  #   when "spock" then [(0..0), (0..0), (0..33), (33..66), (66..100)] #  ['lizard', 'spock', 'scissors']
+  #   end
+  # end
 
-  def assign_personality
-    case name
-    when 'Terminator'
-      then [(0..30), (60..75), (75..90), (90..100), (30..60)]
-    when 'Rusty'
-      then [(0..25), (25..50), (50..90), (0..0), (90..100)]
-    when 'Chappie'
-      then [(0..25), (25..50), (50..75), (0..0), (75..100)]
-    when 'Rosie Jetson'
-      then [(0..25), (25..75), (75..90), (90..100), (0..0)]
-    when 'Andy Roid'
-      then [(0..33), (33..66), (66..99), (0..0), (0..0)]
-    when 'Mr. Roboto'
-      then [(0..20), (20..40), (40..60), (60..80), (80..100)]
-    end
-  end
+  # def probability_based_sample(tendencies)
+  #   case rand(100)
+  #   when tendencies[0] then 'rock'
+  #   when tendencies[1] then 'paper'
+  #   when tendencies[2] then 'scissors'
+  #   when tendencies[3] then 'lizard'
+  #   when tendencies[4] then 'spock'
+  #   end
+  # end
+
+  # def assign_personality(human_turn)
+  #   case name
+  #   when 'Terminator'
+  #     then [(0..30), (60..75), (75..90), (90..100), (30..60)]
+  #   when 'Rusty'
+  #     then [(0..25), (25..50), (50..90), (0..0), (90..100)]
+  #   when 'Chappie'
+  #     then [(0..25), (25..50), (50..75), (0..0), (75..100)]
+  #   when 'Rosie Jetson'
+  #     then [(0..25), (25..75), (75..90), (90..100), (0..0)]
+  #   when 'Andy Roid'
+  #     then [(0..33), (33..66), (66..99), (0..0), (0..0)]
+  #   when 'Mr. Roboto'
+  #     then attack(human_turn) # [(0..20), (20..40), (40..60), (60..80), (80..100)]
+  #   end
+  # end
 
   def choose
     # self.move = Move.new(Move::VALUES.sample)
     # will likely be a case when we add Mr. Roboto
-    self.move = Move.new(probability_based_sample(assign_personality))
+    # binding.pry
+    self.move = Move.new(probability_based_sample(assign_personality(@@previous_move.value)))
   end
 end
 
