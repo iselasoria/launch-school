@@ -48,9 +48,9 @@ module Orchestratable
   end
 
   def display_ultimate_winner
-    if human.running_score == 5 # TODO
+    if human.running_score == RPSGame::WINNING_SCORE # TODO
       flashing_display("#{human.name} is the ultimate winner!")
-    elsif computer.running_score == 5
+    elsif computer.running_score == RPSGame::WINNING_SCORE
       flashing_display("#{computer.name} is the ultimate winner!")
     end
     puts "\n"
