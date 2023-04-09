@@ -136,6 +136,7 @@ class RPSGame
   attr_accessor :human, :computer, :moves_history
 
   WINNING_SCORE = 5
+  @@kill_game = false
 
   def initialize
     @human = Human.new
@@ -175,7 +176,7 @@ class RPSGame
     puts "You made a total of #{human.moves_history.size} moves."
   end
 
-  def play # on 2nd rnd immediate ask again
+  def play
     pre_game
     display_opponent_secret
     loop do
@@ -183,20 +184,22 @@ class RPSGame
       increment_score
       display_scoreboard
       display_ultimate_winner
-      # break if winner_stop_playing? # TODO for debug
-      if( human.running_score >= WINNING_SCORE) || (computer.running_score >= WINNING_SCORE)
-        if play_again?
-          wipe_scoreboard
-          system_functionality
-          display_scoreboard
-          next
-        else
-          break
-        end
-      end
+      handle_new_round
+      break if @@kill_game
+      # next
+      # if( human.running_score >= WINNING_SCORE) || (computer.running_score >= WINNING_SCORE)
+      #   if play_again?
+      #     wipe_scoreboard
+      #     system_functionality
+      #     display_scoreboard
+      #     next
+      #   else
+      #     break
+      #   end
+      # end
     end
-    puts "\n"
-    end_of_round
+    # puts "\n"
+    # end_of_round
   end
 end
 

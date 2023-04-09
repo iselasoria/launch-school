@@ -1,6 +1,10 @@
 module Orchestratable
   private
 
+  def prompt(msg)
+    puts "=> #{msg}"
+  end
+
   def system_functionality(sec=2)
     sleep(sec)
     system("clear")
@@ -48,7 +52,7 @@ module Orchestratable
   end
 
   def display_ultimate_winner
-    if human.running_score == RPSGame::WINNING_SCORE # TODO
+    if human.running_score == RPSGame::WINNING_SCORE
       flashing_display("#{human.name} is the ultimate winner!")
     elsif computer.running_score == RPSGame::WINNING_SCORE
       flashing_display("#{computer.name} is the ultimate winner!")
@@ -75,5 +79,31 @@ module Orchestratable
     display_game_stats
     human.display_log
     display_goodbye_message
+  end
+
+  def new_opponent_needed?
+    prompt("Do you want a new opponent? (y/n)")
+    user_io = gets.chomp.downcase
+    user_io == 'y' ? true : false
+  end
+
+  def handle_new_round
+    if( human.running_score >= RPSGame::WINNING_SCORE) || (computer.running_score >= RPSGame::WINNING_SCORE)
+      if play_again?
+        if new_opponent_needed?
+          system_functionality
+          computer.set_name
+          display_opponent_face
+          display_opponent_secret
+        end
+        wipe_scoreboard
+        system_functionality
+        display_scoreboard
+      else
+        @@kill_game = true
+        system_functionality
+        end_of_round
+      end
+    end
   end
 end

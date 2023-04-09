@@ -7,7 +7,7 @@ validation:
   yes_or_no: "Sorry, you must choose y or n."
 
 choice:
-  options: "Please choose: rock, paper, scissors, lizard, spock:"
+  options: "Please choose: (r)ock, (p)aper, (s)cissors, (l)izard, (sp)ock:"
 
 orchestration:
   rules: |- # no line break at the end
