@@ -75,11 +75,13 @@ class Human < Player
 
   def set_name
     n = ""
+    slow_display(MESSAGES["validation"]["welcome"])
+    system_functionality(2)
     loop do
-      slow_display(MESSAGES["validation"]["welcome"])
+      slow_display(MESSAGES["validation"]["enter_name"])
       n = gets.chomp.strip.capitalize
       break unless n.empty?
-      slow_display(MESSAGES["validation"]["invalid_choice"])
+      slow_display(MESSAGES["validation"]["move_validation"])
     end
     self.name = n
   end
@@ -90,7 +92,7 @@ class Human < Player
       prompt(MESSAGES["choice"]["options"])
       choice = gets.chomp.downcase
       break if Move::VALUES.include?(choice)
-      slow_display(MESSAGES["validation"]["name_validation"])
+      slow_display(MESSAGES["validation"]["move_validation"])
     end
     self.move = Move.new(choice)
     self.moves_history = log_move(move)

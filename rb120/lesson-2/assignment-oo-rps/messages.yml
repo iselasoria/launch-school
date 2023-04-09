@@ -1,6 +1,8 @@
 validation:
-  welcome: "Welcome! This isn't your typical rock, paper scissors game. Enter your name to learn the rules and meet your opponent: "
+  welcome: "Welcome! This isn't your typical rock, paper scissors game. Let's meet your opponent..."
+  enter_name: "Enter your name:"
   name_validation: "Sorry, must enter a value: "
+  move_validation: "Sorry, invalid move."
   invalid_choice: "Sorry, invalid choice."
   yes_or_no: "Sorry, you must choose y or n."
 
