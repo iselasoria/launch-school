@@ -1,6 +1,6 @@
-## Bonus Features
+# Bonus Features
 ---
-1. Keeping Score
+## Keeping Score
 
    Make this game more interesting by keeping track of a score-- the player
    that reaches the score of 10 wins the game.
@@ -20,7 +20,7 @@
         - we can write methods that will give us access to how we view the data and how we interact with it from outside the class
         - objects in this custom class become collaborator objects to the `Player` class
 ---
-2. Add Lizard and Spock
+## Add Lizard and Spock
 
 |     Move      |     Wins Over     |
 | ------------- |:-----------------:|
@@ -31,7 +31,7 @@
 | Spock         | rock, scissors    |
 ---
 
-3. Add a class for each move
+## Add a class for each move
 Adding the following classes:
   - `rock`
   - `paper`
@@ -60,10 +60,12 @@ I started coding it and halfway through as I saw the code getting longer and wit
 As the remaining features get implemented this might make sense, in which case I'll come back and amend. As of now, I won't implement this feature.
 
 ---
-4. Keep track of a history of moves
+## Keep track of a history of moves
+
 This is tracked via an instance variable that the `Human` object controls. Each time a new `Move` object is instantiated, there is a call to a method that logs the current move in the round. The move is also logged to the @@previous_move class variable.
+
 ---
-5. Computer Personalities
+## Computer Personalities
 Give each robot a personality, a tendency toward or against choosing certain moves.
 How would you approach a feature like this?
 

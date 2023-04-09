@@ -34,7 +34,7 @@ module Orchestratable
     end
   end
 
-  def display_scoreboard # TODO Score class
+  def display_scoreboard
     human_padding = human.running_score.to_s.center(human.name.size)
     human_size = human.name.size
     comp_padding = computer.running_score.to_s.center(computer.name.size)
