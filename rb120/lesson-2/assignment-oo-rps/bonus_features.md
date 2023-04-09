@@ -61,7 +61,7 @@ As the remaining features get implemented this might make sense, in which case I
 
 ---
 4. Keep track of a history of moves
-
+This is tracked via an instance variable that the `Human` object controls. Each time a new `Move` object is instantiated, there is a call to a method that logs the current move in the round. The move is also logged to the @@previous_move class variable.
 ---
 5. Computer Personalities
 Give each robot a personality, a tendency toward or against choosing certain moves.
