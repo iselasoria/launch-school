@@ -15,7 +15,7 @@ orchestration:
       3) Scissors -> cuts Paper and decapitates Lizard
       4) Lizard -> eats Paper and poisons Spock
       5) Spock -> smashes Scissors and vaporizes Rock
-  girl_bye: "Thanks for playing, good bye!"
+  bye: "Thanks for playing, good bye!"
   go_again: "Would you like to play again? (y/n)"
   tie: "It's a tie!"
 

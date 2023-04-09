@@ -3,11 +3,14 @@ require "pry"
 require "../modules/askable.rb"
 require "../modules/orchestratable.rb"
 require "../modules/prettifyable.rb"
+require "../modules/confrontable.rb"
+
 MESSAGES = YAML.load_file("messages.yml")
 
 include Askable
 include Orchestratable
 include Prettifyable
+include Confrontable
 
 class Move
   attr_reader :total_moves, :value
@@ -24,10 +27,6 @@ class Move
 
   def initialize(value)
     @value = value
-  end
-
-  def history_based_sample
-    # TODO
   end
 
   def win?(other_move)
@@ -61,7 +60,7 @@ class Player
     favorite = moves_history.group_by { |mc| mc }.map { |k, v| [k, v.size] }
     tendency = favorite.sort_by! { |par| par[1] }.reverse.first
     slow_display("Your go-to move was: #{tendency[0]}, \
-    you chose that #{tendency[1]} times.") # TODO weird space in terminal
+you chose that #{tendency[1]} times.")
   end
 
   def to_s
@@ -107,46 +106,7 @@ class Computer < Player
     ].sample
   end
 
-  # def attack(human_turn)
-  #   case human_turn
-  #   when "rock" then [(0..25), (25..50), (0..0), (50..75), (75..100)] # ['paper', 'spock', 'rock', 'lizard']
-  #   when "paper" then [(0..0), (0..0), (0..50), (50..100), (0..0)] # ['lizard', 'scissors']
-  #   when "scissors" then [(0..0), (0..0), (0..50), (0..0), (50..100)] # ['spock', 'scissors']
-  #   when "lizard" then [(0..50), (0..0), (50..100), (0..0), (0..0)] # ['rock', 'scissors']
-  #   when "spock" then [(0..0), (0..0), (0..33), (33..66), (66..100)] #  ['lizard', 'spock', 'scissors']
-  #   end
-  # end
-
-  # def probability_based_sample(tendencies)
-  #   case rand(100)
-  #   when tendencies[0] then 'rock'
-  #   when tendencies[1] then 'paper'
-  #   when tendencies[2] then 'scissors'
-  #   when tendencies[3] then 'lizard'
-  #   when tendencies[4] then 'spock'
-  #   end
-  # end
-
-  # def assign_personality(human_turn)
-  #   case name
-  #   when 'Terminator'
-  #     then [(0..30), (60..75), (75..90), (90..100), (30..60)]
-  #   when 'Rusty'
-  #     then [(0..25), (25..50), (50..90), (0..0), (90..100)]
-  #   when 'Chappie'
-  #     then [(0..25), (25..50), (50..75), (0..0), (75..100)]
-  #   when 'Rosie Jetson'
-  #     then [(0..25), (25..75), (75..90), (90..100), (0..0)]
-  #   when 'Andy Roid'
-  #     then [(0..33), (33..66), (66..99), (0..0), (0..0)]
-  #   when 'Mr. Roboto'
-  #     then attack(human_turn) # [(0..20), (20..40), (40..60), (60..80), (80..100)]
-  #   end
-  # end
-
   def choose
-    # self.move = Move.new(Move::VALUES.sample)
-    # will likely be a case when we add Mr. Roboto
     # binding.pry
     self.move = Move.new(probability_based_sample(assign_personality(@@previous_move.value)))
   end
@@ -172,7 +132,7 @@ class RPSGame
   end
 
   def display_goodbye_message
-    slow_display(MESSAGES["orchestration"]["girl_bye"])
+    slow_display(MESSAGES["orchestration"]["bye"])
   end
 
   def winner_stop_playing?
