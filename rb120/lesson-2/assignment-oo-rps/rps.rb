@@ -93,6 +93,7 @@ class Human < Player
       choice = gets.chomp.downcase
       break if Move::VALUES.include?(choice)
       slow_display(MESSAGES["validation"]["move_validation"])
+      puts "\n"
     end
     self.move = Move.new(choice)
     self.moves_history = log_move(move)
