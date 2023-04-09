@@ -1,5 +1,4 @@
 require "yaml"
-require "pry"
 require "../modules/askable.rb"
 require "../modules/orchestratable.rb"
 require "../modules/prettifyable.rb"
@@ -186,20 +185,7 @@ class RPSGame
       display_ultimate_winner
       handle_new_round
       break if @@kill_game
-      # next
-      # if( human.running_score >= WINNING_SCORE) || (computer.running_score >= WINNING_SCORE)
-      #   if play_again?
-      #     wipe_scoreboard
-      #     system_functionality
-      #     display_scoreboard
-      #     next
-      #   else
-      #     break
-      #   end
-      # end
     end
-    # puts "\n"
-    # end_of_round
   end
 end
 
