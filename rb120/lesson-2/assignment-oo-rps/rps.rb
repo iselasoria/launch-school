@@ -1,8 +1,8 @@
 require "yaml"
-require "../modules/askable.rb"
-require "../modules/orchestratable.rb"
-require "../modules/prettifyable.rb"
-require "../modules/confrontable.rb"
+require "./modules/askable.rb"
+require "./modules/orchestratable.rb"
+require "./modules/prettifyable.rb"
+require "./modules/confrontable.rb"
 
 MESSAGES = YAML.load_file("messages.yml")
 
