@@ -56,6 +56,12 @@ module Orchestratable
     puts "\n"
   end
 
+  def wipe_scoreboard
+    human.running_score = 0
+    computer.running_score = 0
+    puts "Clearning the score board, get ready for another round!"
+  end
+
   def game_round
     human.choose
     computer.choose

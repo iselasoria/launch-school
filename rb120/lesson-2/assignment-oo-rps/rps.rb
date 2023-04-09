@@ -42,7 +42,7 @@ end
 class Player
   include Askable
 
-  attr_accessor :move, :name, :running_score, :moves_history, :reset_score
+  attr_accessor :move, :name, :running_score, :moves_history
 
   @@previous_move = []
 
@@ -165,7 +165,15 @@ class RPSGame
       increment_score
       display_scoreboard
       display_ultimate_winner
-      break if winner_stop_playing? # TODO for debug
+      # break if winner_stop_playing? # TODO for debug
+      if( human.running_score >= 5) || (computer.running_score >= 5)
+        if play_again?
+          wipe_scoreboard
+          next
+        else
+          break
+        end
+      end
     end
     puts "\n"
     end_of_round

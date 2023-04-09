@@ -1,5 +1,5 @@
 validation:
-  welcome: "Welcome to RPS, enter your name to meet your opponent: "
+  welcome: "Welcome! This isn't your typical rock, paper scissors game. Enter your name to learn the rules and meet your opponent: "
   name_validation: "Sorry, must enter a value: "
   invalid_choice: "Sorry, invalid choice."
   yes_or_no: "Sorry, you must choose y or n."
@@ -26,7 +26,7 @@ opponents:
     Chappie: "You're up against Chappie, lad! He doesn't like reptiles."
     Rosie_Jetson: "You're up against Rosie Jetson, she likes paper and hates spock."
     Andy_Roid: "You're up against Andy Roid, Andy is a traditionalist when it comes to moves."
-    Mr.Roboto: "I pitty the fool! You're up against Mr. Roboto, he has the most complex move selection logic."
+    Mr.Roboto: "I pity the fool! You're up against Mr. Roboto, he has the most complex move selection logic."
 
   ascii:
     Terminator: |-
