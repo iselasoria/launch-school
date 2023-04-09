@@ -1,5 +1,5 @@
 module Confrontable
-
+private
   def display_opponent_secret
     case computer.name
     when 'Terminator' then slow_display(MESSAGES["opponents"]["intro"]["Terminator"])

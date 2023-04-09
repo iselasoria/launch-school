@@ -174,6 +174,8 @@ class RPSGame
       if( human.running_score >= WINNING_SCORE) || (computer.running_score >= WINNING_SCORE)
         if play_again?
           wipe_scoreboard
+          system_functionality(2)
+          display_scoreboard
           next
         else
           break
