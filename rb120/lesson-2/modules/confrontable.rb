@@ -1,6 +1,6 @@
 module Confrontable
 
-  def display_oponent_secret
+  def display_opponent_secret
     case computer.name
     when 'Terminator' then slow_display(MESSAGES["opponents"]["intro"]["Terminator"])
     when 'Rusty' then slow_display(MESSAGES["opponents"]["intro"]["Rusty"])
@@ -11,7 +11,7 @@ module Confrontable
     end
     puts "\n"
   end
-  def display_oponent_face
+  def display_opponent_face
     case computer.name
     when 'Terminator' then puts MESSAGES["opponents"]["ascii"]["Terminator"]
     when 'Rusty' then puts MESSAGES["opponents"]["ascii"]["Rusty"]

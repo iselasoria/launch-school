@@ -127,7 +127,7 @@ class RPSGame
 
   def pre_game
     display_rules
-    display_oponent_face
+    display_opponent_face
     puts "\n"
   end
 
@@ -159,7 +159,7 @@ class RPSGame
 
   def play # on 2nd rnd immediate ask again
     pre_game
-    display_oponent_secret
+    display_opponent_secret
     loop do
       game_round
       increment_score
