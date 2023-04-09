@@ -74,7 +74,7 @@ class Human < Player
 
   include Prettifyable
 
-  def shorthand_moves(user_choice) # might always choose spock
+  def shorthand_moves(user_choice)
     case user_choice
     when "r" then @@human_input = 'rock'
     when "p" then @@human_input = 'paper'
@@ -87,12 +87,12 @@ class Human < Player
   def set_name
     n = ""
     slow_display(MESSAGES["validation"]["welcome"])
-    system_functionality(2)
+    system_functionality
     loop do
       slow_display(MESSAGES["validation"]["enter_name"])
       n = gets.chomp.strip.capitalize
       break unless n.empty?
-      slow_display(MESSAGES["validation"]["move_validation"])
+      slow_display(MESSAGES["validation"]["name_validation"])
     end
     self.name = n
   end
@@ -143,6 +143,7 @@ class RPSGame
   end
 
   def pre_game
+    system_functionality
     display_rules(6)
     display_opponent_face
     puts "\n"
@@ -186,7 +187,7 @@ class RPSGame
       if( human.running_score >= WINNING_SCORE) || (computer.running_score >= WINNING_SCORE)
         if play_again?
           wipe_scoreboard
-          system_functionality(2)
+          system_functionality
           display_scoreboard
           next
         else

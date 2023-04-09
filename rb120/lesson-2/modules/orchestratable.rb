@@ -1,7 +1,7 @@
 module Orchestratable
   private
 
-  def system_functionality(sec)
+  def system_functionality(sec=2)
     sleep(sec)
     system("clear")
   end
