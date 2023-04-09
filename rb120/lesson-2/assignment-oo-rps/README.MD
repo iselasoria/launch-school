@@ -1,5 +1,6 @@
 # Design Decisions #
 ---
+![alt-text](rps-demo.gif)
 
 # Table of Contents
 1. [Move](#move-repeat)
