@@ -1,12 +1,10 @@
 require "yaml"
-require "./modules/askable.rb"
 require "./modules/orchestratable.rb"
 require "./modules/prettifyable.rb"
 require "./modules/confrontable.rb"
 
 MESSAGES = YAML.load_file("messages.yml")
 
-include Askable
 include Orchestratable
 include Prettifyable
 include Confrontable
@@ -39,7 +37,6 @@ class Move
 end
 
 class Player
-  include Askable
 
   attr_accessor :move, :name, :running_score, :moves_history
 
@@ -128,7 +125,6 @@ end
 
 # Game Orchestration Engine
 class RPSGame
-  include Askable
   include Prettifyable
   include Orchestratable
 

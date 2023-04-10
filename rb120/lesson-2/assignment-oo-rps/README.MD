@@ -40,6 +40,11 @@
 - inherits from Player
 - behaviors:
   - asks user for name until they give one
+
+    ```diff
+    added improve functionality to reject empty strings
+    ```
+
   - asks user for a move until they give one that matches the valid moved predetermined in the `Move` class
   - logs the current move the human just made to the moves history
   - reassigns the class variable `@@previous_move` to the latest move, this gets used by computer personalities
