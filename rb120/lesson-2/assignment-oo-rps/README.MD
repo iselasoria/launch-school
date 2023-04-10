@@ -41,13 +41,15 @@
 - behaviors:
   - asks user for name until they give one
 
-    ```diff
-    added improve functionality to reject empty strings
-    ```
-
   - asks user for a move until they give one that matches the valid moved predetermined in the `Move` class
   - logs the current move the human just made to the moves history
   - reassigns the class variable `@@previous_move` to the latest move, this gets used by computer personalities
+
+    ```diff
+    + added improve functionality to reject empty strings
+    + added a method to handle short hand user input for better user experience
+    + class method to handle the reset of user input in the shorthand method
+    ```
 
 
 #### Computer :desktop_computer:
@@ -69,15 +71,21 @@
   - enters a game cycle
       - enters a round mini-cycle where human and robot alternate making choices
       - displays current round's win
-      - displays wultimate winner
+      - displays ultimate winner
       - breaks if the user doesn't want to play again
     - end of round functionality
       - displays game stats and goodbye message
-
+    ```diff
+    + added a constant to check ultimate winner
+    + class variable used to break out of the game loop (see specifications on handling of new round)
+    ```
 
 ### Modules
-1. Askable
-    - `prompt`
+1. ~~Askable~~
+    - ~~`prompt`~~
+    ```diff
+    - moved this single method to Orchestratable module
+    ```
 2. Confrontable
 
     Holds all methods related to the opponent or to game strategy
@@ -92,6 +100,7 @@
 
     Holds methods related to the orchestration of the game that were beyond the basic handling of the game loop.
 
+    - `prompt`
     - `system_functionality`
     - `display_rules`
     - `display_move`
@@ -102,7 +111,10 @@
     - `game_round`
     - `end_of_round`
 
-
+    ```diff
+    + prompt method was added
+    + new method for handling a new round: asks for new opponent preference, makes use of the class variable to kill game from inside the external method (external to the loop).
+    ```
 
 4. Prettifyable
 
