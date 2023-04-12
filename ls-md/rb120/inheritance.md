@@ -1,0 +1,1 @@
+Ruby implements single- [[inheritance]]. This means that behaviors are passed down from a [[superclass]] to a [[subclass]].

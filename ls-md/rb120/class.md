@@ -1,0 +1,1 @@
+A blueprint for making an [object]. Defines behaviors its objects will have access to. Classes encapsulate behaviors of an object. 

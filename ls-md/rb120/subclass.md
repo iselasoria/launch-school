@@ -1,0 +1,1 @@
+Inherits behavior from a [[superclass]]

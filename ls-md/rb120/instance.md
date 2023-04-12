@@ -1,0 +1,1 @@
+An instance of a [[class]] is an object that has been made with it's functionality as definition. The instance is the cookie that was made with the cookie cutter. 
