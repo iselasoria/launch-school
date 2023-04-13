@@ -1,5 +1,5 @@
 ### Mental Model (so far)
-- `class` --> encapsulates behavior, it holds behavior for a kind of object 
+- `class` --> encapsulates behavior, it holds behavior for a kind of [[object]] 
 - `instance methods`--> are the behavior, public instance methods are the public interface of the class 
 - `instance variables`--> hold the value of the state of objects 
 state-- instance variables and their values. not shared

@@ -1,1 +1,2 @@
 over-write 
+[[inheritance]]

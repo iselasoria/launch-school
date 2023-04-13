@@ -1,0 +1,17 @@
+{
+	"nodes":[
+		{"type":"text","text":"Small Exercises","id":"d3d829a3c388f98a","x":-420,"y":-360,"width":250,"height":60,"color":"5"},
+		{"type":"text","text":"Written Assessment","id":"5388d3ebd1428f76","x":-20,"y":-330,"width":250,"height":60,"color":"#044e49"},
+		{"type":"text","text":"Second Pass Lessons \n","id":"e1c897ac07f0169e","x":-420,"y":-270,"width":250,"height":60,"color":"5"},
+		{"type":"text","text":"Spot Wiki Problems\n\n","id":"86c5d0518c7e639e","x":-420,"y":-180,"width":250,"height":60,"color":"5"},
+		{"id":"4f128acc4ef01551","x":-20,"y":-210,"width":250,"height":60,"color":"#054d48","type":"text","text":"Mock Interviews\n"},
+		{"type":"text","text":"Live Interview Assessment","id":"00e19fbe3b8b33e6","x":40,"y":-60,"width":250,"height":60,"color":"#044e49"}
+	],
+	"edges":[
+		{"id":"168b787d4f61315f","fromNode":"d3d829a3c388f98a","fromSide":"right","toNode":"5388d3ebd1428f76","toSide":"left"},
+		{"id":"f56d69b1d55361fc","fromNode":"e1c897ac07f0169e","fromSide":"right","toNode":"5388d3ebd1428f76","toSide":"left"},
+		{"id":"fed9c473054b97a2","fromNode":"86c5d0518c7e639e","fromSide":"right","toNode":"5388d3ebd1428f76","toSide":"left"},
+		{"id":"545e3c84c464ea51","fromNode":"5388d3ebd1428f76","fromSide":"bottom","toNode":"4f128acc4ef01551","toSide":"top"},
+		{"id":"9c226a34f685931e","fromNode":"4f128acc4ef01551","fromSide":"bottom","toNode":"00e19fbe3b8b33e6","toSide":"top"}
+	]
+}

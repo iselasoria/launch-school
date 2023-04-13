@@ -1,4 +1,4 @@
-[[Object Oriented Programming]]
+[[oop]]
 
 Objects encapsulate [[state]] meaning they make their [[instance variables ]]inaccessible outside of themselves . They are instances of the class that was used to create them and have access to their class' instance methods. However, they do _not_ share state with any other instance of the same class, since [[inheritance]] is a matter of class-to-class or -class-to-module. This is also why can say that objects do not inherit behavior from their [[class]], instead classes define behavior for objects. 
 
