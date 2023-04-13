@@ -1,5 +1,5 @@
 The creation of an [[object]] of a given [[class]]. 
-When we instantiate an object we are making a call to the class method `::new` which in turn triggers the [[initialize]] method and gets the object created. 
+When we instantiate an object we are making a call to the class method `::new` which in turn triggers the [[initialize]] #constructor method and gets the object created. 
 
 ---
 

@@ -1,0 +1,1 @@
+These variables are initialize on the [[class]] itself. 
