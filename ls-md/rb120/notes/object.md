@@ -24,3 +24,5 @@ We can instantiate an object like this:
 ```ruby
 fido = Dog.new 
 ```
+
+tags: #major 

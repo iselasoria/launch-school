@@ -6,3 +6,5 @@ A blueprint for making an [object]. Classes define behaviors their objects will 
 In Ruby, there is only single inheritance, and it happens from class to class. This means a class can only inherit from one other class at a time-- from the [[superclass]]. 
 
 Ruby does have a way to implement [[multiple inheritance]]-- module [[mixins]]. This way, a class can borrow behaviors defined elsewhere. 
+
+tags: #major
