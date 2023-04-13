@@ -1,1 +1,0 @@
-Objects encapsulate [[state]]

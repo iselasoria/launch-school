@@ -56,3 +56,6 @@ p dog.method
 p Dog.ancestors
 ```
 
+#### tags
+tags: #moc
+
