@@ -1,5 +1,6 @@
 ```diff
 
-@@Placeholder for now. 
+- Placeholder for now. 
 
 ```
+![mental model](self-example.png)
