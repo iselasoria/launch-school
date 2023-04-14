@@ -27,3 +27,48 @@ p str1.equal?str2 # false
 p str1.object_id  # 60
 p str2.object_id  # 80
 ```
+
+#### A word on symbols and integers
+Symbols and integers are immutable in Ruby. Since we know we can't change them then to be pointing to the same value means to also _BE_ the same object. 
+```ruby 
+arr1 = [1, 2, 3]
+arr2 = [1, 2, 3]
+
+arr1.object_id == arr2.object_id # => false
+
+
+sym1 = :something
+sym2 = :something
+
+sym1.object_id == sym2.object_id # => true
+
+
+int1 = 5
+int2 = 5
+
+int1.object_id == int2.object_id # => true
+```
+
+	If we define custom classes and we want to compare them, we _must_ define the implementation of how we expect `==` to behave. 
+
+Here we have a custom class representing Physics courses.  We instantiate to objects of the class containing the exact same values for the two instance variables that initialize sets. We can see Ruby still evaluates these two to be false. This is because it is using the `BasicObject` implementation that compares if they _are_ the same object. 
+```ruby
+class PhysicsCourse
+	def initialize(prof, semester)
+		@prof = prof
+		@semester = semester
+	end
+end
+
+phy101 = PhysicsCourse.new('Dr. Aurilia', 'Fall')
+phy102 = PhysicsCourse.new('Dr. Aurilia', 'Fall')
+
+p phy101 == phy102 # false 
+```
+The way to fix this is to override the `==` method that was inherited from `BasicObject` and give it the behavior we want-- if two objects contain the same value, then we want them to evaluate to equal. 
+```ruby
+def ==(other)
+	(prof == other.prof) && (semester == other.semester)
+end
+```
+Now we have told our class how to handle comparison. 
