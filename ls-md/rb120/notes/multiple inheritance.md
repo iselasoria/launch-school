@@ -1,3 +1,5 @@
+Ruby does not have multiple-inheritance per se, but it does have a way to mimic the behavior-- module [[mixins]]. We can include as many modules as we wish, and Ruby will use them from the last-to-first added. 
+
 ```ruby
 module Clawable
   def interact
@@ -51,4 +53,5 @@ Commenting out the line `include Clawable` means Ruby now searches `Purrable`-- 
 #### Scenario 4: comment out `# include Purrable`
 Result: `"meow"`
 Now if we comment both mixins, we are forcing Ruby to go look elsewhere up the inheritance chain. Next spot is the [[superclass]], it goes and finds a method by that same name so it executes it. 
+
 
