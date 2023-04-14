@@ -71,4 +71,4 @@ def ==(other)
 	(prof == other.prof) && (semester == other.semester)
 end
 ```
-Now we have told our class how to handle comparison. 
+Now we have told our class how to handle comparison. Note how inside the method definition we use `==` too, but this time we use `String#==` which is an overriden implementation of the inherited method from `BasicObject`. 
