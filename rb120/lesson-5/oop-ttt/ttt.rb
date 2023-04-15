@@ -1,5 +1,7 @@
+require 'pry'
+
 class Board
-  INITIAL_MARKER = 'E'
+  INITIAL_MARKER = ' '
   def initialize
     @squares = {}
     (1..9).each {|key| @squares[key] = Square.new(INITIAL_MARKER)}
@@ -8,9 +10,15 @@ class Board
   def get_square_at(key)
     @squares[key]
   end
+
+  def set_square_at(key, marker)
+    @squares[key].marker = marker
+  end
 end
 
 class Square
+  attr_accessor :marker
+
   def initialize(marker)
     @marker = marker
   end
@@ -21,17 +29,20 @@ class Square
 end
 
 class Player
-  def initialize
+  attr_reader :marker
+
+  def initialize(marker)
+    @marker = marker
   end
 
-  def mark
-  end
 end
 
 class TTTGame
-  attr_reader :board
+  attr_reader :board, :human, :computer
   def initialize
     @board = Board.new
+    @human = Player.new('X')
+    @computer = Player.new('O')
   end
 
   def display_welcome_message
@@ -58,12 +69,27 @@ class TTTGame
     puts ""
   end
 
+  def human_moves
+    puts "Choose a square 1-9:"
+    square = nil
+    loop do
+      square = gets.chomp.to_i
+      break if (1..9).include?(square)
+      puts "Sorry, that's not a valid choice."
+    end
+
+    # binding.pry
+    # whose responsiblity is it, the player or board?
+    board.set_square_at(square, human.marker)
+  end
+
   def play
     display_welcome_message
     loop do
       display_board
+      human_moves
+      display_board
       break
-      first_player_moves
       break if someone_won? || board_full?
 
       second_player_moves
