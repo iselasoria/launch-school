@@ -40,9 +40,9 @@ class Board
   # return wining marker or return nil
   def detect_winner
     WINNING_LINES.each do |line|
-      if count_human_marker(@squares.select {|k,_| line.include?(k)}.values) == 3
+      if count_human_marker(@squares.values_at(*line)) == 3
         return TTTGame::HUMAN_MARKER
-      elsif count_computer_marker(@squares.select {|k,_| line.include?(k)}.values) == 3
+      elsif count_computer_marker(@squares.values_at(*line)) == 3
         return TTTGame::COMPUTER_MARKER
       end
     end
