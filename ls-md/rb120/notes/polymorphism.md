@@ -1,3 +1,3 @@
-Via [[duck-typing ]]or module [[mixins]]
+Via [[duck-typing ]]or module [[mixins]].
 
 tags: #major 
