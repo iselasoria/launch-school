@@ -6,7 +6,7 @@ class Board
                   [[1, 5, 9], [3, 5, 7]]              # diagonals
   def initialize
     @squares = {}
-    (1..9).each {|key| @squares[key] = Square.new()}
+    (1..9).each { |key| @squares[key] = Square.new() }
   end
 
   def get_square_at(key)
@@ -18,7 +18,7 @@ class Board
   end
 
   def unmarked_keys
-    @squares.select {|_, sq| sq.unmarked?}.keys
+    @squares.select { |_, sq| sq.unmarked? }.keys
   end
 
   def full?
@@ -48,6 +48,10 @@ class Board
     end
     nil
   end
+
+  def reset
+    (1..9).each { |key| @squares[key] = Square.new() }
+  end
 end
 
 class Square
@@ -74,7 +78,6 @@ class Player
   def initialize(marker)
     @marker = marker
   end
-
 end
 
 class TTTGame
@@ -82,6 +85,7 @@ class TTTGame
   COMPUTER_MARKER = 'O'
 
   attr_reader :board, :human, :computer
+
   def initialize
     @board = Board.new
     @human = Player.new(HUMAN_MARKER)
@@ -96,8 +100,8 @@ class TTTGame
     puts "Thanks for playing TTT, goodbye!"
   end
 
-  def display_board
-    system "clear"
+  def display_board(clear = true)
+    system "clear" if clear
     puts "You're a #{human.marker}."
     puts "Computer is a #{computer.marker}."
     puts ""
@@ -146,22 +150,41 @@ class TTTGame
     end
   end
 
+  def play_again?
+    answer = nil
+    loop do
+      puts "Do you want to play again? (y/n)"
+      answer = gets.chomp.downcase
+      break if %w(y n).include?(answer)
+      puts "Sorry, must be y or n: "
+    end
+    answer == 'y'
+  end
+
   def play
+    system "clear"
     display_welcome_message
-    display_board
 
     loop do
-      human_moves
-      break if board.someone_won? || board.full?
+      display_board(false)
 
-      # break if someone_won? || board_full?
+      loop do
+        human_moves
+        break if board.someone_won? || board.full?
 
-      computer_moves
-      break if board.someone_won? || board.full?
-      # break if someone_won? || board_full?
-      display_board
+        computer_moves
+        break if board.someone_won? || board.full?
+
+        display_board
+      end
+      display_result
+      break unless play_again?
+      board.reset
+      system "clear"
+      puts "Let's play again!"
+      puts "\n"
     end
-    display_result
+
     display_goodbye_message
   end
 end
