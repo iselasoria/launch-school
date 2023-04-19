@@ -121,6 +121,8 @@ class TTTGame
     @current_marker = FIRST_TO_MOVE
   end
 
+  private
+
   def display_welcome_message
     puts "Welcome to TTT!"
   end
@@ -210,6 +212,8 @@ class TTTGame
     puts "\n"
   end
 
+  public
+
   def play
     clear
     display_welcome_message
@@ -218,14 +222,9 @@ class TTTGame
       display_board
 
       loop do
-        human_moves
+        current_player_moves
         break if board.someone_won? || board.full?
-
-        computer_moves
-        break if board.someone_won? || board.full?
-
-        # display_board
-        clear_screen_and_display_board
+        clear_screen_and_display_board if human_turn?
       end
       display_result
       break unless play_again?
