@@ -10,12 +10,8 @@ class Board
     (1..9).each { |key| @squares[key] = Square.new() }
   end
 
-  def get_square_at(key)
-    @squares[key]
-  end
-
-  def set_square_at(key, marker)
-    @squares[key].marker = marker
+  def []=(num, marker)
+    @squares[num].marker = marker
   end
 
   def unmarked_keys
@@ -55,19 +51,17 @@ class Board
   end
 
   def draw
-    puts "You're a #{human.marker}."
-    puts "Computer is a #{computer.marker}."
     puts ""
     puts "     |     |"
-    puts "  #{board.get_square_at(1)}  |  #{board.get_square_at(2)}  |  #{board.get_square_at(3)}"
+    puts "  #{@squares[1]}  |  #{@squares[2]}  |  #{@squares[3]}"
     puts "     |     |"
     puts "-----+-----+-----"
     puts "     |     |"
-    puts "  #{board.get_square_at(4)}  |  #{board.get_square_at(5)}  |  #{board.get_square_at(6)}"
+    puts "  #{@squares[4]}  |  #{@squares[5]}  |  #{@squares[6]}"
     puts "     |     |"
     puts "-----+-----+-----"
     puts "     |     |"
-    puts "  #{board.get_square_at(7)}  |  #{board.get_square_at(8)}  |  #{board.get_square_at(9)}"
+    puts "  #{@squares[7]}  |  #{@squares[8]}  |  #{@squares[9]}"
     puts "     |     |"
     puts ""
   end
@@ -121,8 +115,7 @@ class TTTGame
     puts "Thanks for playing TTT, goodbye!"
   end
 
-  def display_board#(clear_screen: true)
-    # clear if clear_screen
+  def display_board
     puts "You're a #{human.marker}."
     puts "Computer is a #{computer.marker}."
     puts ""
@@ -146,11 +139,11 @@ class TTTGame
 
     # binding.pry
     # whose responsiblity is it, the player or board?
-    board.set_square_at(square, human.marker)
+    board[square] = human.marker
   end
 
   def computer_moves
-    board.set_square_at(board.unmarked_keys.sample, computer.marker)
+    board[board.unmarked_keys.sample]= computer.marker
   end
 
   def display_result
@@ -193,7 +186,6 @@ class TTTGame
     display_welcome_message
 
     loop do
-      # display_board #(false)
       display_board
 
       loop do
@@ -210,10 +202,6 @@ class TTTGame
       break unless play_again?
       reset
       display_play_again_message
-      # board.reset
-      # clear
-      # puts "Let's play again!"
-      # puts "\n"
     end
 
     display_goodbye_message
