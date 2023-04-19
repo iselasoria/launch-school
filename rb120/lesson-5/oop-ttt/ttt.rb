@@ -110,6 +110,7 @@ class TTTGame
 
   HUMAN_MARKER = 'X'
   COMPUTER_MARKER = 'O'
+  FIRST_TO_MOVE = HUMAN_MARKER
 
   attr_reader :board, :human, :computer
 
@@ -117,6 +118,7 @@ class TTTGame
     @board = Board.new
     @human = Player.new(HUMAN_MARKER)
     @computer = Player.new(COMPUTER_MARKER)
+    @current_marker = FIRST_TO_MOVE
   end
 
   def display_welcome_message
@@ -158,6 +160,20 @@ class TTTGame
     board[board.unmarked_keys.sample]= computer.marker
   end
 
+  def current_player_moves
+    if human_turn?
+      human_moves
+      @current_marker = COMPUTER_MARKER # alternate player
+    else
+      computer_moves
+      @current_marker = HUMAN_MARKER # alternate player
+    end
+  end
+
+  def human_turn?
+    @current_marker == HUMAN_MARKER
+  end
+
   def display_result
     # display_board
     clear_screen_and_display_board
@@ -185,6 +201,7 @@ class TTTGame
 
   def reset
     board.reset
+    @current_marker = FIRST_TO_MOVE
     clear
   end
 
