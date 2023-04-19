@@ -1,4 +1,5 @@
 require 'pry'
+require "./modules/systemable.rb"
 
 class Board
   WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
@@ -81,6 +82,8 @@ class Player
 end
 
 class TTTGame
+  include Systemable
+
   HUMAN_MARKER = 'X'
   COMPUTER_MARKER = 'O'
 
@@ -100,8 +103,8 @@ class TTTGame
     puts "Thanks for playing TTT, goodbye!"
   end
 
-  def display_board(clear = true)
-    system "clear" if clear
+  def display_board(clear_screen = true)
+    clear if clear_screen
     puts "You're a #{human.marker}."
     puts "Computer is a #{computer.marker}."
     puts ""
@@ -162,7 +165,7 @@ class TTTGame
   end
 
   def play
-    system "clear"
+    clear
     display_welcome_message
 
     loop do
@@ -180,7 +183,7 @@ class TTTGame
       display_result
       break unless play_again?
       board.reset
-      system "clear"
+      clear
       puts "Let's play again!"
       puts "\n"
     end
