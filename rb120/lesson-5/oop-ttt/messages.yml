@@ -1,0 +1,15 @@
+greetings:
+  welcome: "Welcome to TTT!"
+  goodbye: "Thanks for playing TTT, goodbye!"
+  enter_name: "Enter your name: "
+
+validation:
+  invalid_square: "Sorry, that spot is taken!"
+
+results:
+  human_winner: "You won!"
+  comp_winner: "Computer won!"
+  tie: "The board is full!"
+
+play:
+  again: "Let's play again!"

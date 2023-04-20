@@ -1,5 +1,9 @@
 require 'pry'
+require "yaml"
 require "./modules/systemable.rb"
+require "./modules/orchestratable.rb"
+
+MESSAGES = YAML.load_file("messages.yml")
 
 class Board
   WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
@@ -102,6 +106,7 @@ end
 
 class TTTGame
   include Systemable
+  include Orchestratable
 
   HUMAN_MARKER = 'X'
   COMPUTER_MARKER = 'O'
@@ -118,20 +123,20 @@ class TTTGame
 
   private
 
-  def display_welcome_message
-    puts "Welcome to TTT!"
-  end
+  # def display_welcome_message
+  #   # puts "Welcome to TTT!"
+  #   MESSAGES["greetings"]["welcome"]
+  # end
 
-  def display_goodbye_message
-    puts "Thanks for playing TTT, goodbye!"
-  end
+  # def display_goodbye_message
+  #   # puts "Thanks for playing TTT, goodbye!"
+  #   MESSAGES["greetings"]["goodbye"]
+  # end
 
   def display_board
     puts "You're a #{human.marker}."
     puts "Computer is a #{computer.marker}."
-    puts ""
-    board.draw
-    puts ""
+    draw_pretty
   end
 
   def clear_screen_and_display_board
@@ -145,7 +150,7 @@ class TTTGame
     loop do
       square = gets.chomp.to_i
       break if board.unmarked_keys.include?(square)
-      puts "Sorry, that's not a valid choice."
+      MESSAGES["validation"]["invalid_square"]
     end
 
     # binding.pry
@@ -177,11 +182,11 @@ class TTTGame
 
     case board.winning_marker
     when human.marker
-      puts "You won!"
+      puts MESSAGES["results"]["human_winner"]
     when computer.marker
-      puts "Computer won!"
+      puts MESSAGES["results"]["comp_winner"]
     else
-      puts "The board is full!"
+      puts MESSAGES["results"]["tie"]
     end
   end
 
@@ -203,7 +208,7 @@ class TTTGame
   end
 
   def display_play_again_message
-    puts "Let's play again!"
+    puts MESSAGES["play"]["again"]
     puts "\n"
   end
 
@@ -218,7 +223,7 @@ class TTTGame
   def meet_player
     name = nil
     loop do
-      puts "Enter your name: "
+      puts MESSAGES["greetings"]["enter_name"]
       name = gets.chomp.capitalize
       break unless !name
     end
