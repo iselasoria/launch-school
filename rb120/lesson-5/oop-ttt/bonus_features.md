@@ -1,7 +1,7 @@
 ### Bonus Features to Implement
 ---
 
-1. Implement a `join_or` method that cleans up the display of the remaining squares. &check;
+1. &check; Implement a `join_or` method that cleans up the display of the remaining squares.
 
     #### Current:
     `=> Choose a position to place a piece: 1, 2, 3, 4, 5, 6, 7, 8, 9`
@@ -10,20 +10,22 @@
 
     `=> Choose a position to place a piece: 1, 2, 3, 4, 5, 6, 7, 8, or 9`
 
-2. Keep Score
+2. &#9744; Keep Score
 
-    Track how many times the player (computer/human) win. &#9744;
+    Track how many times the player (computer/human) win.
 
-3. Computer Defense Upon
-    Immediate Threat &#9744;
+3. &#9744; Computer Defense Upon
+    Immediate Threat
 
-4. Computer Offense &#9744;
+4. &#9744; Computer Offense
 
     If there are already two computer squares in a row, it should choose the third one.
 
-5. Let the computer attack first &#9744;
+5. &#9744; Let the computer attack first
 
-6. Let user enter name &check;
+6. &check; Let user enter name
+7. &#9744; Give the computer a name
+8. &#9744; Choose who goes first
 
 
 
