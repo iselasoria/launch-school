@@ -1,6 +1,6 @@
 module Movable
   def human_moves
-    puts "Choose a square (#{board.unmarked_keys.join(', ')}):"
+    puts "Choose a square (#{joinor(board.unmarked_keys,', ','or')}):"
     square = nil
     loop do
       square = gets.chomp.to_i

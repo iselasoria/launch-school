@@ -1,14 +1,14 @@
 ### Bonus Features to Implement
 ---
 
-1. Implement a `join_or` method that cleans up the display of the remaining squares. &#9744;
+1. Implement a `join_or` method that cleans up the display of the remaining squares. &check;
 
-  #### Current:
-  `=> Choose a position to place a piece: 1, 2, 3, 4, 5, 6, 7, 8, 9`
+    #### Current:
+    `=> Choose a position to place a piece: 1, 2, 3, 4, 5, 6, 7, 8, 9`
 
-  #### `join_or` Implementation:
+    #### `join_or` Implementation:
 
-  `=> Choose a position to place a piece: 1, 2, 3, 4, 5, 6, 7, 8, or 9`
+    `=> Choose a position to place a piece: 1, 2, 3, 4, 5, 6, 7, 8, or 9`
 
 2. Keep Score
 
