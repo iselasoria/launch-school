@@ -2,6 +2,7 @@ require 'pry'
 require "yaml"
 require "./modules/systemable.rb"
 require "./modules/orchestratable.rb"
+require "./modules/movable.rb"
 
 MESSAGES = YAML.load_file("messages.yml")
 
@@ -105,6 +106,7 @@ class Player
 end
 
 class TTTGame
+  include Movable
   include Systemable
   include Orchestratable
 
@@ -123,35 +125,6 @@ class TTTGame
 
   private
 
-  def display_board
-    puts "You're a #{human.marker}."
-    puts "Computer is a #{computer.marker}."
-    draw_pretty
-  end
-
-  def clear_screen_and_display_board
-    clear
-    display_board
-  end
-
-  def human_moves
-    puts "Choose a square (#{board.unmarked_keys.join(', ')}):"
-    square = nil
-    loop do
-      square = gets.chomp.to_i
-      break if board.unmarked_keys.include?(square)
-      MESSAGES["validation"]["invalid_square"]
-    end
-
-    # binding.pry
-    # whose responsiblity is it, the player or board?
-    board[square] = human.marker
-  end
-
-  def computer_moves
-    board[board.unmarked_keys.sample] = computer.marker
-  end
-
   def current_player_moves
     if human_turn?
       human_moves
@@ -159,24 +132,6 @@ class TTTGame
     else
       computer_moves
       @current_marker = HUMAN_MARKER # alternate player
-    end
-  end
-
-  def human_turn?
-    @current_marker == HUMAN_MARKER
-  end
-
-  def display_result
-    # display_board
-    clear_screen_and_display_board
-
-    case board.winning_marker
-    when human.marker
-      puts MESSAGES["results"]["human_winner"]
-    when computer.marker
-      puts MESSAGES["results"]["comp_winner"]
-    else
-      puts MESSAGES["results"]["tie"]
     end
   end
 
@@ -191,43 +146,12 @@ class TTTGame
     answer == 'y'
   end
 
-  def reset
-    board.reset
-    @current_marker = FIRST_TO_MOVE
-    clear
-  end
-
-  def display_play_again_message
-    puts MESSAGES["play"]["again"]
-    puts "\n"
-  end
-
-  def player_move
-    loop do
-      current_player_moves
-      break if board.someone_won? || board.full?
-      clear_screen_and_display_board if human_turn?
-    end
-  end
-
   def meet_player
     name = nil
     loop do
       puts MESSAGES["greetings"]["enter_name"]
       name = gets.chomp.capitalize
       break unless !name
-    end
-  end
-
-  def main_game
-    meet_player
-    loop do
-      display_board
-      player_move
-      display_result
-      break unless play_again?
-      reset
-      display_play_again_message
     end
   end
 
