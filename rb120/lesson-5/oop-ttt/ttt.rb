@@ -123,16 +123,6 @@ class TTTGame
 
   private
 
-  # def display_welcome_message
-  #   # puts "Welcome to TTT!"
-  #   MESSAGES["greetings"]["welcome"]
-  # end
-
-  # def display_goodbye_message
-  #   # puts "Thanks for playing TTT, goodbye!"
-  #   MESSAGES["greetings"]["goodbye"]
-  # end
-
   def display_board
     puts "You're a #{human.marker}."
     puts "Computer is a #{computer.marker}."

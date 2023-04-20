@@ -5,7 +5,7 @@ greetings:
 
 validation:
   invalid_square: "Sorry, that spot is taken!"
-  invalid_: "Sorry, must be y or n: "
+  invalid_bool: "Sorry, must be y or n: "
 
 results:
   human_winner: "You won!"
