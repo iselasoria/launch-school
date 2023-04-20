@@ -215,7 +215,17 @@ class TTTGame
     end
   end
 
+  def meet_player
+    name = nil
+    loop do
+      puts "Enter your name: "
+      name = gets.chomp.capitalize
+      break unless !name
+    end
+  end
+
   def main_game
+    meet_player
     loop do
       display_board
       player_move
