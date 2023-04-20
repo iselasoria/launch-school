@@ -193,10 +193,10 @@ class TTTGame
   def play_again?
     answer = nil
     loop do
-      puts "Do you want to play again? (y/n)"
+      puts MESSAGES["play"]["ask"]
       answer = gets.chomp.downcase
       break if %w(y n).include?(answer)
-      puts "Sorry, must be y or n: "
+      puts MESSAGES["validation"]["invalid_bool"]
     end
     answer == 'y'
   end

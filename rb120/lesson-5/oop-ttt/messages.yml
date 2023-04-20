@@ -5,6 +5,7 @@ greetings:
 
 validation:
   invalid_square: "Sorry, that spot is taken!"
+  invalid_: "Sorry, must be y or n: "
 
 results:
   human_winner: "You won!"
@@ -12,4 +13,5 @@ results:
   tie: "The board is full!"
 
 play:
+  ask: "Do you want to play again? (y/n)"
   again: "Let's play again!"
