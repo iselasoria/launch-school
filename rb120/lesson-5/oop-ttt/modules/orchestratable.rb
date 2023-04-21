@@ -29,6 +29,7 @@ module Orchestratable
   def formalities
     display_welcome_message
     meet_player
+    system "clear"
     reveal_oponent
   end
 

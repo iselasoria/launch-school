@@ -1,6 +1,7 @@
 require 'pry'
 require "yaml"
 require "./modules/systemable.rb"
+require "./modules/prettyfiable.rb"
 require "./modules/orchestratable.rb"
 require "./modules/movable.rb"
 
@@ -108,6 +109,7 @@ end
 class TTTGame
   include Movable
   include Systemable
+  include Prettyfiable
   include Orchestratable
 
   HUMAN_MARKER = 'X'
@@ -168,7 +170,7 @@ class TTTGame
   def meet_player
     name = nil
     loop do
-      puts MESSAGES["greetings"]["enter_name"]
+      slow_print(MESSAGES["greetings"]["enter_name"])
       name = gets.chomp.capitalize
       break unless !name
     end
