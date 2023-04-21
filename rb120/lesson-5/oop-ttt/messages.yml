@@ -1,7 +1,7 @@
 greetings:
   welcome: "Welcome to TTT!"
   goodbye: "Thanks for playing TTT, goodbye!"
-  enter_name: "Enter your name: "
+  enter_name: "Enter your name to meet your opponent: "
 
 validation:
   invalid_square: "Sorry, that spot is taken!"
@@ -15,3 +15,6 @@ results:
 play:
   ask: "Do you want to play again? (y/n)"
   again: "Let's play again!"
+
+game:
+  opponent: "You're going up against "

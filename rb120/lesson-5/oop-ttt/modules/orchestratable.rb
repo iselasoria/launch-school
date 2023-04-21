@@ -21,6 +21,17 @@ module Orchestratable
     MESSAGES["greetings"]["goodbye"]
   end
 
+  def reveal_oponent
+    robot = ["Chappie","Mr.Roboto","Rosie Jetson"].sample
+    puts MESSAGES["game"]["opponent"] + robot
+  end
+
+  def formalities
+    display_welcome_message
+    meet_player
+    reveal_oponent
+  end
+
   def draw_pretty
     puts ""
     board.draw
@@ -63,7 +74,7 @@ module Orchestratable
   end
 
   def main_game
-    meet_player
+    formalities
     loop do
       display_board
       player_move

@@ -159,7 +159,6 @@ class TTTGame
 
   def play
     clear
-    display_welcome_message
     main_game
     display_goodbye_message
   end
