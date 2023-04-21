@@ -24,7 +24,7 @@
 5. &#9744; Let the computer attack first
 
 6. &check; Let user enter name
-7. &#9744; Give the computer a name
+7. &check; Give the computer a name
 8. &#9744; Choose who goes first
 
 
