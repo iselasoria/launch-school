@@ -55,6 +55,7 @@ module Orchestratable
     if kickoff_round == 'go'
       #human turn
       human_turn? == true
+      # FIRST_TO_MOVE = HUMAN_MARKER
     else
       human_turn? == false
     end
@@ -103,7 +104,7 @@ module Orchestratable
 
   def main_game
     formalities
-    system_functionality
+    system_functionality(1)
     loop do
       display_board
       player_move

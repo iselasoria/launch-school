@@ -116,7 +116,7 @@ class TTTGame
 
   HUMAN_MARKER = 'X'
   COMPUTER_MARKER = 'O'
-  FIRST_TO_MOVE = HUMAN_MARKER
+  FIRST_TO_MOVE = HUMAN_MARKER # this has to alternate
 
   attr_reader :board
   attr_accessor :human, :computer
