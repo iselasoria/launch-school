@@ -21,11 +21,9 @@
 
     If there are already two computer squares in a row, it should choose the third one.
 
-5. &#9744; Let the computer attack first
-
-6. &check; Let user enter name
-7. &check; Give the computer a name
-8. &#9744; Choose who goes first
+5. &check; Let user enter name
+6. &check; Give the computer a name
+7. &#9744; Choose who goes first
 
 
 

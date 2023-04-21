@@ -125,13 +125,32 @@ class TTTGame
 
   private
 
+  # def current_player_moves
+  #   if human_turn?
+  #     human_moves
+  #     @current_marker = COMPUTER_MARKER # alternate player
+  #   else
+  #     computer_moves
+  #     @current_marker = HUMAN_MARKER # alternate player
+  #   end
+  # end
   def current_player_moves
-    if human_turn?
-      human_moves
-      @current_marker = COMPUTER_MARKER # alternate player
+    if kickoff_round == 'go'
+      if human_turn?
+        human_moves
+        @current_marker = COMPUTER_MARKER # alternate player
+      else
+        computer_moves
+        @current_marker = HUMAN_MARKER # alternate player
+      end
     else
-      computer_moves
-      @current_marker = HUMAN_MARKER # alternate player
+      if human_turn?
+        human_moves
+        @current_marker = COMPUTER_MARKER # alternate player
+      else
+        computer_moves
+        @current_marker = HUMAN_MARKER # alternate player
+      end
     end
   end
 

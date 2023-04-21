@@ -32,6 +32,27 @@ module Orchestratable
     reveal_oponent
   end
 
+  def kickoff_round
+    answer = nil
+
+    loop do
+      puts MESSAGES["game"]["kickoff"]
+      answer = gets.chomp.downcase
+      break if %w(go yield).include?(answer)
+      puts MESSAGES["validation"]["invalid_kickoff"]
+    end
+    answer
+  end
+
+  def opening_turn
+    if kickoff_round == 'go'
+      #human turn
+      human_turn? == true
+    else
+      human_turn? == false
+    end
+  end
+
   def draw_pretty
     puts ""
     board.draw

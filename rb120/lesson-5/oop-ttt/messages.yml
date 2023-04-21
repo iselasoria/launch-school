@@ -6,6 +6,7 @@ greetings:
 validation:
   invalid_square: "Sorry, that spot is taken!"
   invalid_bool: "Sorry, must be y or n: "
+  invalid_kickoff: "Sorry, invalid input (go / yield)"
 
 results:
   human_winner: "You won!"
@@ -18,3 +19,4 @@ play:
 
 game:
   opponent: "You're going up against "
+  kickoff: "Do you want to go first, or yield the turn to the robot? (go / yield)"
