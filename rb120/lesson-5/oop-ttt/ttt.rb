@@ -100,9 +100,11 @@ end
 
 class Player
   attr_reader :marker
+  attr_accessor :name
 
-  def initialize(marker)
+  def initialize(marker, name=nil)
     @marker = marker
+    @name = name
   end
 end
 
@@ -116,7 +118,8 @@ class TTTGame
   COMPUTER_MARKER = 'O'
   FIRST_TO_MOVE = HUMAN_MARKER
 
-  attr_reader :board, :human, :computer
+  attr_reader :board
+  attr_accessor :human, :computer
 
   def initialize
     @board = Board.new
@@ -168,12 +171,13 @@ class TTTGame
   end
 
   def meet_player
-    name = nil
+    nom = nil
     loop do
       slow_print(MESSAGES["greetings"]["enter_name"])
-      name = gets.chomp.capitalize
-      break unless !name
+      nom = gets.chomp.capitalize
+      break unless !nom
     end
+    human.name = nom
   end
 
   public

@@ -1,5 +1,11 @@
+require "pry"
 module Orchestratable
   protected
+
+  def system_functionality(sec=2)
+    sleep(sec)
+    system("clear")
+  end
 
   def joinor(arr, delimiter=", ", word="or")
     case arr.size
@@ -18,18 +24,18 @@ module Orchestratable
   end
 
   def display_goodbye_message
-    MESSAGES["greetings"]["goodbye"]
+    slow_print(MESSAGES["greetings"]["goodbye"])
   end
 
   def reveal_oponent
     robot = ["Chappie","Mr.Roboto","Rosie Jetson"].sample
-    puts MESSAGES["game"]["opponent"] + robot
+    puts slow_print(MESSAGES["game"]["opponent"] + robot)
+    computer.name = robot
   end
 
   def formalities
     display_welcome_message
     meet_player
-    system "clear"
     reveal_oponent
   end
 
@@ -37,10 +43,10 @@ module Orchestratable
     answer = nil
 
     loop do
-      puts MESSAGES["game"]["kickoff"]
+      slow_print(MESSAGES["game"]["kickoff"])
       answer = gets.chomp.downcase
       break if %w(go yield).include?(answer)
-      puts MESSAGES["validation"]["invalid_kickoff"]
+      slow_print(MESSAGES["validation"]["invalid_kickoff"])
     end
     answer
   end
@@ -97,6 +103,7 @@ module Orchestratable
 
   def main_game
     formalities
+    system_functionality
     loop do
       display_board
       player_move
