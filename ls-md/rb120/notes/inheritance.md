@@ -13,5 +13,6 @@ This way, Ruby can include as many modules as it wants to borrow behavior that l
 | class inheritance       | _has-a_ relationship    | A dog _is a_ mammal.|
 | module mixins           |  _is-a_ relationship    | A dog has an ability to swim.
 
+Inheritance introduces the concept of the [[superclass]] and [[subclass]]. As stated before, Ruby only has single-inheritance so it passes down methods from a superclass to a subclass. 
 
 tags: #major 

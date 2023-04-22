@@ -1,1 +1,1 @@
-These variables are initialize on the [[class]] itself. 
+These variables are initialized on the [[class]] itself. Class variables are shared amongst all instances of the same class.

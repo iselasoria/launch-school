@@ -1,0 +1,1 @@
+A "parent" class that hands down behavior to a [[subclass]]. 
