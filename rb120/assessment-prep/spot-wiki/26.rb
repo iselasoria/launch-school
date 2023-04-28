@@ -10,9 +10,8 @@ module Funny
   def tell_joke(character)
     @punchline = "#{character} says: I believe that children are our future, unless we stop them now."
   end
-
-
 end
+
 class Simpsons
   attr_reader :name, :age
 
@@ -30,6 +29,7 @@ class Adults < Simpsons
   include Funny
 end
 
+# todo is this only becauwse the ivars come from the constructor?
 homer = Adults.new("Homer", 42)
 p homer.tell_joke(homer.name)
 # In the code above, the instgance variables @name and @age are both defined in the Simpsons superclass, not in the Adult class and yet instances of Adult have access to them
