@@ -287,14 +287,301 @@ This code will raise an ArgumentError. The use of the `super` keyword in the ini
 
 
 ## 10
+
+```ruby
+module Walkable
+  def walk
+    "I'm walking."
+  end
+end
+
+module Swimmable
+  def swim
+    "I'm swimming."
+  end
+end
+
+module Climbable
+  def climb
+    "I'm climbing."
+  end
+end
+
+module Danceable
+  def dance
+    "I'm dancing."
+  end
+end
+
+class Animal
+  include Walkable
+
+  def speak
+    "I'm an animal, and I speak!"
+  end
+end
+
+module GoodAnimals
+  include Climbable
+
+  class GoodDog < Animal
+    include Swimmable
+    include Danceable
+  end
+
+  class GoodCat < Animal; end
+end
+
+good_dog = GoodAnimals::GoodDog.new
+p good_dog.walk
+
+```
+
+**What is the method lookup path used when invoking #walk on good_dog?**
+The method lookup path will be:
+`# GoodAnimals::GoodDog, Danceable, Swimmable, Animal, Walkable`... followed by all the superclasses native to Ruby.
+
+Ruby will first search the enclosing structure, which is the namespaced `GoodAnimals::GoodDog`. It doesn’t find the method, then goes to modules in the enclosing structure in order of last to first added, then up to superclass which in this case is `Animal` , then to the modules mixed in to the superclass.
+`GoodAnimals::GoodDog.ancestors = [GoodAnimals::GoodDog, Danceable, Swimmable, Animal, Walkable, Object, PP::ObjectMixin, Kernel, BasicObject]`
+
+
 ---
 
 ## 11
+```ruby
+class Animal
+  def eat
+    puts "I eat."
+  end
+end
+
+class Fish < Animal
+  def eat
+    puts "I eat plankton."
+  end
+end
+
+class Dog < Animal
+  def eat
+     puts "I eat kibble."
+  end
+end
+
+def feed_animal(animal)
+  animal.eat
+end
+
+array_of_animals = [Animal.new, Fish.new, Dog.new]
+array_of_animals.each do |animal|
+  feed_animal(animal)
+end
+
+```
+**What is output and why? How does this code demonstrate polymorphism?**
+This code outputs each of the different `eat` sentences for each type of animal. This demonstrates polymorphism by inheritance. We first inherit the behavior, and then we override it but keep the name so as to let all the different objects respond to the same interface-- the `eat` instance method.
+
 ---
 ## 12
+```ruby
+class Person
+  attr_accessor :name, :pets
+
+  def initialize(name)
+    @name = name
+    @pets = []
+  end
+end
+
+class Pet
+  def jump
+    puts "I'm jumping!"
+  end
+end
+
+class Cat < Pet; end
+
+class Bulldog < Pet; end
+
+bob = Person.new("Robert")
+
+kitty = Cat.new
+bud = Bulldog.new
+
+bob.pets << kitty
+bob.pets << bud
+
+bob.pets.jump
+```
+**We raise an error in the code above. Why? What do kitty and bud represent in relation to our Person object?**
+
+The code raises an error because the method jump exists for the Person class, but we are calling it on pets which is an array object and it does not have access to it. The fix would be to iterate over the pets array and then call jump on each one of its elements, since they do have access to the jump method.
 ---
 
 
+## 13
+```ruby
+class Animal
+  def initialize(name)
+    @name = name
+  end
+end
+
+class Dog < Animal
+  def initialize(name); end
+
+  def dog_name
+    "bark! bark! #{@name} bark! bark!"
+  end
+end
+
+teddy = Dog.new("Teddy")
+puts teddy.dog_name
+
+```
+
+The output is `bark! bark!  bark! bark!` and the reason is that we override the initialize method that came from `Animal` class, and in the `Dog` class constructor, we don’t actually set the instance variable. The fix would be to either add a super keyword and let the constructor yield the power to the constructor up the chain of inheritance:
+
+---
+
+## 14
+```ruby
+class Person
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+al = Person.new('Alexander')
+alex = Person.new('Alexander')
+p al == alex # => true
+```
+The code above returns false because we are currently using the implementation of BasicObject#== which compares whether two objects are literally the same in memory. Instead, what we want to do is override the instance method with out own Person#== that checks whether the values stored in the ivar are the same.
+```ruby
+def ==(other)
+  name == other.name
+end
+```
+
+---
+## 15
+```ruby
+class Person
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def to_s
+    "My name is #{name.upcase!}."
+  end
+end
+
+bob = Person.new('Bob')
+puts bob.name
+puts bob
+puts bob.name
+```
+**What is output on lines 14, 15, and 16 and why?**
+
+The first call to puts outputs Bob, as it was entered as an argument to `new`.
+The second call to puts outputs "My name is BOB!" because we are overriding the to_s method that came from BasicObject and asking it to upcase the name (referencing getter method name). Lastly, when we call `bob.name` again, we now get BOB as the output because the to_s method implementation has a call to the destructive upcase!` Setters are more like reassignment. We don't need a setter in this case because we are not reassigning, we are acting directly on the object and mutating it so all we need is a reference to the getter.
+
+
+---
+## 16
+
+**Why is it generally safer to invoke a setter method (if available) vs. referencing the instance variable directly when trying to set an instance variable within the class? Give an example.**
+
+It is best to use the setter method whenever possible because we can add a layer of protection in the form of validation when updating the value of an ivar. The other reason is, when using methods, we have to be more intentional about how we use them so it is less likely that we’d change something by mistake. With methods, we have to think about what they get called on and this makes us me more mindful.
+
+```ruby
+class Teacher
+  attr_accessor :schedule
+
+  def initialize(name, main_subject)
+    @name = name
+    @main_subject = main_subject
+    @schedule = []
+  end
+
+  def schedule=(course)
+    case course
+    when 'APUSH' then schedule << 'Advanced Placement U.S. History'
+    when 'Euro' then schedule << 'European History'
+    when 'Econ' then schedule << 'Economics'
+    end
+  end
+end
+
+josh = Teacher.new('Joshua Chancer', 'U.S. History')
+p josh # #<Teacher:0x00007f3280de0ad0 @name="Joshua Chancer", @main_subject="U.S. History", @schedule=[]>
+josh.schedule = 'APUSH'
+p josh # #<Teacher:0x00007f3280de0ad0 @name="Joshua Chancer", @main_subject="U.S. History", @schedule=["Advanced Placement U.S. History"]>
+```
+
+---
+
+## 17
+
+**Give an example of when it would make sense to manually write a custom getter method vs. using attr_reader.**
+
+Using the setter method instead of using the instance variable directly ensures that our code is flexible and can easily be changed in the future. The benefit is more obvious on large codebase where we might have thousands of references to a piece of data. If wanted to change how the data was presented, and we had used the ivars, we’d have to change hundreds of times. However, if we make reference to the setter method we only have to change it in the one place and the change propagates. In the code below, we now have left the data as we entered it, intact and at the same time, we now have a way of retrieving someone’s take home pay and we only had to do it in the getter.
+
+```ruby
+class Salary
+  def initialize(name, payment)
+    @name = name
+    @payment = payment
+  end
+
+  def payment=(bonus)
+    @payment + bonus
+  end
+end
+
+ed = Salary.new('Ed', 3500)
+p ed # #<Salary:0x00007f5c16e595b0 @name="Ed", @payment=3500>
+p ed.payment = 1200 # 120
+```
+
+---
+## 18
+```ruby
+class Shape
+  @@sides = nil
+
+  def self.sides
+    @@sides
+  end
+
+  def sides
+    @@sides
+  end
+end
+
+class Triangle < Shape
+  def initialize
+    @@sides = 3
+  end
+end
+
+class Quadrilateral < Shape
+  def initialize
+    @@sides = 4
+  end
+end
+
+```
+**What can executing Triangle.sides return? What can executing Triangle.new.sides return? What does this demonstrate about class variables?**
+
+On the first example, Ruby will look to the `Shape` superclass, and since we don’t actually instantiate an object of Triangle, it finds the `sides` in `Shape` and returns `nil`.
+
+On the second one,  we do instantiate an object of the `Triagle` class, so now when we call `sides` on it the constructor defined in the class does get triggered and that is how it outputs 3 sides.
+
+---
 
 ## 19
 
