@@ -415,6 +415,7 @@ bob.pets.jump
 **We raise an error in the code above. Why? What do kitty and bud represent in relation to our Person object?**
 
 The code raises an error because the method jump exists for the Person class, but we are calling it on pets which is an array object and it does not have access to it. The fix would be to iterate over the pets array and then call jump on each one of its elements, since they do have access to the jump method.
+
 ---
 
 
