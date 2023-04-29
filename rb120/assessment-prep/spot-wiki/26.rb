@@ -1,9 +1,9 @@
 # How do class inheritance and mixing in modules
 # affect instance variable scope? Give an example.
 # S:
-# instance variables initialized in the superclass will be available to any subclasses
-# Similarly, the instance variables initialized inside a module will
-# be available to the classes where the module was mixed in.
+# in Ruby, instance variables do not get inherited down the chain-- only behaviors do
+# So if an instance variable is initialized inside a method, that method will be available to
+# subclasses and then set it's own instnace variables, so it looks like they are inherited but they are not
 
 module Funny
   attr_reader :punchline
@@ -35,3 +35,11 @@ p homer.tell_joke(homer.name)
 # In the code above, the instgance variables @name and @age are both defined in the Simpsons superclass, not in the Adult class and yet instances of Adult have access to them
 # Then, the ivar @punchline is defined in a module Funny, and we also have access to it in the class that includes the mixin
 
+p Adults.instance_methods
+puts "\n"
+p Adults.instance_variables
+
+# no matter where on the inheritance chain we are, an object is searching to
+# resolve methods as itself.
+# instance variables are never inherited, we might inherit behavior that could create ivars but not the ivars themselves
+# methods are inherited, but not state
