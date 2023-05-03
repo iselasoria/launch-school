@@ -46,3 +46,5 @@ p spunky
 # this second snippet of code is setting ivars correctly and therefore
 # it is working as we expected the first snippet to work. This second
 # part is basically the answer to the first.
+
+# accessor and writer can make and ivar but

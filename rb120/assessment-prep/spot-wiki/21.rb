@@ -1,4 +1,5 @@
 # What is the difference between instance methods and class methods?
+
 # instance methods are bahaviours the instances of a given class have access to.
 # Once used, the response to those behaviours is individual to each instance that responded to it
 # with class methods, they must be called on the class itself rather than on instances of the class
