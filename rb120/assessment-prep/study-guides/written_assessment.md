@@ -157,7 +157,7 @@ In the code above, we inheirit the `define_kingdon` instance method, a behavior 
   p tiger.class.pop_count #6500
   p ek_balam.class.pop_count #6500
   ```
-  - Scope and Inheritance
+- Scope and Inheritance
 
 As seen in the code above, every single instance has access to the `6500` population count. The two instances of the `Panthera` class share that number, and the instance of the subclass that inherits from `Panthera` also shares that class variable. As we can see the scope extends wide.
 
@@ -175,15 +175,15 @@ Constants are scoped lexically in Ruby. This means that when a constant is calle
 > NOTE: In the subsequent code, we are searching for our _**Car Keys**_
 
 | Locations where `KEYS is defined  | Value Resolved to|
-| :-------------------------------: |:----------------:|
+| :-------------------------------- |:---------------- |
 | `Garage` class                    | `Safe Keys`      |
 | `OldKeys` module                  | `Old Car Keys`   |
 | `FriendHouse` module              | `Car Keys`       |
 | `House` class                     | `House Keys`     |
 | `FriendHouse` module              | `Car Keys`       |
 | top-level                         | `Toy Keys`       |
-In this example, Ruby will search and find the `keys` constant in the enclosing structure, so it will stop looking:
 
+In this example, Ruby will search and find the `keys` constant in the enclosing structure, so it will stop looking:
 
 
 ```ruby
@@ -272,8 +272,160 @@ This has helped us bypass the look up chain, because we knew where we'd find som
 
 ### Instance methods vs. class methods
 
+**Instance methods** as the name suggests are available to the instances of a given class and they are defined in the class definition. Instance methods have access to the state of the object and they have the ability to interact with it.
 
+**Class methods** do not have access to instance-specific information, such as an objects values stored in its instance variables. They don't have access to an object's state, and they are typically prepended with the keyword `self`.
+
+```ruby
+class GoldenGirls
+  @@number_of_girls = 0
+
+  def self.number_of_girls
+    @@number_of_girls
+  end
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+    @@number_of_girls += 1
+  end
+end
+
+blanche = GoldenGirls.new('Blanche Deveraux', 51) #<GoldenGirls:0x00007fd2aa2993f0 @name="Blanche Deveraux", @age=51>
+rose = GoldenGirls.new('Rose Nylund', 53) #<GoldenGirls:0x00007fd2aa299328 @name="Rose Nylund", @age=53>
+p blanche
+p rose
+p rose.number_of_girls # NoMethodError: undefined method `number_of_girls` for #<GoldenGirls:0x00007fd2aa299328 @name="Rose Nylund", @age=53>
+p GoldenGirls.number_of_girls # 2
+```
+The code above demonstrates how class methods have access to the class-level variable `@@number_of_girls` but not to the instance of the class.
 ### Method Access Control
+**Public**
+Method access control is the use of access modifiers (`public`, `private` and `protected`) to intentionally expose or hide functionality from other parts of the codebase or from the public interface.
+
+By default, all methods are public without the need for us to explicitly use the `public` keyword. The exception is the constructor `initialize` and we can prove this by trying to call it from the outside:
+
+```ruby
+class GoldenGirls
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+end
+
+blanche = GoldenGirls.new('Blanche Deveraux', 51)
+p blanche.initialize  # NoMethodError: private method `initialize' called for #<GoldenGirls:0x00007f6258a99860 @name="Blanche Deveraux", @age=51>
+```
+This differs from calling a non-existent method, like `blanche.greet` which would return
+`NoMethodError: undefined method 'greet' for #<GoldenGirls:0x00007fda1eb297d8 @name="Blanche Deveraux", @age=51>`. Public methods are freely available from the outside interface.
+
+```ruby
+class GoldenGirls
+  attr_reader :name
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def meet_handsome_bachelor
+    "Hello, my name is #{self.name} and I just turned #{self.age - 12}."
+  end
+end
+
+blanche = GoldenGirls.new('Blanche Deveraux', 51)
+p blanche.meet_handsome_bachelor #"Hello, my name is Blanche Deveraux and I just turned 39."
+p blanche.age # 51
+```
+Blanche lies about her age but we still have access to her actual age via the public interface! That's like asking someone their age and then being able to check their birth certificate against their will! Let's fix this and give Blanche some privacy.
+
+**Protected**
+
+```ruby
+class GoldenGirls
+  attr_reader :name
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def meet_handsome_bachelor
+    "Hello, my name is #{self.name} and I just turned #{self.age - 12}."
+  end
+
+  protected
+
+  attr_reader :age
+end
+
+blanche = GoldenGirls.new('Blanche Deveraux', 51)
+p blanche.meet_handsome_bachelor
+
+begin
+  blanche.age # NoMethodError: protected method `age' called for #<GoldenGirls:0x00007f77526b0f50 @name="Blanche Deveraux", @age=51>
+rescue
+  p "My my sir, I do declare you're prying into business that do'ent have notn' to do with you!"
+end
+```
+**Private**
+Protected methods can have access to the current and other instance of the class. In the snippet below, the `blanche` instance of the `GoldenGirls` has access to the instance `dorothy` and is able to tell her age (and lie) when the `share_other_age` method and the `age` getter are protected. The call to the method comes from inside the class definition. But it cannot access it when they are private.
+
+```ruby
+class GoldenGirls
+  attr_reader :name
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def meet_handsome_bachelor(other_friend)
+    "Hello, my name is #{self.name} and I just turned #{self.age - 12}.I'm the youngest in my group of friends, Dorothy just turned #{share_other_age(other_friend)}"
+  end
+
+  protected
+
+  def share_other_age(other)
+    age = other.age + 2
+  end
+
+  attr_reader :age
+end
+
+blanche = GoldenGirls.new('Blanche Deveraux', 51)
+dorothy = GoldenGirls.new('Dorothy Zbornak', 55)
+p blanche.meet_handsome_bachelor(dorothy) # "Hello, my name is Blanche Deveraux and I just turned 39.I'm the youngest in my group of friends, Dorothy just turned 57"
+```
+
+```ruby
+class GoldenGirls
+  attr_reader :name
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def meet_handsome_bachelor(other_friend)
+    "Hello, my name is #{self.name} and I just turned #{self.age - 12}.I'm the youngest in my group of friends, Dorothy just turned #{share_other_age(other_friend)}"
+  end
+
+  private
+
+  def share_other_age(other)
+    age = other.age + 2
+  end
+
+  attr_reader :age
+end
+
+blanche = GoldenGirls.new('Blanche Deveraux', 51)
+dorothy = GoldenGirls.new('Dorothy Zbornak', 55)
+p blanche.meet_handsome_bachelor(dorothy) # NoMethodError: private method `age' called for #<GoldenGirls:0x00007fc146748cb8 @name="Dorothy Zbornak", @age=55>
+```
+
+
 
 ### Referencing and setting instance variables vs. using getters and setters
 
