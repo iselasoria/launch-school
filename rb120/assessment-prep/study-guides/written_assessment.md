@@ -158,6 +158,7 @@ In the code above, we inheirit the `define_kingdon` instance method, a behavior 
   p ek_balam.class.pop_count #6500
   ```
   - Scope and Inheritance
+
 As seen in the code above, every single instance has access to the `6500` population count. The two instances of the `Panthera` class share that number, and the instance of the subclass that inherits from `Panthera` also shares that class variable. As we can see the scope extends wide.
 
 **Constants**
@@ -231,6 +232,7 @@ Now let's comment that constant definition too. Now this leaves Ruby with the su
 Let's comment out the `KEYS` in `House` now. Ruby will continue to traverse the inheritanc chain, this time going all the way up to top scope where it will find `KEYS` and resolve it as  `Toy Keys`. That is how the scope gets dictated by inheritance. But there is one last caveat.
 
 Let's say that we have a feeling we left the keys somewhere in the `Hosue`, so we tell Ruby to search there, now our code looks like this:
+
 ```ruby
 KEYS = 'Toy Keys'
 
