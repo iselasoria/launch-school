@@ -15,41 +15,71 @@ class Cards
   def self.deck
     @@deck
   end
+
+  def add_to_hand(current_hand, new_drawn_card)
+    current_hand << new_drawn_card
+  end
 end
 
 
 class Participant
 include GameOrchestration
 
+
+
   def initialize
+    @name = nil
     @hand = [hit!(Cards.deck), hit!(Cards.deck)]
   end
 
+  attr_accessor :name, :hand
 end
 
 
 class Player < Participant
-
+  def hit_or_stay(current_hand)
+    if calculate_hand_value(current_hand)
+      hit!(Cards.deck)
+    else
+      #stay
+    end
+  end
 end
 
 class Dealer < Participant
   UPPER_THRESHOLD = 17
 
   # dealer always hits if he doesn't have at least 17
-  def decide(current_hand)
+  def hit_or_stay(current_hand)
     if calculate_hand_value(current_hand) <= UPPER_THRESHOLD
-      # hit
       hit!(Cards.deck)
+      # add new card to hand
     else
       # stay
+      # compare results
     end
   end
 end
 
 class Game
 include Prettyfiable
+include GameOrchestration
+
+attr_reader :player, :dealer
+
+
+def initialize
+  @player = Player.new
+  @dealer = Dealer.new
+end
+
   def match
-    slow_print("Hello, this is 21. Enter your name to learn the rules:")
+    slow_print("Hello, this is 21.")
+    take_user_name
+    display_player_hand
+    display_dealer_first_card
+    ask_to_make_decision
+    decision
     # intro
     # display player hand
     # display one of the dealers cards
@@ -60,3 +90,6 @@ end
 
 twentyone = Game.new
 twentyone.match
+
+# joe = Player.new
+# p joe
