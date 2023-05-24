@@ -52,12 +52,20 @@ module GameOrchestration
 
   def decision
     if @@player_turn
-      puts "#{player}".hit_or_stay
+      puts player.hit_or_stay?(player.hand)
     else
-      puts "#{dealer}".hit_or_stay
+      puts dealer.hit_or_stay?
     end
     # if player turn, call player.hit_or_stay
   # else call dealer hit_or_stay
+  end
+
+  def calculate_hand_value(current_hand)
+
+  end
+
+  def determine_ace_value(current_hand)
+    calculate_hand_value(current_hand) < 20 ? 11 : 1
   end
 end
 

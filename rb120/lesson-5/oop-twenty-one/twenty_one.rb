@@ -37,7 +37,7 @@ end
 
 
 class Player < Participant
-  def hit_or_stay(current_hand)
+  def hit_or_stay?(current_hand)
     if calculate_hand_value(current_hand)
       hit!(Cards.deck)
     else
@@ -50,7 +50,7 @@ class Dealer < Participant
   UPPER_THRESHOLD = 17
 
   # dealer always hits if he doesn't have at least 17
-  def hit_or_stay(current_hand)
+  def hit_or_stay?(current_hand)
     if calculate_hand_value(current_hand) <= UPPER_THRESHOLD
       hit!(Cards.deck)
       # add new card to hand
@@ -80,6 +80,7 @@ end
     display_dealer_first_card
     ask_to_make_decision
     decision
+    display_player_hand
     # intro
     # display player hand
     # display one of the dealers cards
