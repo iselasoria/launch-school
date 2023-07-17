@@ -231,7 +231,7 @@ Now let's comment that constant definition too. Now this leaves Ruby with the su
 
 Let's comment out the `KEYS` in `House` now. Ruby will continue to traverse the inheritanc chain, this time going all the way up to top scope where it will find `KEYS` and resolve it as  `Toy Keys`. That is how the scope gets dictated by inheritance. But there is one last caveat.
 
-Let's say that we have a feeling we left the keys somewhere in the `Hosue`, so we tell Ruby to search there, now our code looks like this:
+Let's say that we have a feeling we left the keys somewhere in the `House`, so we tell Ruby to search there, now our code looks like this:
 
 ```ruby
 KEYS = 'Toy Keys'
@@ -272,9 +272,13 @@ This has helped us bypass the look up chain, because we knew where we'd find som
 
 ### Instance methods vs. class methods
 
-**Instance methods** as the name suggests are available to the instances of a given class and they are defined in the class definition. Instance methods have access to the state of the object and they have the ability to interact with it.
+**Instance methods**
 
-**Class methods** do not have access to instance-specific information, such as an objects values stored in its instance variables. They don't have access to an object's state, and they are typically prepended with the keyword `self`.
+As the name suggests, instance methods are available to the instances of a given class and they are defined in the class definition. Instance methods have access to the state of the object and they have the ability to interact with it.
+
+**Class methods**
+
+These methods do not have access to instance-specific information, such as an objects values stored in its instance variables. They don't have access to an object's state, and they are typically prepended with the keyword `self`.
 
 ```ruby
 class GoldenGirls
@@ -432,6 +436,8 @@ p blanche.meet_handsome_bachelor(dorothy) # NoMethodError: private method `age' 
 ### Class inheritance, encapsulation, and polymorphism
 
 ### Modules
+Multiple inheritance from several superclasses down to a subclass does not exist in Ruby. Instead, Ruby tries to implement just that by using modules. Modules can be mixed into a class to extend its behavior, giving access to the methods defined withing the module.
+In Ruby, modules are mixed in (called `mixins`) with the keyword `include` and they are
 
 ### Method lookup path
 
