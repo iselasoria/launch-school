@@ -1,11 +1,26 @@
-# Update the following code so that, instead of printing the values, each statement prints the name of the class to which it belongs.
+# Using the code from the previous exercise, add a parameter to #initialize that provides
+# a name for the Cat object. Use an instance variable to print a greeting with the provided name.
+# (You can remove the code that displays I'm a cat!.)
 
-puts "Hello"
-puts 5
-puts [1, 2, 3]
+class Cat
+  def initialize
+    puts "I'm a cat!"
+  end
+end
+
+kitty = Cat.new('Sophie')
 
 # expected output
 
-# String
-# Integer
-# Array
+# Hello! My name is Sophie!
+
+class Cat
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+    puts "Hello! My name is #{@name}!"
+  end
+end
+
+kitty = Cat.new('Sophie')
