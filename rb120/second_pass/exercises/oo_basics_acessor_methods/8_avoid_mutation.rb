@@ -6,7 +6,7 @@ returns a copy of @name instead of a reference to it.
 =end
 
 class Person
-  attr_reader :name
+  # attr_reader :name removing this since we are customizing the getter with a clone
 
   def initialize(name)
     @name = name
