@@ -12,7 +12,7 @@ end
 
 class Square < Rectangle
   def initialize(side)
-    super(side, side)
+    super(side, side) # we have to make sure we pass the two arguments explicitly to the parent method
   end
 end
 
