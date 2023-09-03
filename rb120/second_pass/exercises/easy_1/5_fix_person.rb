@@ -1,6 +1,8 @@
 # Complete this program so that it produces the expected output:
 
 class Person
+  attr_writer :first_name, :last_name
+
   def initialize(first_name, last_name)
     @first_name = first_name.capitalize
     @last_name = last_name.capitalize
